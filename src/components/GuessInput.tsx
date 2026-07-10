@@ -2,7 +2,7 @@
  * The make-or-break interaction (ROADMAP §4): instant, keyboard-first
  * autocomplete. Rows show ticker · name · flag · cap. Fully ARIA-wired.
  */
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import type { CompanySearch, Suggestion } from "../lib/search.ts";
 
 interface Props {
@@ -30,10 +30,6 @@ export default function GuessInput({
   const suggestions: Suggestion[] = open
     ? search.suggest(query, 8).filter((s) => !guessedIds.has(s.id))
     : [];
-
-  useEffect(() => {
-    setActive(0);
-  }, [query]);
 
   const pick = (id: string) => {
     onGuess(id);
@@ -76,6 +72,7 @@ export default function GuessInput({
         placeholder={placeholder}
         onChange={(e) => {
           setQuery(e.target.value);
+          setActive(0);
           setOpen(true);
         }}
         onFocus={() => setOpen(true)}
