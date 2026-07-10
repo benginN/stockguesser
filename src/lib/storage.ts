@@ -93,3 +93,34 @@ export function onceFlag(name: string): boolean {
   saveJSON(key, true);
   return true; // first time
 }
+
+// ---- per-mode personal bests ----
+
+export interface RecallBest {
+  score: number;
+  named: number;
+  total: number;
+  date: string;
+}
+
+export function loadRecallBest(indexId: string, variant: string): RecallBest | undefined {
+  return loadJSON<RecallBest>(`best:recall:${variant}:${indexId}`);
+}
+
+/** Returns true if this run set a new personal best (and persists it). */
+export function saveRecallBest(indexId: string, variant: string, run: RecallBest): boolean {
+  const prev = loadRecallBest(indexId, variant);
+  if (prev && prev.score >= run.score) return false;
+  saveJSON(`best:recall:${variant}:${indexId}`, run);
+  return true;
+}
+
+export function loadCapBattleBest(): number {
+  return loadJSON<number>("best:capbattle") ?? 0;
+}
+
+export function saveCapBattleBest(streak: number): boolean {
+  if (streak <= loadCapBattleBest()) return false;
+  saveJSON("best:capbattle", streak);
+  return true;
+}

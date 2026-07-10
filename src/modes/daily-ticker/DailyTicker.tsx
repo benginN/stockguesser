@@ -25,6 +25,7 @@ import {
   type DailyState,
 } from "../../lib/storage.ts";
 import { buildShareText } from "../../game/share.ts";
+import { INDEX_NAMES } from "../../lib/sectorColors.ts";
 import GuessInput from "../../components/GuessInput.tsx";
 import FeedbackRow from "../../components/FeedbackRow.tsx";
 import StockCard from "../../components/StockCard.tsx";
@@ -33,24 +34,6 @@ import StatsModal from "../../components/StatsModal.tsx";
 import HowToPlay from "../../components/HowToPlay.tsx";
 
 const MAX_GUESSES = 6;
-
-const INDEX_NAMES: Record<string, string> = {
-  sp500: "S&P 500",
-  nasdaq100: "NASDAQ-100",
-  dow30: "Dow 30",
-  ftse100: "FTSE 100",
-  dax: "DAX",
-  cac40: "CAC 40",
-  eurostoxx50: "EURO STOXX 50",
-  aex: "AEX",
-  smi: "SMI",
-  ibex35: "IBEX 35",
-  ftsemib: "FTSE MIB",
-  omxs30: "OMXS30",
-  nikkei225: "Nikkei 225",
-  hangseng: "Hang Seng",
-  nifty50: "NIFTY 50",
-};
 
 interface Loaded {
   companies: Map<string, CompanyRecord>;

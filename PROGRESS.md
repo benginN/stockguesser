@@ -2,6 +2,29 @@
 
 Append a dated summary at the end of every working session (ROADMAP.md §8.3).
 
+## 2026-07-10 (session 4) — Phase 3: Index Recall + Cap Battle ✅ → tagged v0.3
+
+**All acceptance boxes checked:**
+
+- [x] 15 indices playable in Recall (10 full-recall ≤60 stocks, 5 as Top-10) with
+      pipeline-validated counts and computed weights shown on tiles
+- [x] Alias acceptance + sub-3-char lazy-guess rejection covered by matching tests;
+      exact-name pass beats fuzzy cousins ("Siemens" ≠ "Siemens Energy")
+- [x] Imposter structurally unambiguous: imposter drawn only from companies whose
+      validated indexMemberships exclude the index (30-seed property test)
+- [x] Cap Battle: interesting pairs (same sector or caps within 3×), 24-company
+      recent-window against staleness (50-round test), personal best persists
+
+**Shipped:** recall engine (type-to-reveal, progress ring, 7.5s/stock timer with zen
+toggle, sector-grouped end screen with weights), Top-10 and Imposter variants,
+higher/lower Cap Battle with monogram avatars (no logos — §2.6), per-index personal
+bests, 130 unit + 5 e2e tests.
+
+**Deferred from §1.2:** Top-10 drag-into-weight-order bonus round (backlog).
+
+**Next:** Phase 4 — Country mode (pin-the-HQ map), Chart Detective, polish pass.
+Needs a mapping dep decision (react-simple-maps vs d3-geo, ROADMAP §5 Phase 4).
+
 ## 2026-07-10 (session 3) — Phase 2: core engine + Daily Ticker ✅ → tagged v0.2
 
 **All acceptance boxes checked:**

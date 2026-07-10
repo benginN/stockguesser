@@ -4,11 +4,13 @@
  */
 import { useState } from "react";
 import DailyTicker from "./modes/daily-ticker/DailyTicker.tsx";
+import Recall from "./modes/recall/Recall.tsx";
+import CapBattle from "./modes/cap-battle/CapBattle.tsx";
 
 const MODES = [
   { id: "daily", label: "Daily Ticker", live: true },
-  { id: "recall", label: "Index Recall", live: false },
-  { id: "cap-battle", label: "Cap Battle", live: false },
+  { id: "recall", label: "Index Recall", live: true },
+  { id: "cap-battle", label: "Cap Battle", live: true },
 ] as const;
 type ModeId = (typeof MODES)[number]["id"];
 
@@ -55,7 +57,11 @@ export default function App() {
         </nav>
       </header>
 
-      <main className="flex-1">{mode === "daily" && <DailyTicker />}</main>
+      <main className="flex-1">
+        {mode === "daily" && <DailyTicker />}
+        {mode === "recall" && <Recall />}
+        {mode === "cap-battle" && <CapBattle />}
+      </main>
 
       <footer className="text-terminal-dim font-data mt-8 pb-2 text-center text-[10px]">
         data refreshed weekly · not investment advice ·{" "}

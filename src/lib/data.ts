@@ -46,6 +46,19 @@ export function loadDailySchedule() {
   return (schedulePromise ??= fetchJSON("daily-schedule.json"));
 }
 
+export interface IndexRecord {
+  id: string;
+  displayName: string;
+  provider: string;
+  region: string;
+  holdings: { companyId: string; weight?: number }[];
+}
+
+let indicesPromise: Promise<{ snapshotVersion: string; indices: IndexRecord[] }> | undefined;
+export function loadIndices() {
+  return (indicesPromise ??= fetchJSON("indices.json"));
+}
+
 let sparklinesPromise: Promise<{ sparklines: Record<string, number[]> }> | undefined;
 export function loadSparklines() {
   return (sparklinesPromise ??= fetchJSON("sparklines.json"));

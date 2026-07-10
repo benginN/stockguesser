@@ -67,3 +67,28 @@ test("loss path: six wrong guesses reveal the answer", async ({ page }) => {
   await expect(page.getByRole("status")).toContainText(answer.name);
   await expect(page.getByRole("combobox")).toBeDisabled();
 });
+
+test("recall: a Dow 30 session accepts a constituent and ends via give-up", async ({ page }) => {
+  await page.goto("/?mode=recall");
+  await dismissHowTo(page);
+  await page.getByRole("button", { name: /Dow Jones 30/ }).click();
+  await page.getByRole("button", { name: "Start" }).click();
+  const input = page.getByLabel(/Name a constituent/);
+  await input.fill("Apple");
+  await input.press("Enter");
+  await expect(page.getByText("1/30").first()).toBeVisible();
+  await page.getByRole("button", { name: /Give up/ }).click();
+  await expect(page.getByRole("status")).toContainText("1/30");
+  // end screen groups by sector and marks misses
+  await expect(page.getByText("✗ Microsoft")).toBeVisible();
+});
+
+test("cap battle: one call reveals the challenger's cap and updates the run", async ({ page }) => {
+  await page.goto("/?mode=cap-battle");
+  await dismissHowTo(page);
+  await expect(page.getByText("???")).toBeVisible();
+  await page.getByRole("button", { name: /Higher/ }).click();
+  await expect(page.getByText("???")).not.toBeVisible();
+  // either the streak advanced or the run ended — both are valid outcomes
+  await expect(page.getByText(/streak|Run over/).first()).toBeVisible();
+});
