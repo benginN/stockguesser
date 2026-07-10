@@ -30,7 +30,9 @@ jobs:
         run: cp -r public/data /tmp/old-data
       - name: Run pipeline (cold cache)
         run: npm run pipeline
-      - name: Puzzle integrity (scheduled answers must survive the refresh)
+      - name: Heal the daily schedule (regenerate days whose answers vanished)
+        run: npx tsx puzzles/generate-daily.ts
+      - name: Puzzle integrity (final gate after healing)
         run: npx tsx pipeline/check-puzzles.ts
       - name: Build diff report
         id: diff
@@ -47,4 +49,6 @@ jobs:
           title: "Data refresh ${{ github.run_started_at }}"
           commit-message: "Weekly data refresh"
           body: ${{ steps.diff.outputs.report }}
-          add-paths: public/data
+          add-paths: |
+            public/data
+            puzzles
