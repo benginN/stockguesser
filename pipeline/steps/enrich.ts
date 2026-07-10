@@ -16,6 +16,33 @@ const yf = new YahooFinance({
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
+// CI runners hit Yahoo from datacenter IPs and get throttled harder — go gentler there
+const ON_CI = !!process.env.CI;
+const PACE_MS = ON_CI ? 300 : 150;
+const CONCURRENCY = ON_CI ? 3 : 4;
+// profiles/sparklines change slowly; long TTLs let the Actions cache carry them week to week
+const PROFILE_TTL_H = 24 * 30;
+const SPARK_TTL_H = 24 * 10;
+
+/** "no such data" (cache a tombstone) vs transient throttle (retry, never cache). */
+const isPermanentMiss = (err: unknown): boolean =>
+  /not found|no fundamentals|404/i.test((err as Error).message ?? "");
+
+/** Retry transient failures with growing backoff; permanent misses return null. */
+async function withRetries<T>(fn: () => Promise<T>): Promise<T | null> {
+  let lastErr: unknown;
+  for (let attempt = 1; attempt <= 4; attempt++) {
+    try {
+      return await fn();
+    } catch (err) {
+      if (isPermanentMiss(err)) return null;
+      lastErr = err;
+      await sleep(1000 * attempt * attempt); // 1s, 4s, 9s
+    }
+  }
+  throw lastErr; // stays uncached → next run retries instead of trusting a bad tombstone
+}
+
 export interface QuoteLite {
   symbol: string;
   currency?: string;
@@ -99,34 +126,43 @@ export async function getQuotes(symbols: string[]): Promise<Map<string, QuoteLit
 /** Per-symbol assetProfile (sector/industry/country) with memoization. */
 export async function getProfiles(symbols: string[]): Promise<Map<string, ProfileLite>> {
   const result = new Map<string, ProfileLite>();
+  const failed: string[] = [];
   let fetched = 0;
   await pMap(
     symbols,
     async (symbol) => {
-      const profile = await memo<ProfileLite | null>(`profile:${symbol}`, async () => {
-        fetched++;
-        try {
-          const qs = await yf.quoteSummary(symbol, { modules: ["assetProfile"] });
-          const p = qs.assetProfile;
-          if (!p) return null;
-          return {
-            sector: p.sector,
-            industry: p.industry,
-            country: p.country,
-            employees: p.fullTimeEmployees,
-            website: p.website,
-          };
-        } catch {
-          return null;
-        } finally {
-          await sleep(150);
-          if (fetched % 250 === 0) log("enrich", `profiles: ${fetched} fetched from network…`);
-        }
-      });
-      if (profile) result.set(symbol, profile);
+      try {
+        const profile = await memo<ProfileLite | null>(
+          `profile:${symbol}`,
+          async () => {
+            fetched++;
+            if (fetched % 250 === 0) log("enrich", `profiles: ${fetched} fetched from network…`);
+            const value = await withRetries(async () => {
+              const qs = await yf.quoteSummary(symbol, { modules: ["assetProfile"] });
+              const p = qs.assetProfile;
+              if (!p) return null;
+              return {
+                sector: p.sector,
+                industry: p.industry,
+                country: p.country,
+                employees: p.fullTimeEmployees,
+                website: p.website,
+              } as ProfileLite | null;
+            });
+            await sleep(PACE_MS);
+            return value;
+          },
+          PROFILE_TTL_H,
+        );
+        if (profile) result.set(symbol, profile);
+      } catch {
+        failed.push(symbol); // transient after retries — report, don't tombstone
+      }
     },
-    4,
+    CONCURRENCY,
   );
+  if (failed.length > 0)
+    log("enrich", `profiles: ${failed.length} transient failures (will retry next run)`);
   log("enrich", `profiles: ${result.size}/${symbols.length} resolved`);
   return result;
 }
@@ -139,26 +175,32 @@ export async function getSparklines(symbols: string[]): Promise<Map<string, numb
   await pMap(
     symbols,
     async (symbol) => {
-      const spark = await memo<number[] | null>(`spark:${symbol}`, async () => {
-        fetched++;
-        try {
-          const chart = await yf.chart(symbol, { period1, interval: "1wk" });
-          const closes = chart.quotes
-            .map((q) => q.adjclose ?? q.close)
-            .filter((c): c is number => c != null);
-          if (closes.length < 100) return null;
-          const base = closes[0];
-          return closes.map((c) => Math.round((c / base) * 1000) / 10);
-        } catch {
-          return null;
-        } finally {
-          await sleep(150);
-          if (fetched % 250 === 0) log("enrich", `sparklines: ${fetched} fetched from network…`);
-        }
-      });
-      if (spark) result.set(symbol, spark);
+      try {
+        const spark = await memo<number[] | null>(
+          `spark:${symbol}`,
+          async () => {
+            fetched++;
+            if (fetched % 250 === 0) log("enrich", `sparklines: ${fetched} fetched from network…`);
+            const value = await withRetries(async () => {
+              const chart = await yf.chart(symbol, { period1, interval: "1wk" });
+              const closes = chart.quotes
+                .map((q) => q.adjclose ?? q.close)
+                .filter((c): c is number => c != null);
+              if (closes.length < 100) return null;
+              const base = closes[0];
+              return closes.map((c) => Math.round((c / base) * 1000) / 10);
+            });
+            await sleep(PACE_MS);
+            return value;
+          },
+          SPARK_TTL_H,
+        );
+        if (spark) result.set(symbol, spark);
+      } catch {
+        /* transient after retries — sparkline is optional, skip silently */
+      }
     },
-    4,
+    CONCURRENCY,
   );
   log("enrich", `sparklines: ${result.size}/${symbols.length} resolved`);
   return result;

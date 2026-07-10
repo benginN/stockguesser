@@ -20,6 +20,12 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
+      - name: Restore pipeline cache (profiles/sparklines carry across weeks)
+        uses: actions/cache@v4
+        with:
+          path: pipeline/.cache
+          key: pipeline-cache-${{ github.run_id }}
+          restore-keys: pipeline-cache-
       - name: Snapshot current data for the diff
         run: cp -r public/data /tmp/old-data
       - name: Run pipeline (cold cache)
