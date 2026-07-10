@@ -112,6 +112,7 @@ export async function getQuotes(symbols: string[]): Promise<Map<string, QuoteLit
           ? new Date(q.firstTradeDateMilliseconds).getUTCFullYear()
           : undefined,
       };
+      if (!lite.marketCap) continue; // throttled/thin response — leave for retried verification below
       got.add(q.symbol);
       result.set(q.symbol, lite);
       await memo(`quote3:${q.symbol}`, async () => lite);

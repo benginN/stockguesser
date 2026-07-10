@@ -21,7 +21,7 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Restore pipeline cache (profiles/sparklines carry across weeks)
-        uses: actions/cache@v4
+        uses: actions/cache/restore@v4
         with:
           path: pipeline/.cache
           key: pipeline-cache-${{ github.run_id }}
@@ -30,6 +30,12 @@ jobs:
         run: cp -r public/data /tmp/old-data
       - name: Run pipeline (cold cache)
         run: npm run pipeline
+      - name: Save pipeline cache (even when a later step fails — retries start warm)
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: pipeline/.cache
+          key: pipeline-cache-${{ github.run_id }}
       - name: Heal the daily schedule (regenerate days whose answers vanished)
         run: npx tsx puzzles/generate-daily.ts
       - name: Puzzle integrity (final gate after healing)
