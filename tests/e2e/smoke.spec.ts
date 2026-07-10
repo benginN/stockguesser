@@ -92,3 +92,37 @@ test("cap battle: one call reveals the challenger's cap and updates the run", as
   // either the streak advanced or the run ended — both are valid outcomes
   await expect(page.getByText(/streak|Run over/).first()).toBeVisible();
 });
+
+test("keyboard-only daily ticker: type, arrow, enter", async ({ page }) => {
+  test.skip(!answer, "no scheduled answer for today");
+  await page.goto("/");
+  // dismiss how-to with Escape (keyboard-only path)
+  await page.keyboard.press("Escape");
+  const input = page.getByRole("combobox");
+  await input.focus();
+  await page.keyboard.type("Microsoft");
+  await page.keyboard.press("ArrowDown");
+  await page.keyboard.press("Enter");
+  await expect(page.getByText(/1\/6|the answer was/).first()).toBeVisible();
+});
+
+test("pin the HQ: click map, confirm, get distance feedback", async ({ page }) => {
+  await page.goto("/?mode=country");
+  await page.keyboard.press("Escape");
+  await page.getByRole("tab", { name: "Pin the HQ" }).click();
+  const map = page.getByRole("application");
+  await expect(map).toBeVisible();
+  await map.click({ position: { x: 200, y: 100 } });
+  await page.getByRole("button", { name: "Confirm pin" }).click();
+  await expect(page.getByRole("status")).toContainText("km");
+});
+
+test("chart detective: hints deduct, give up reveals the card", async ({ page }) => {
+  await page.goto("/?mode=chart");
+  await page.keyboard.press("Escape");
+  await expect(page.getByText(/worth 1000/)).toBeVisible();
+  await page.getByRole("button", { name: /Sector \(/ }).click();
+  await expect(page.getByText(/worth 900/)).toBeVisible();
+  await page.getByRole("button", { name: /Give up/ }).click();
+  await expect(page.getByRole("status")).toContainText("It was");
+});

@@ -6,11 +6,15 @@ import { useState } from "react";
 import DailyTicker from "./modes/daily-ticker/DailyTicker.tsx";
 import Recall from "./modes/recall/Recall.tsx";
 import CapBattle from "./modes/cap-battle/CapBattle.tsx";
+import Country from "./modes/country/Country.tsx";
+import ChartDetective from "./modes/chart/ChartDetective.tsx";
 
 const MODES = [
   { id: "daily", label: "Daily Ticker", live: true },
   { id: "recall", label: "Index Recall", live: true },
   { id: "cap-battle", label: "Cap Battle", live: true },
+  { id: "country", label: "Country", live: true },
+  { id: "chart", label: "Chart Detective", live: true },
 ] as const;
 type ModeId = (typeof MODES)[number]["id"];
 
@@ -35,7 +39,7 @@ export default function App() {
         <h1 className="text-center text-2xl font-bold tracking-tight">
           Stock<span className="text-accent">Guesser</span>
         </h1>
-        <nav aria-label="Game modes" className="mt-3 flex justify-center gap-2">
+        <nav aria-label="Game modes" className="mt-3 flex flex-wrap justify-center gap-2">
           {MODES.map((m) => (
             <button
               key={m.id}
@@ -61,6 +65,8 @@ export default function App() {
         {mode === "daily" && <DailyTicker />}
         {mode === "recall" && <Recall />}
         {mode === "cap-battle" && <CapBattle />}
+        {mode === "country" && <Country />}
+        {mode === "chart" && <ChartDetective />}
       </main>
 
       <footer className="text-terminal-dim font-data mt-8 pb-2 text-center text-[10px]">

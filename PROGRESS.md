@@ -2,6 +2,34 @@
 
 Append a dated summary at the end of every working session (ROADMAP.md §8.3).
 
+## 2026-07-10 (session 5) — Phase 4: Country + Chart Detective + polish ✅ → tagged v0.4
+
+**All acceptance boxes checked:**
+
+- [x] 5 modes live behind the switcher (Daily Ticker, Index Recall, Cap Battle, Country, Chart Detective)
+- [x] Chart Detective sparklines carry no answer-revealing labels; the 5-hint ladder
+      (sector→size→country→IPO decade→first letter) deducts exactly per spec (tested)
+- [x] OG card: static 1200×630 og.png (Playwright-rendered at build time) + og:/twitter: meta tags
+- [x] Keyboard-only Daily Ticker play-through in e2e; Lighthouse a11y already 100
+
+**Shipped:** Country recall (top-X per country, X scales with pool depth, reuses the recall
+engine via synthesized indices), Pin-the-HQ (4 rounds, click-the-map, haversine distance +
+compass arrow + GeoGuessr-style scoring), Chart Detective (big naked sparkline, hint ladder,
+wrong-guess penalties, per-round best). World map is a build-time artifact
+(pipeline/gen-world.ts: Natural Earth → equirectangular SVG paths) — runtime deps still 3/10.
+
+**Documented deviations:** Pin-the-HQ uses COUNTRY-centroid precision (pipeline stores HQ
+country, not city coords) and is arcade-random rather than a shared daily (§1.4 said 4/day);
+both are upgradeable later without schema changes.
+
+**Test suite:** 156 unit + 8 e2e. Gotcha fixed along the way: Playwright's
+reuseExistingServer ran specs against a stale preview build — kill port 4173 when suites
+fail mysteriously.
+
+**Next:** Phase 6 — launch prep (Phase 5 accounts/leaderboards is optional and skipped for
+now per roadmap): SEO/sitemap, 404, favicon+PWA manifest, privacy page, cross-browser QA,
+LAUNCH.md checklist.
+
 ## 2026-07-10 (session 4) — Phase 3: Index Recall + Cap Battle ✅ → tagged v0.3
 
 **All acceptance boxes checked:**
