@@ -51,7 +51,7 @@ Defined once in `src/index.css` under `@theme` — never hardcode hex values in 
 | `terminal-panel` | `#111722` | cards, tiles, inputs                           |
 | `terminal-line`  | `#1e2735` | hairline borders                               |
 | `terminal-text`  | `#d5dde9` | primary text                                   |
-| `terminal-dim`   | `#6b7686` | secondary text, labels                         |
+| `terminal-dim`   | `#8a94a6` | secondary text, labels                         |
 | `accent`         | `#ffb02e` | ONE hot accent: brand mark, CTAs, streak flame |
 | `feedback-hit`   | `#2bd576` | green feedback state                           |
 | `feedback-near`  | `#e8c547` | yellow feedback state                          |
