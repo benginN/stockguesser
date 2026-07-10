@@ -93,7 +93,14 @@ export function displayName(name: string): string {
   return name
     .replace(/\s*\((class [a-z]|[a-z] shares?)[^)]*\)/gi, "")
     .replace(/^the\s+/i, "")
-    .replace(/[,.]?\s+(incorporated|corporation|inc|corp|plc|p\.l\.c\.)\.?$/i, "")
+    .replace(
+      /\s+(new york registry shares?|american depositary shares?.*|sponsored adr.*|registry shares?)$/i,
+      "",
+    )
+    .replace(
+      /[,.]?\s+(incorporated|corporation|inc|corp|plc|p\.l\.c\.|n\.?v\.?|s\.?e\.?|a\.?g\.?|s\.?p\.?a\.?|kgaa)\.?$/i,
+      "",
+    )
     .replace(/\s+/g, " ")
     .trim();
 }

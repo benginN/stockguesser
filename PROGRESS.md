@@ -2,6 +2,25 @@
 
 Append a dated summary at the end of every working session (ROADMAP.md §8.3).
 
+## 2026-07-10 (session 7) — wrap-up: v1.0 🚀
+
+User declared the project complete; future work = ad-hoc sessions. Final batch:
+
+- Recall UX: auto-accept while typing, core-name matching (palantir/dell/spacex class),
+  💡 ticker-hint mode (names-only answers), sticky search bar, ALL indices in both
+  variants, user-built **custom indices** (free-text parser, localStorage)
+- Refresh hardening saga (all fixed + tested): Yahoo throttles GitHub IPs → retries
+  without tombstoning; actions/cache never saves on failed jobs → split restore/always-save;
+  thin quotes re-verified via quoteSummary; Actions needed the "create PRs" repo setting;
+  puzzle-integrity gate caught a real Wikipedia rename (ASML) on its FIRST run →
+  schedule self-heals in the workflow + ADR-suffix name cleanup added
+- Refresh proven end-to-end (PR #1 opened with diff report; superseded by direct update)
+- Ads decision: user WANTS ads → EthicalAds path after soft launch (see memory)
+- Nav fits one row; memory mirrored in .claude/memory/ per standing instruction
+
+**Standing duties:** merge Monday data PRs after reading the diff; grow aliases.json
+when guesses fail; integrate EthicalAds snippet when user provides it.
+
 ## 2026-07-10 (session 6) — Phase 6: launch prep ✅ → tagged v0.5
 
 **Standing decision (user):** the game lives on GitHub Pages permanently — no domain, no

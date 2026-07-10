@@ -114,9 +114,9 @@
       "difficulty": 0.61
     },
     "2026-08-01": {
-      "id": "jbs-n-v",
-      "name": "JBS N.V.",
-      "difficulty": 0.53
+      "id": "bouygues",
+      "name": "Bouygues",
+      "difficulty": 0.57
     },
     "2026-08-02": {
       "id": "shopify-inc-class-a-subordinate-voting-shares",
@@ -134,8 +134,8 @@
       "difficulty": 0.29
     },
     "2026-08-05": {
-      "id": "ubs-group-ag",
-      "name": "UBS Group AG",
+      "id": "ubs-group",
+      "name": "UBS Group",
       "difficulty": 0.34
     },
     "2026-08-06": {
@@ -389,9 +389,9 @@
       "difficulty": 0.46
     },
     "2026-09-25": {
-      "id": "swiss-life-holding-ag",
-      "name": "Swiss Life Holding AG",
-      "difficulty": 0.47
+      "id": "taiyo-yuden",
+      "name": "Taiyo Yuden",
+      "difficulty": 0.66
     },
     "2026-09-26": {
       "id": "makemytrip-limited",
@@ -754,9 +754,9 @@
       "difficulty": 0.27
     },
     "2026-12-07": {
-      "id": "novartis-international-ag",
-      "name": "Novartis International AG",
-      "difficulty": 0.29
+      "id": "palantir-technologies",
+      "name": "Palantir Technologies",
+      "difficulty": 0.24
     },
     "2026-12-08": {
       "id": "walt-disney-company-the",
@@ -1094,9 +1094,9 @@
       "difficulty": 0.78
     },
     "2027-02-13": {
-      "id": "cnh-industrial-n-v",
-      "name": "CNH Industrial N.V.",
-      "difficulty": 0.68
+      "id": "tata-motors-passenger-vehicles",
+      "name": "Tata Motors Passenger Vehicles",
+      "difficulty": 0.64
     },
     "2027-02-14": {
       "id": "hkex-limited",
@@ -1549,9 +1549,9 @@
       "difficulty": 0.68
     },
     "2027-05-15": {
-      "id": "beone-medicines-ag",
-      "name": "BeOne Medicines AG",
-      "difficulty": 0.56
+      "id": "definium-therapeutics",
+      "name": "Definium Therapeutics",
+      "difficulty": 0.87
     },
     "2027-05-16": {
       "id": "colgate-palmolive",
@@ -1584,9 +1584,9 @@
       "difficulty": 0.62
     },
     "2027-05-22": {
-      "id": "aercap-holdings-n-v",
-      "name": "AerCap Holdings N.V.",
-      "difficulty": 0.59
+      "id": "mbshy",
+      "name": "MBSHY",
+      "difficulty": 0.9
     },
     "2027-05-23": {
       "id": "danone",
@@ -1644,9 +1644,9 @@
       "difficulty": 0.41
     },
     "2027-06-03": {
-      "id": "innio-n-v",
-      "name": "Innio N.V.",
-      "difficulty": 0.59
+      "id": "central-japan-railway-company",
+      "name": "Central Japan Railway Company",
+      "difficulty": 0.53
     },
     "2027-06-04": {
       "id": "qnity-electronics",
@@ -1749,9 +1749,9 @@
       "difficulty": 0.4
     },
     "2027-06-24": {
-      "id": "roche-holding-ag",
-      "name": "Roche Holding AG",
-      "difficulty": 0.33
+      "id": "arista-networks",
+      "name": "Arista Networks",
+      "difficulty": 0.37
     },
     "2027-06-25": {
       "id": "ambev-s-a",

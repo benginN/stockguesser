@@ -18,11 +18,10 @@ backend service, and anonymous localStorage play is first-class by design.
 - [x] Cross-browser QA: full e2e suite green on Chromium, WebKit (iPhone 13 profile —
       iOS Safari proxy), and Firefox (24 specs)
 - [x] Lighthouse mobile: Performance 91 · Accessibility 100 · (SEO/best-practices spot-checked)
-- [ ] Data refresh Action has run end-to-end at least twice unattended
-      — run 1: manually dispatched 2026-07-10 (verify the diff PR it opens)
-      — run 2: first Monday cron (2026-07-13 05:30 UTC)
-      → check `gh run list --workflow=data-refresh.yml` and review/merge the PR per
-      `pipeline/RUNBOOK.md`
+- [x] Data refresh Action proven end-to-end 2026-07-10 (run 29123604709 → PR #1 with
+      diff report; superseded by a direct main update after it exposed an ADR-name
+      cleanup gap — fixed + regression-tested). Run 2 = first Monday cron
+      (2026-07-13 05:30 UTC); review/merge its PR per `pipeline/RUNBOOK.md`
 - [ ] Soft launch to 2–3 communities (human task: finance Twitter/Reddit/Discord;
       the share grid + OG card are the growth loop)
 - [~] "Error rate < 1% of sessions in week 1" — not measurable without analytics

@@ -153,9 +153,9 @@
       "tier": 1
     },
     {
-      "id": "arm-holdings-plc-american-depositary-shares",
+      "id": "arm-holdings",
       "ticker": "ARM",
-      "name": "Arm Holdings plc American Depositary Shares",
+      "name": "Arm Holdings",
       "aliases": ["arm"],
       "tier": 1
     },
@@ -168,9 +168,9 @@
     },
     { "id": "hsbc", "ticker": "HSBA.L", "name": "HSBC", "aliases": ["hsba", "0005"], "tier": 1 },
     {
-      "id": "roche-holding-ag",
+      "id": "roche-holding",
       "ticker": "RO.SW",
-      "name": "Roche Holding AG",
+      "name": "Roche Holding",
       "aliases": ["roche", "ro"],
       "tier": 1
     },
@@ -205,10 +205,10 @@
     },
     { "id": "kla", "ticker": "KLAC", "name": "KLA", "aliases": ["klac"], "tier": 1 },
     {
-      "id": "novartis-international-ag",
+      "id": "novartis-international",
       "ticker": "NOVN.SW",
-      "name": "Novartis International AG",
-      "aliases": ["novartis international", "novn", "nvs"],
+      "name": "Novartis International",
+      "aliases": ["novn", "nvs"],
       "tier": 1
     },
     {
@@ -512,9 +512,9 @@
     },
     { "id": "applovin", "ticker": "APP", "name": "AppLovin", "aliases": ["app"], "tier": 1 },
     {
-      "id": "ubs-group-ag",
+      "id": "ubs-group",
       "ticker": "UBSG.SW",
-      "name": "UBS Group AG",
+      "name": "UBS Group",
       "aliases": ["ubs", "ubsg"],
       "tier": 1
     },
@@ -792,10 +792,10 @@
       "tier": 1
     },
     {
-      "id": "pdd-holdings-inc-american-depositary-shares",
+      "id": "pdd-holdings",
       "ticker": "PDD",
-      "name": "PDD Holdings Inc. American Depositary Shares",
-      "aliases": ["pdd holdings inc american depositary shares", "pdd"],
+      "name": "PDD Holdings",
+      "aliases": ["pdd"],
       "tier": 1
     },
     {
@@ -835,9 +835,9 @@
     { "id": "keyence", "ticker": "6861.T", "name": "Keyence", "aliases": ["6861"], "tier": 1 },
     { "id": "enel", "ticker": "ENEL.MI", "name": "Enel", "aliases": [], "tier": 1 },
     {
-      "id": "zurich-insurance-group-ag",
+      "id": "zurich-insurance-group",
       "ticker": "ZURN.SW",
-      "name": "Zurich Insurance Group AG",
+      "name": "Zurich Insurance Group",
       "aliases": ["zurich insurance", "zurn"],
       "tier": 1
     },
@@ -1958,10 +1958,10 @@
     { "id": "l3harris", "ticker": "LHX", "name": "L3Harris", "aliases": ["lhx"], "tier": 1 },
     { "id": "ametek", "ticker": "AME", "name": "Ametek", "aliases": ["ame"], "tier": 1 },
     {
-      "id": "nebius-group-n-v",
+      "id": "nebius-group",
       "ticker": "NBIS",
-      "name": "Nebius Group N.V.",
-      "aliases": ["nebius group n v", "nbis"],
+      "name": "Nebius Group",
+      "aliases": ["nebius", "nbis"],
       "tier": 1
     },
     { "id": "entergy", "ticker": "ETR", "name": "Entergy", "aliases": ["etr"], "tier": 1 },
@@ -2065,9 +2065,9 @@
     },
     { "id": "sandvik", "ticker": "SAND.ST", "name": "Sandvik", "aliases": ["sand"], "tier": 1 },
     {
-      "id": "lonza-group-ag",
+      "id": "lonza-group",
       "ticker": "LONN.SW",
-      "name": "Lonza Group AG",
+      "name": "Lonza Group",
       "aliases": ["lonza", "lonn"],
       "tier": 1
     },
@@ -2105,9 +2105,9 @@
       "tier": 1
     },
     {
-      "id": "galderma-group-ag",
+      "id": "galderma-group",
       "ticker": "GALDY",
-      "name": "GALDERMA GROUP AG",
+      "name": "GALDERMA GROUP",
       "aliases": ["galderma", "galdy"],
       "tier": 1
     },
@@ -2512,10 +2512,10 @@
       "tier": 1
     },
     {
-      "id": "bayerische-motoren-werke-ag",
+      "id": "bayerische-motoren-werke",
       "ticker": "BMWKY",
-      "name": "Bayerische Motoren Werke AG",
-      "aliases": ["bayerische motoren werke", "bmwky"],
+      "name": "Bayerische Motoren Werke",
+      "aliases": ["bmwky", "bmw"],
       "tier": 1
     },
     { "id": "celestica", "ticker": "CLS", "name": "Celestica", "aliases": ["cls"], "tier": 1 },
@@ -2572,10 +2572,10 @@
       "tier": 1
     },
     {
-      "id": "swisscom-ag",
+      "id": "swisscom",
       "ticker": "SCMN.SW",
-      "name": "Swisscom AG",
-      "aliases": ["swisscom", "scmn", "scmwy"],
+      "name": "Swisscom",
+      "aliases": ["scmn", "scmwy"],
       "tier": 1
     },
     { "id": "tesco", "ticker": "TSCO.L", "name": "Tesco", "aliases": ["tsco"], "tier": 1 },
@@ -2623,13 +2623,7 @@
       "aliases": ["givaudan", "givn"],
       "tier": 1
     },
-    {
-      "id": "jbs-n-v",
-      "ticker": "JBS",
-      "name": "JBS N.V.",
-      "aliases": ["jbs n v", "jbs"],
-      "tier": 1
-    },
+    { "id": "jbs", "ticker": "JBS", "name": "JBS", "aliases": [], "tier": 1 },
     { "id": "roblox", "ticker": "RBLX", "name": "Roblox", "aliases": ["rblx"], "tier": 1 },
     { "id": "lenovo", "ticker": "0992.HK", "name": "Lenovo", "aliases": ["0992"], "tier": 1 },
     {
@@ -2976,13 +2970,13 @@
       "tier": 1
     },
     {
-      "id": "swiss-life-holding-ag",
+      "id": "swiss-life-holding",
       "ticker": "SLHN.SW",
-      "name": "Swiss Life Holding AG",
+      "name": "Swiss Life Holding",
       "aliases": ["swiss life", "slhn"],
       "tier": 1
     },
-    { "id": "sika-ag", "ticker": "SIKA.SW", "name": "Sika AG", "aliases": ["sika"], "tier": 1 },
+    { "id": "sika", "ticker": "SIKA.SW", "name": "Sika", "aliases": [], "tier": 1 },
     {
       "id": "resona-holdings",
       "ticker": "8308.T",
@@ -3095,10 +3089,10 @@
     },
     { "id": "adyen", "ticker": "ADYEN.AS", "name": "Adyen", "aliases": [], "tier": 1 },
     {
-      "id": "beone-medicines-ag",
+      "id": "beone-medicines",
       "ticker": "ONC",
-      "name": "BeOne Medicines AG",
-      "aliases": ["beone medicines", "onc"],
+      "name": "BeOne Medicines",
+      "aliases": ["onc"],
       "tier": 1
     },
     {
@@ -3289,13 +3283,7 @@
     },
     { "id": "michelin", "ticker": "ML.PA", "name": "Michelin", "aliases": ["ml"], "tier": 1 },
     { "id": "tapestry", "ticker": "TPR", "name": "Tapestry", "aliases": ["tpr"], "tier": 1 },
-    {
-      "id": "amrize-ag",
-      "ticker": "AMRZ.SW",
-      "name": "Amrize AG",
-      "aliases": ["amrize", "amrz"],
-      "tier": 1
-    },
+    { "id": "amrize", "ticker": "AMRZ.SW", "name": "Amrize", "aliases": ["amrz"], "tier": 1 },
     {
       "id": "ast-spacemobile",
       "ticker": "ASTS",
@@ -3492,9 +3480,9 @@
     { "id": "aviva", "ticker": "AV.L", "name": "Aviva", "aliases": ["av"], "tier": 1 },
     { "id": "everpure", "ticker": "P", "name": "Everpure", "aliases": ["p"], "tier": 1 },
     {
-      "id": "chocoladefabriken-lindt-and-sprungli-ag",
+      "id": "chocoladefabriken-lindt-and-sprungli",
       "ticker": "CHLSY",
-      "name": "Chocoladefabriken Lindt & Sprüngli AG",
+      "name": "Chocoladefabriken Lindt & Sprüngli",
       "aliases": ["chocoladefabriken lindt sprungli", "chlsy"],
       "tier": 1
     },
@@ -3683,13 +3671,7 @@
       "tier": 1
     },
     { "id": "okta", "ticker": "OKTA", "name": "Okta", "aliases": [], "tier": 1 },
-    {
-      "id": "innio-n-v",
-      "ticker": "INIO",
-      "name": "Innio N.V.",
-      "aliases": ["innio n v", "inio"],
-      "tier": 1
-    },
+    { "id": "innio", "ticker": "INIO", "name": "Innio", "aliases": ["inio"], "tier": 1 },
     {
       "id": "mtr-corporation-ltd",
       "ticker": "0066.HK",
@@ -3828,10 +3810,10 @@
       "tier": 1
     },
     {
-      "id": "aercap-holdings-n-v",
+      "id": "aercap-holdings",
       "ticker": "AER",
-      "name": "AerCap Holdings N.V.",
-      "aliases": ["aercap holdings n v", "aer"],
+      "name": "AerCap Holdings",
+      "aliases": ["aercap", "aer"],
       "tier": 1
     },
     { "id": "loews", "ticker": "L", "name": "Loews", "aliases": ["l"], "tier": 1 },
@@ -3851,10 +3833,10 @@
       "tier": 1
     },
     {
-      "id": "dsm-firmenich-ag",
+      "id": "dsm-firmenich",
       "ticker": "DSFIR.AS",
-      "name": "DSM Firmenich AG",
-      "aliases": ["dsm firmenich", "dsfir"],
+      "name": "DSM Firmenich",
+      "aliases": ["dsfir"],
       "tier": 1
     },
     { "id": "aeon", "ticker": "8267.T", "name": "Aeon", "aliases": ["8267"], "tier": 1 },
@@ -3913,13 +3895,7 @@
       "aliases": ["dgx"],
       "tier": 1
     },
-    {
-      "id": "biontech-se",
-      "ticker": "BNTX",
-      "name": "BioNTech SE",
-      "aliases": ["biontech", "bntx"],
-      "tier": 1
-    },
+    { "id": "biontech", "ticker": "BNTX", "name": "BioNTech", "aliases": ["bntx"], "tier": 1 },
     { "id": "labcorp", "ticker": "LH", "name": "Labcorp", "aliases": ["lh"], "tier": 1 },
     {
       "id": "c-h-robinson",
@@ -4058,10 +4034,10 @@
       "tier": 1
     },
     {
-      "id": "partners-group-holding-ag",
+      "id": "partners-group-holding",
       "ticker": "PGHN.SW",
-      "name": "Partners Group Holding AG",
-      "aliases": ["partners group", "pghn"],
+      "name": "Partners Group Holding",
+      "aliases": ["partners", "pghn"],
       "tier": 1
     },
     { "id": "entegris", "ticker": "ENTG", "name": "Entegris", "aliases": ["entg"], "tier": 1 },
@@ -4090,10 +4066,10 @@
       "tier": 1
     },
     {
-      "id": "heineken-holding-n-v",
+      "id": "heineken-holding",
       "ticker": "HKHHY",
-      "name": "Heineken Holding N.V.",
-      "aliases": ["heineken holding n v", "hkhhy"],
+      "name": "Heineken Holding",
+      "aliases": ["heineken", "hkhhy"],
       "tier": 1
     },
     { "id": "samsara", "ticker": "IOT", "name": "Samsara", "aliases": ["iot"], "tier": 1 },
@@ -4126,13 +4102,7 @@
       "aliases": ["tw"],
       "tier": 1
     },
-    {
-      "id": "geberit-ag",
-      "ticker": "GEBN.SW",
-      "name": "Geberit AG",
-      "aliases": ["geberit", "gebn"],
-      "tier": 1
-    },
+    { "id": "geberit", "ticker": "GEBN.SW", "name": "Geberit", "aliases": ["gebn"], "tier": 1 },
     {
       "id": "companhia-de-saneamento-basico-do-estado-de-sao-paulo-sabesp",
       "ticker": "SBS",
@@ -4163,10 +4133,10 @@
       "tier": 1
     },
     {
-      "id": "bending-spoons-s-p-a",
+      "id": "bending-spoons",
       "ticker": "BSP",
-      "name": "Bending Spoons S.p.A.",
-      "aliases": ["bending spoons s p a", "bsp"],
+      "name": "Bending Spoons",
+      "aliases": ["bsp"],
       "tier": 1
     },
     {
@@ -5621,10 +5591,10 @@
       "tier": 1
     },
     {
-      "id": "cnh-industrial-n-v",
+      "id": "cnh-industrial",
       "ticker": "CNH",
-      "name": "CNH Industrial N.V.",
-      "aliases": ["cnh industrial n v", "cnh"],
+      "name": "CNH Industrial",
+      "aliases": ["cnh"],
       "tier": 1
     },
     {
@@ -5635,9 +5605,9 @@
       "tier": 1
     },
     {
-      "id": "belimo-holding-ag",
+      "id": "belimo-holding",
       "ticker": "BLMOY",
-      "name": "Belimo Holding AG",
+      "name": "Belimo Holding",
       "aliases": ["belimo", "blmoy"],
       "tier": 1
     },
@@ -5690,10 +5660,10 @@
       "tier": 1
     },
     {
-      "id": "deutsche-lufthansa-ag",
+      "id": "deutsche-lufthansa",
       "ticker": "DLAKY",
-      "name": "Deutsche Lufthansa AG",
-      "aliases": ["deutsche lufthansa", "dlaky"],
+      "name": "Deutsche Lufthansa",
+      "aliases": ["dlaky"],
       "tier": 1
     },
     { "id": "dynatrace", "ticker": "DT", "name": "Dynatrace", "aliases": ["dt"], "tier": 1 },
@@ -5798,13 +5768,7 @@
       "aliases": ["modine manufacturing", "mod"],
       "tier": 1
     },
-    {
-      "id": "on-holding-ag",
-      "ticker": "ONON",
-      "name": "On Holding AG",
-      "aliases": ["on holding", "onon"],
-      "tier": 1
-    },
+    { "id": "on-holding", "ticker": "ONON", "name": "On Holding", "aliases": ["onon"], "tier": 1 },
     { "id": "pentair", "ticker": "PNR", "name": "Pentair", "aliases": ["pnr"], "tier": 1 },
     { "id": "penumbra", "ticker": "PEN", "name": "Penumbra", "aliases": ["pen"], "tier": 1 },
     {
@@ -6176,10 +6140,10 @@
       "tier": 1
     },
     {
-      "id": "magnum-ice-cream-company-n-v",
+      "id": "magnum-ice-cream-company",
       "ticker": "MICC",
-      "name": "Magnum Ice Cream Company N.V.",
-      "aliases": ["magnum ice cream company n v", "micc"],
+      "name": "Magnum Ice Cream Company",
+      "aliases": ["magnum ice cream", "micc"],
       "tier": 1
     },
     {
@@ -6861,13 +6825,7 @@
       "aliases": ["hbm"],
       "tier": 1
     },
-    {
-      "id": "porsche-se",
-      "ticker": "PAH3.DE",
-      "name": "Porsche SE",
-      "aliases": ["porsche", "pah3"],
-      "tier": 1
-    },
+    { "id": "porsche", "ticker": "PAH3.DE", "name": "Porsche", "aliases": ["pah3"], "tier": 1 },
     {
       "id": "stonex-group",
       "ticker": "SNEX",
@@ -8248,9 +8206,9 @@
     },
     { "id": "nissan", "ticker": "7201.T", "name": "Nissan", "aliases": ["7201"], "tier": 1 },
     {
-      "id": "bachem-holding-ag",
+      "id": "bachem-holding",
       "ticker": "BCHMY",
-      "name": "Bachem Holding AG",
+      "name": "Bachem Holding",
       "aliases": ["bachem", "bchmy"],
       "tier": 1
     },
@@ -8584,13 +8542,7 @@
       "aliases": ["jfe", "5411"],
       "tier": 1
     },
-    {
-      "id": "elastic-n-v",
-      "ticker": "ESTC",
-      "name": "Elastic N.V.",
-      "aliases": ["elastic n v", "estc"],
-      "tier": 1
-    },
+    { "id": "elastic", "ticker": "ESTC", "name": "Elastic", "aliases": ["estc"], "tier": 1 },
     {
       "id": "matador-resources-company",
       "ticker": "MTDR",
@@ -9335,10 +9287,10 @@
     { "id": "jd-sports", "ticker": "JD.L", "name": "JD Sports", "aliases": ["jd"], "tier": 1 },
     { "id": "wex", "ticker": "WEX", "name": "WEX", "aliases": [], "tier": 1 },
     {
-      "id": "stevanato-group-s-p-a",
+      "id": "stevanato-group",
       "ticker": "STVN",
-      "name": "Stevanato Group S.p.A.",
-      "aliases": ["stevanato group s p a", "stvn"],
+      "name": "Stevanato Group",
+      "aliases": ["stevanato", "stvn"],
       "tier": 1
     },
     { "id": "aar", "ticker": "AIR", "name": "AAR", "aliases": ["air"], "tier": 1 },
@@ -9508,10 +9460,10 @@
     },
     { "id": "investec", "ticker": "INVP.L", "name": "Investec", "aliases": ["invp"], "tier": 1 },
     {
-      "id": "crispr-therapeutics-ag",
+      "id": "crispr-therapeutics",
       "ticker": "CRSP",
-      "name": "CRISPR Therapeutics AG",
-      "aliases": ["crispr therapeutics", "crsp"],
+      "name": "CRISPR Therapeutics",
+      "aliases": ["crsp"],
       "tier": 1
     },
     {
@@ -9652,9 +9604,9 @@
       "tier": 1
     },
     {
-      "id": "renk-group-ag",
+      "id": "renk-group",
       "ticker": "RKGRY",
-      "name": "RENK GROUP AG",
+      "name": "RENK GROUP",
       "aliases": ["renk", "rkgry"],
       "tier": 1
     },
@@ -10014,9 +9966,9 @@
       "tier": 1
     },
     {
-      "id": "sportradar-group-ag",
+      "id": "sportradar-group",
       "ticker": "SRAD",
-      "name": "Sportradar Group AG",
+      "name": "Sportradar Group",
       "aliases": ["sportradar", "srad"],
       "tier": 1
     },
@@ -10280,9 +10232,9 @@
       "tier": 1
     },
     {
-      "id": "cmb-tech-nv",
+      "id": "cmb-tech",
       "ticker": "CMBT",
-      "name": "Cmb.Tech NV",
+      "name": "Cmb.Tech",
       "aliases": ["cmb tech", "cmbt"],
       "tier": 1
     },
@@ -10556,13 +10508,7 @@
       "tier": 1
     },
     { "id": "greif", "ticker": "GEF", "name": "Greif", "aliases": ["gef"], "tier": 1 },
-    {
-      "id": "aumovio-se",
-      "ticker": "AMVOY",
-      "name": "AUMOVIO SE",
-      "aliases": ["aumovio", "amvoy"],
-      "tier": 1
-    },
+    { "id": "aumovio", "ticker": "AMVOY", "name": "AUMOVIO", "aliases": ["amvoy"], "tier": 1 },
     {
       "id": "dnp-select-income-fund",
       "ticker": "DNP",
@@ -10753,10 +10699,10 @@
       "tier": 1
     },
     {
-      "id": "constellium-se",
+      "id": "constellium",
       "ticker": "CSTM",
-      "name": "Constellium SE",
-      "aliases": ["constellium", "cstm"],
+      "name": "Constellium",
+      "aliases": ["cstm"],
       "tier": 1
     },
     {
@@ -10767,10 +10713,10 @@
       "tier": 1
     },
     {
-      "id": "newamsterdam-pharma-company-n-v",
+      "id": "newamsterdam-pharma-company",
       "ticker": "NAMS",
-      "name": "NewAmsterdam Pharma Company N.V.",
-      "aliases": ["newamsterdam pharma company n v", "nams"],
+      "name": "NewAmsterdam Pharma Company",
+      "aliases": ["newamsterdam pharma", "nams"],
       "tier": 1
     },
     {
@@ -11168,10 +11114,10 @@
       "tier": 1
     },
     {
-      "id": "ermenegildo-zegna-n-v",
+      "id": "ermenegildo-zegna",
       "ticker": "ZGN",
-      "name": "Ermenegildo Zegna N.V.",
-      "aliases": ["ermenegildo zegna n v", "zgn"],
+      "name": "Ermenegildo Zegna",
+      "aliases": ["zgn"],
       "tier": 1
     },
     {
@@ -12350,13 +12296,7 @@
       "aliases": ["park hotels resorts", "pk"],
       "tier": 1
     },
-    {
-      "id": "uniqure-n-v",
-      "ticker": "QURE",
-      "name": "uniQure N.V.",
-      "aliases": ["uniqure n v", "qure"],
-      "tier": 1
-    },
+    { "id": "uniqure", "ticker": "QURE", "name": "uniQure", "aliases": ["qure"], "tier": 1 },
     {
       "id": "united-states-lime-and-minerals",
       "ticker": "USLM",
@@ -13157,13 +13097,7 @@
       "aliases": ["samsonite group s a", "smsgy"],
       "tier": 2
     },
-    {
-      "id": "pharvaris-n-v",
-      "ticker": "PHVS",
-      "name": "Pharvaris N.V.",
-      "aliases": ["pharvaris n v", "phvs"],
-      "tier": 2
-    },
+    { "id": "pharvaris", "ticker": "PHVS", "name": "Pharvaris", "aliases": ["phvs"], "tier": 2 },
     {
       "id": "slide-insurance-holdings",
       "ticker": "SLDE",
@@ -13680,10 +13614,10 @@
       "tier": 2
     },
     {
-      "id": "springer-nature-ag-and-co-kgaa",
+      "id": "springer-nature-ag-and-co",
       "ticker": "SPGNY",
-      "name": "Springer Nature AG & Co. KGaA",
-      "aliases": ["springer nature ag", "spgny"],
+      "name": "Springer Nature AG & Co",
+      "aliases": ["springer nature", "spgny"],
       "tier": 2
     },
     { "id": "neogen", "ticker": "NEOG", "name": "Neogen", "aliases": ["neog"], "tier": 2 },
@@ -13940,10 +13874,10 @@
     },
     { "id": "anterix", "ticker": "ATEX", "name": "Anterix", "aliases": ["atex"], "tier": 2 },
     {
-      "id": "lakefront-biotherapeutics-nv",
+      "id": "lakefront-biotherapeutics",
       "ticker": "LKFT",
-      "name": "Lakefront Biotherapeutics NV",
-      "aliases": ["lakefront biotherapeutics", "lkft"],
+      "name": "Lakefront Biotherapeutics",
+      "aliases": ["lkft"],
       "tier": 2
     },
     { "id": "1st-source", "ticker": "SRCE", "name": "1st Source", "aliases": ["srce"], "tier": 2 },
@@ -14712,10 +14646,10 @@
       "tier": 2
     },
     {
-      "id": "expro-group-holdings-n-v",
+      "id": "expro-group-holdings",
       "ticker": "XPRO",
-      "name": "Expro Group Holdings N.V.",
-      "aliases": ["expro group holdings n v", "xpro"],
+      "name": "Expro Group Holdings",
+      "aliases": ["expro", "xpro"],
       "tier": 2
     },
     {
@@ -15149,13 +15083,7 @@
       "aliases": ["general american investors", "gam"],
       "tier": 2
     },
-    {
-      "id": "pics-n-v",
-      "ticker": "PICS",
-      "name": "PicS N.V.",
-      "aliases": ["pics n v", "pics"],
-      "tier": 2
-    },
+    { "id": "pics", "ticker": "PICS", "name": "PicS", "aliases": [], "tier": 2 },
     { "id": "sylvamo", "ticker": "SLVM", "name": "Sylvamo", "aliases": ["slvm"], "tier": 2 },
     {
       "id": "webtoon-entertainment",
@@ -15931,13 +15859,7 @@
       "tier": 2
     },
     { "id": "concentrix", "ticker": "CNXC", "name": "Concentrix", "aliases": ["cnxc"], "tier": 2 },
-    {
-      "id": "immatics-n-v",
-      "ticker": "IMTX",
-      "name": "Immatics N.V.",
-      "aliases": ["immatics n v", "imtx"],
-      "tier": 2
-    },
+    { "id": "immatics", "ticker": "IMTX", "name": "Immatics", "aliases": ["imtx"], "tier": 2 },
     {
       "id": "stepan-company",
       "ticker": "SCL",
@@ -16358,10 +16280,10 @@
       "tier": 2
     },
     {
-      "id": "lithium-argentina-ag",
+      "id": "lithium-argentina",
       "ticker": "LAR",
-      "name": "Lithium Argentina AG",
-      "aliases": ["lithium argentina", "lar"],
+      "name": "Lithium Argentina",
+      "aliases": ["lar"],
       "tier": 2
     },
     {
@@ -17307,13 +17229,7 @@
       "aliases": ["janx"],
       "tier": 2
     },
-    {
-      "id": "evotec-se",
-      "ticker": "EVO",
-      "name": "Evotec SE",
-      "aliases": ["evotec", "evo"],
-      "tier": 2
-    },
+    { "id": "evotec", "ticker": "EVO", "name": "Evotec", "aliases": ["evo"], "tier": 2 },
     {
       "id": "avalo-therapeutics",
       "ticker": "AVTX",
@@ -17382,10 +17298,10 @@
       "tier": 2
     },
     {
-      "id": "pharming-group-n-v",
+      "id": "pharming-group",
       "ticker": "PHAR",
-      "name": "Pharming Group N.V.",
-      "aliases": ["pharming group n v", "phar"],
+      "name": "Pharming Group",
+      "aliases": ["pharming", "phar"],
       "tier": 2
     },
     {
@@ -17572,9 +17488,9 @@
       "tier": 2
     },
     {
-      "id": "aebi-schmidt-holding-ag",
+      "id": "aebi-schmidt-holding",
       "ticker": "AEBI",
-      "name": "Aebi Schmidt Holding AG",
+      "name": "Aebi Schmidt Holding",
       "aliases": ["aebi schmidt", "aebi"],
       "tier": 2
     },
@@ -17959,10 +17875,10 @@
     },
     { "id": "alight", "ticker": "ALIT", "name": "Alight", "aliases": ["alit"], "tier": 2 },
     {
-      "id": "jumia-technologies-ag",
+      "id": "jumia-technologies",
       "ticker": "JMIA",
-      "name": "Jumia Technologies AG",
-      "aliases": ["jumia technologies", "jmia"],
+      "name": "Jumia Technologies",
+      "aliases": ["jmia"],
       "tier": 2
     },
     {
@@ -18215,9 +18131,9 @@
     },
     { "id": "cryoport", "ticker": "CYRX", "name": "Cryoport", "aliases": ["cyrx"], "tier": 2 },
     {
-      "id": "oculis-holding-ag",
+      "id": "oculis-holding",
       "ticker": "OCS",
-      "name": "Oculis Holding AG",
+      "name": "Oculis Holding",
       "aliases": ["oculis", "ocs"],
       "tier": 2
     },
@@ -19534,10 +19450,10 @@
       "tier": 2
     },
     {
-      "id": "agomab-therapeutics-nv",
+      "id": "agomab-therapeutics",
       "ticker": "AGMB",
-      "name": "AgomAb Therapeutics NV",
-      "aliases": ["agomab therapeutics", "agmb"],
+      "name": "AgomAb Therapeutics",
+      "aliases": ["agmb"],
       "tier": 2
     },
     {
@@ -20326,10 +20242,10 @@
       "tier": 2
     },
     {
-      "id": "terra-innovatum-global-n-v",
+      "id": "terra-innovatum-global",
       "ticker": "NKLR",
-      "name": "Terra Innovatum Global N.V.",
-      "aliases": ["terra innovatum global n v", "nklr"],
+      "name": "Terra Innovatum Global",
+      "aliases": ["nklr"],
       "tier": 2
     },
     {
@@ -20504,13 +20420,7 @@
       "tier": 2
     },
     { "id": "prokidney", "ticker": "PROK", "name": "ProKidney", "aliases": ["prok"], "tier": 2 },
-    {
-      "id": "valneva-se",
-      "ticker": "VALN",
-      "name": "Valneva SE",
-      "aliases": ["valneva", "valn"],
-      "tier": 2
-    },
+    { "id": "valneva", "ticker": "VALN", "name": "Valneva", "aliases": ["valn"], "tier": 2 },
     {
       "id": "orthopediatrics",
       "ticker": "KIDS",
@@ -20869,10 +20779,10 @@
     },
     { "id": "nrc-health", "ticker": "NRC", "name": "NRC Health", "aliases": ["nrc"], "tier": 2 },
     {
-      "id": "coincheck-group-n-v",
+      "id": "coincheck-group",
       "ticker": "CNCK",
-      "name": "Coincheck Group N.V.",
-      "aliases": ["coincheck group n v", "cnck"],
+      "name": "Coincheck Group",
+      "aliases": ["coincheck", "cnck"],
       "tier": 2
     },
     {
@@ -22177,10 +22087,10 @@
       "tier": 2
     },
     {
-      "id": "materialise-nv",
+      "id": "materialise",
       "ticker": "MTLS",
-      "name": "Materialise NV",
-      "aliases": ["materialise", "mtls"],
+      "name": "Materialise",
+      "aliases": ["mtls"],
       "tier": 2
     },
     { "id": "velo3d", "ticker": "VELO", "name": "Velo3D", "aliases": ["velo"], "tier": 2 },
@@ -22333,13 +22243,7 @@
       "tier": 2
     },
     { "id": "quantum", "ticker": "QMCO", "name": "Quantum", "aliases": ["qmco"], "tier": 2 },
-    {
-      "id": "trivago-n-v",
-      "ticker": "TRVG",
-      "name": "trivago N.V.",
-      "aliases": ["trivago n v", "trvg"],
-      "tier": 2
-    },
+    { "id": "trivago", "ticker": "TRVG", "name": "trivago", "aliases": ["trvg"], "tier": 2 },
     { "id": "xperi", "ticker": "XPER", "name": "Xperi", "aliases": ["xper"], "tier": 2 },
     {
       "id": "irenic-acquisition",
@@ -23863,10 +23767,10 @@
     },
     { "id": "unisys", "ticker": "UIS", "name": "Unisys", "aliases": ["uis"], "tier": 2 },
     {
-      "id": "veraxa-biotech-ag",
+      "id": "veraxa-biotech",
       "ticker": "VRXA",
-      "name": "Veraxa Biotech AG",
-      "aliases": ["veraxa biotech", "vrxa"],
+      "name": "Veraxa Biotech",
+      "aliases": ["vrxa"],
       "tier": 2
     },
     {

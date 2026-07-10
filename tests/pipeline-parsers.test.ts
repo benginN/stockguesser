@@ -113,3 +113,16 @@ describe("parseNikkeiList against captured Nikkei 225 page", () => {
     expect(new Set(rows.map((r) => r.rawTicker)).size).toBe(rows.length);
   });
 });
+
+describe("displayName strips ADR/registry-share suffixes (ASML regression)", async () => {
+  const { displayName } = await import("../pipeline/steps/build.ts");
+  it.each([
+    ["ASML Holding N.V. New York Registry Shares", "ASML Holding"],
+    ["SAP SE", "SAP"],
+    ["Toyota Motor Corporation Sponsored ADR", "Toyota Motor"],
+    ["Apple Inc.", "Apple"],
+    ["Merck KGaA", "Merck"],
+  ])("%s → %s", (input, expected) => {
+    expect(displayName(input)).toBe(expected);
+  });
+});

@@ -711,8 +711,8 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "arm-holdings-plc-american-depositary-shares",
-      "name": "Arm Holdings plc American Depositary Shares",
+      "id": "arm-holdings",
+      "name": "Arm Holdings",
       "aliases": ["arm"],
       "listings": [{ "ticker": "ARM", "exchange": "NasdaqGS", "primary": true }],
       "country": "GB",
@@ -772,8 +772,8 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "roche-holding-ag",
-      "name": "Roche Holding AG",
+      "id": "roche-holding",
+      "name": "Roche Holding",
       "aliases": ["roche", "ro"],
       "listings": [{ "ticker": "RO.SW", "exchange": "Swiss", "primary": true }],
       "country": "CH",
@@ -904,9 +904,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "novartis-international-ag",
-      "name": "Novartis International AG",
-      "aliases": ["novartis international", "novn", "nvs"],
+      "id": "novartis-international",
+      "name": "Novartis International",
+      "aliases": ["novn", "nvs"],
       "listings": [
         { "ticker": "NOVN.SW", "exchange": "Swiss", "primary": true },
         { "ticker": "NVS", "exchange": "NYSE", "primary": false }
@@ -2094,8 +2094,8 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "ubs-group-ag",
-      "name": "UBS Group AG",
+      "id": "ubs-group",
+      "name": "UBS Group",
       "aliases": ["ubs", "ubsg"],
       "listings": [
         { "ticker": "UBSG.SW", "exchange": "Swiss", "primary": true },
@@ -3237,9 +3237,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "pdd-holdings-inc-american-depositary-shares",
-      "name": "PDD Holdings Inc. American Depositary Shares",
-      "aliases": ["pdd holdings inc american depositary shares", "pdd"],
+      "id": "pdd-holdings",
+      "name": "PDD Holdings",
+      "aliases": ["pdd"],
       "listings": [{ "ticker": "PDD", "exchange": "NasdaqGS", "primary": true }],
       "country": "IE",
       "region": "Europe",
@@ -3487,8 +3487,8 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "zurich-insurance-group-ag",
-      "name": "Zurich Insurance Group AG",
+      "id": "zurich-insurance-group",
+      "name": "Zurich Insurance Group",
       "aliases": ["zurich insurance", "zurn"],
       "listings": [{ "ticker": "ZURN.SW", "exchange": "Swiss", "primary": true }],
       "country": "CH",
@@ -7891,9 +7891,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "nebius-group-n-v",
-      "name": "Nebius Group N.V.",
-      "aliases": ["nebius group n v", "nbis"],
+      "id": "nebius-group",
+      "name": "Nebius Group",
+      "aliases": ["nebius", "nbis"],
       "listings": [{ "ticker": "NBIS", "exchange": "NasdaqGS", "primary": true }],
       "country": "NL",
       "region": "Europe",
@@ -8330,8 +8330,8 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "lonza-group-ag",
-      "name": "Lonza Group AG",
+      "id": "lonza-group",
+      "name": "Lonza Group",
       "aliases": ["lonza", "lonn"],
       "listings": [{ "ticker": "LONN.SW", "exchange": "Swiss", "primary": true }],
       "country": "CH",
@@ -8523,8 +8523,8 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "galderma-group-ag",
-      "name": "GALDERMA GROUP AG",
+      "id": "galderma-group",
+      "name": "GALDERMA GROUP",
       "aliases": ["galderma", "galdy"],
       "listings": [{ "ticker": "GALDY", "exchange": "OTC Markets OTCPK", "primary": true }],
       "country": "CH",
@@ -10233,9 +10233,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "bayerische-motoren-werke-ag",
-      "name": "Bayerische Motoren Werke AG",
-      "aliases": ["bayerische motoren werke", "bmwky"],
+      "id": "bayerische-motoren-werke",
+      "name": "Bayerische Motoren Werke",
+      "aliases": ["bmwky", "bmw"],
       "listings": [{ "ticker": "BMWKY", "exchange": "OTC Markets OTCPK", "primary": true }],
       "country": "DE",
       "region": "Europe",
@@ -10465,9 +10465,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "swisscom-ag",
-      "name": "Swisscom AG",
-      "aliases": ["swisscom", "scmn", "scmwy"],
+      "id": "swisscom",
+      "name": "Swisscom",
+      "aliases": ["scmn", "scmwy"],
       "listings": [
         { "ticker": "SCMN.SW", "exchange": "Swiss", "primary": true },
         { "ticker": "SCMWY", "exchange": "OTC Markets OTCID", "primary": false }
@@ -10657,9 +10657,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "jbs-n-v",
-      "name": "JBS N.V.",
-      "aliases": ["jbs n v", "jbs"],
+      "id": "jbs",
+      "name": "JBS",
+      "aliases": [],
       "listings": [{ "ticker": "JBS", "exchange": "NYSE", "primary": true }],
       "country": "NL",
       "region": "Europe",
@@ -12230,8 +12230,8 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "swiss-life-holding-ag",
-      "name": "Swiss Life Holding AG",
+      "id": "swiss-life-holding",
+      "name": "Swiss Life Holding",
       "aliases": ["swiss life", "slhn"],
       "listings": [{ "ticker": "SLHN.SW", "exchange": "Swiss", "primary": true }],
       "country": "CH",
@@ -12249,9 +12249,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "sika-ag",
-      "name": "Sika AG",
-      "aliases": ["sika"],
+      "id": "sika",
+      "name": "Sika",
+      "aliases": [],
       "listings": [{ "ticker": "SIKA.SW", "exchange": "Swiss", "primary": true }],
       "country": "CH",
       "region": "Europe",
@@ -12663,9 +12663,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "beone-medicines-ag",
-      "name": "BeOne Medicines AG",
-      "aliases": ["beone medicines", "onc"],
+      "id": "beone-medicines",
+      "name": "BeOne Medicines",
+      "aliases": ["onc"],
       "listings": [{ "ticker": "ONC", "exchange": "NasdaqGS", "primary": true }],
       "country": "CH",
       "region": "Europe",
@@ -13514,9 +13514,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "amrize-ag",
-      "name": "Amrize AG",
-      "aliases": ["amrize", "amrz"],
+      "id": "amrize",
+      "name": "Amrize",
+      "aliases": ["amrz"],
       "listings": [
         { "ticker": "AMRZ", "exchange": "NYSE", "primary": false },
         { "ticker": "AMRZ.SW", "exchange": "Swiss", "primary": true }
@@ -14287,8 +14287,8 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "chocoladefabriken-lindt-and-sprungli-ag",
-      "name": "Chocoladefabriken Lindt & Sprüngli AG",
+      "id": "chocoladefabriken-lindt-and-sprungli",
+      "name": "Chocoladefabriken Lindt & Sprüngli",
       "aliases": ["chocoladefabriken lindt sprungli", "chlsy"],
       "listings": [{ "ticker": "CHLSY", "exchange": "OTC Markets OTCPK", "primary": true }],
       "country": "CH",
@@ -14977,9 +14977,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "innio-n-v",
-      "name": "Innio N.V.",
-      "aliases": ["innio n v", "inio"],
+      "id": "innio",
+      "name": "Innio",
+      "aliases": ["inio"],
       "listings": [{ "ticker": "INIO", "exchange": "NasdaqGS", "primary": true }],
       "country": "DE",
       "region": "Europe",
@@ -15549,9 +15549,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "aercap-holdings-n-v",
-      "name": "AerCap Holdings N.V.",
-      "aliases": ["aercap holdings n v", "aer"],
+      "id": "aercap-holdings",
+      "name": "AerCap Holdings",
+      "aliases": ["aercap", "aer"],
       "listings": [{ "ticker": "AER", "exchange": "NYSE", "primary": true }],
       "country": "IE",
       "region": "Europe",
@@ -15643,9 +15643,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "dsm-firmenich-ag",
-      "name": "DSM Firmenich AG",
-      "aliases": ["dsm firmenich", "dsfir"],
+      "id": "dsm-firmenich",
+      "name": "DSM Firmenich",
+      "aliases": ["dsfir"],
       "listings": [{ "ticker": "DSFIR.AS", "exchange": "Amsterdam", "primary": true }],
       "country": "CH",
       "region": "Europe",
@@ -15928,9 +15928,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "biontech-se",
-      "name": "BioNTech SE",
-      "aliases": ["biontech", "bntx"],
+      "id": "biontech",
+      "name": "BioNTech",
+      "aliases": ["bntx"],
       "listings": [{ "ticker": "BNTX", "exchange": "NasdaqGS", "primary": true }],
       "country": "DE",
       "region": "Europe",
@@ -16499,9 +16499,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "partners-group-holding-ag",
-      "name": "Partners Group Holding AG",
-      "aliases": ["partners group", "pghn"],
+      "id": "partners-group-holding",
+      "name": "Partners Group Holding",
+      "aliases": ["partners", "pghn"],
       "listings": [{ "ticker": "PGHN.SW", "exchange": "Swiss", "primary": true }],
       "country": "CH",
       "region": "Europe",
@@ -16649,9 +16649,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "heineken-holding-n-v",
-      "name": "Heineken Holding N.V.",
-      "aliases": ["heineken holding n v", "hkhhy"],
+      "id": "heineken-holding",
+      "name": "Heineken Holding",
+      "aliases": ["heineken", "hkhhy"],
       "listings": [{ "ticker": "HKHHY", "exchange": "OTC Markets OTCQX", "primary": true }],
       "country": "NL",
       "region": "Europe",
@@ -16782,9 +16782,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "geberit-ag",
-      "name": "Geberit AG",
-      "aliases": ["geberit", "gebn"],
+      "id": "geberit",
+      "name": "Geberit",
+      "aliases": ["gebn"],
       "listings": [{ "ticker": "GEBN.SW", "exchange": "Swiss", "primary": true }],
       "country": "CH",
       "region": "Europe",
@@ -16898,9 +16898,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "bending-spoons-s-p-a",
-      "name": "Bending Spoons S.p.A.",
-      "aliases": ["bending spoons s p a", "bsp"],
+      "id": "bending-spoons",
+      "name": "Bending Spoons",
+      "aliases": ["bsp"],
       "listings": [{ "ticker": "BSP", "exchange": "NasdaqGS", "primary": true }],
       "country": "IT",
       "region": "Europe",
@@ -22502,9 +22502,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "cnh-industrial-n-v",
-      "name": "CNH Industrial N.V.",
-      "aliases": ["cnh industrial n v", "cnh"],
+      "id": "cnh-industrial",
+      "name": "CNH Industrial",
+      "aliases": ["cnh"],
       "listings": [{ "ticker": "CNH", "exchange": "NYSE", "primary": true }],
       "country": "GB",
       "region": "Europe",
@@ -22540,8 +22540,8 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "belimo-holding-ag",
-      "name": "Belimo Holding AG",
+      "id": "belimo-holding",
+      "name": "Belimo Holding",
       "aliases": ["belimo", "blmoy"],
       "listings": [{ "ticker": "BLMOY", "exchange": "OTC Markets OTCPK", "primary": true }],
       "country": "CH",
@@ -22790,9 +22790,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "deutsche-lufthansa-ag",
-      "name": "Deutsche Lufthansa AG",
-      "aliases": ["deutsche lufthansa", "dlaky"],
+      "id": "deutsche-lufthansa",
+      "name": "Deutsche Lufthansa",
+      "aliases": ["dlaky"],
       "listings": [{ "ticker": "DLAKY", "exchange": "OTC Markets OTCQX", "primary": true }],
       "country": "DE",
       "region": "Europe",
@@ -23153,9 +23153,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "on-holding-ag",
-      "name": "On Holding AG",
-      "aliases": ["on holding", "onon"],
+      "id": "on-holding",
+      "name": "On Holding",
+      "aliases": ["onon"],
       "listings": [{ "ticker": "ONON", "exchange": "NYSE", "primary": true }],
       "country": "CH",
       "region": "Europe",
@@ -24737,9 +24737,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "magnum-ice-cream-company-n-v",
-      "name": "Magnum Ice Cream Company N.V.",
-      "aliases": ["magnum ice cream company n v", "micc"],
+      "id": "magnum-ice-cream-company",
+      "name": "Magnum Ice Cream Company",
+      "aliases": ["magnum ice cream", "micc"],
       "listings": [{ "ticker": "MICC", "exchange": "NYSE", "primary": true }],
       "country": "NL",
       "region": "Europe",
@@ -27174,9 +27174,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "porsche-se",
-      "name": "Porsche SE",
-      "aliases": ["porsche", "pah3"],
+      "id": "porsche",
+      "name": "Porsche",
+      "aliases": ["pah3"],
       "listings": [{ "ticker": "PAH3.DE", "exchange": "XETRA", "primary": true }],
       "country": "DE",
       "region": "Europe",
@@ -32420,8 +32420,8 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "bachem-holding-ag",
-      "name": "Bachem Holding AG",
+      "id": "bachem-holding",
+      "name": "Bachem Holding",
       "aliases": ["bachem", "bchmy"],
       "listings": [{ "ticker": "BCHMY", "exchange": "OTC Markets OTCPK", "primary": true }],
       "country": "CH",
@@ -33576,9 +33576,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "elastic-n-v",
-      "name": "Elastic N.V.",
-      "aliases": ["elastic n v", "estc"],
+      "id": "elastic",
+      "name": "Elastic",
+      "aliases": ["estc"],
       "listings": [{ "ticker": "ESTC", "exchange": "NYSE", "primary": true }],
       "country": "NL",
       "region": "Europe",
@@ -36302,9 +36302,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "stevanato-group-s-p-a",
-      "name": "Stevanato Group S.p.A.",
-      "aliases": ["stevanato group s p a", "stvn"],
+      "id": "stevanato-group",
+      "name": "Stevanato Group",
+      "aliases": ["stevanato", "stvn"],
       "listings": [{ "ticker": "STVN", "exchange": "NYSE", "primary": true }],
       "country": "IT",
       "region": "Europe",
@@ -36968,9 +36968,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "crispr-therapeutics-ag",
-      "name": "CRISPR Therapeutics AG",
-      "aliases": ["crispr therapeutics", "crsp"],
+      "id": "crispr-therapeutics",
+      "name": "CRISPR Therapeutics",
+      "aliases": ["crsp"],
       "listings": [{ "ticker": "CRSP", "exchange": "NasdaqGM", "primary": true }],
       "country": "CH",
       "region": "Europe",
@@ -37535,8 +37535,8 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "renk-group-ag",
-      "name": "RENK GROUP AG",
+      "id": "renk-group",
+      "name": "RENK GROUP",
       "aliases": ["renk", "rkgry"],
       "listings": [{ "ticker": "RKGRY", "exchange": "OTC Markets OTCPK", "primary": true }],
       "country": "DE",
@@ -38708,8 +38708,8 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "sportradar-group-ag",
-      "name": "Sportradar Group AG",
+      "id": "sportradar-group",
+      "name": "Sportradar Group",
       "aliases": ["sportradar", "srad"],
       "listings": [{ "ticker": "SRAD", "exchange": "NasdaqGS", "primary": true }],
       "country": "CH",
@@ -39657,8 +39657,8 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "cmb-tech-nv",
-      "name": "Cmb.Tech NV",
+      "id": "cmb-tech",
+      "name": "Cmb.Tech",
       "aliases": ["cmb tech", "cmbt"],
       "listings": [{ "ticker": "CMBT", "exchange": "NYSE", "primary": true }],
       "country": "BE",
@@ -40700,9 +40700,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "aumovio-se",
-      "name": "AUMOVIO SE",
-      "aliases": ["aumovio", "amvoy"],
+      "id": "aumovio",
+      "name": "AUMOVIO",
+      "aliases": ["amvoy"],
       "listings": [{ "ticker": "AMVOY", "exchange": "OTC Markets OTCPK", "primary": true }],
       "country": "DE",
       "region": "Europe",
@@ -41348,9 +41348,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "constellium-se",
-      "name": "Constellium SE",
-      "aliases": ["constellium", "cstm"],
+      "id": "constellium",
+      "name": "Constellium",
+      "aliases": ["cstm"],
       "listings": [{ "ticker": "CSTM", "exchange": "NYSE", "primary": true }],
       "country": "FR",
       "region": "Europe",
@@ -41386,9 +41386,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "newamsterdam-pharma-company-n-v",
-      "name": "NewAmsterdam Pharma Company N.V.",
-      "aliases": ["newamsterdam pharma company n v", "nams"],
+      "id": "newamsterdam-pharma-company",
+      "name": "NewAmsterdam Pharma Company",
+      "aliases": ["newamsterdam pharma", "nams"],
       "listings": [{ "ticker": "NAMS", "exchange": "NasdaqGM", "primary": true }],
       "country": "NL",
       "region": "Europe",
@@ -42844,9 +42844,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "ermenegildo-zegna-n-v",
-      "name": "Ermenegildo Zegna N.V.",
-      "aliases": ["ermenegildo zegna n v", "zgn"],
+      "id": "ermenegildo-zegna",
+      "name": "Ermenegildo Zegna",
+      "aliases": ["zgn"],
       "listings": [{ "ticker": "ZGN", "exchange": "NYSE", "primary": true }],
       "country": "IT",
       "region": "Europe",
@@ -46948,9 +46948,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "uniqure-n-v",
-      "name": "uniQure N.V.",
-      "aliases": ["uniqure n v", "qure"],
+      "id": "uniqure",
+      "name": "uniQure",
+      "aliases": ["qure"],
       "listings": [{ "ticker": "QURE", "exchange": "NasdaqGS", "primary": true }],
       "country": "NL",
       "region": "Europe",
@@ -49608,9 +49608,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "pharvaris-n-v",
-      "name": "Pharvaris N.V.",
-      "aliases": ["pharvaris n v", "phvs"],
+      "id": "pharvaris",
+      "name": "Pharvaris",
+      "aliases": ["phvs"],
       "listings": [{ "ticker": "PHVS", "exchange": "NasdaqGS", "primary": true }],
       "country": "CH",
       "region": "Europe",
@@ -51419,9 +51419,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "springer-nature-ag-and-co-kgaa",
-      "name": "Springer Nature AG & Co. KGaA",
-      "aliases": ["springer nature ag", "spgny"],
+      "id": "springer-nature-ag-and-co",
+      "name": "Springer Nature AG & Co",
+      "aliases": ["springer nature", "spgny"],
       "listings": [{ "ticker": "SPGNY", "exchange": "OTC Markets OTCPK", "primary": true }],
       "country": "DE",
       "region": "Europe",
@@ -52367,9 +52367,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "lakefront-biotherapeutics-nv",
-      "name": "Lakefront Biotherapeutics NV",
-      "aliases": ["lakefront biotherapeutics", "lkft"],
+      "id": "lakefront-biotherapeutics",
+      "name": "Lakefront Biotherapeutics",
+      "aliases": ["lkft"],
       "listings": [{ "ticker": "LKFT", "exchange": "NasdaqGS", "primary": true }],
       "country": "BE",
       "region": "Europe",
@@ -55048,9 +55048,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "expro-group-holdings-n-v",
-      "name": "Expro Group Holdings N.V.",
-      "aliases": ["expro group holdings n v", "xpro"],
+      "id": "expro-group-holdings",
+      "name": "Expro Group Holdings",
+      "aliases": ["expro", "xpro"],
       "listings": [{ "ticker": "XPRO", "exchange": "NYSE", "primary": true }],
       "country": "US",
       "region": "North America",
@@ -56406,9 +56406,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "pics-n-v",
-      "name": "PicS N.V.",
-      "aliases": ["pics n v", "pics"],
+      "id": "pics",
+      "name": "PicS",
+      "aliases": [],
       "listings": [{ "ticker": "PICS", "exchange": "NasdaqGS", "primary": true }],
       "country": "BR",
       "region": "Latin America",
@@ -58933,9 +58933,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "immatics-n-v",
-      "name": "Immatics N.V.",
-      "aliases": ["immatics n v", "imtx"],
+      "id": "immatics",
+      "name": "Immatics",
+      "aliases": ["imtx"],
       "listings": [{ "ticker": "IMTX", "exchange": "NasdaqCM", "primary": true }],
       "country": "DE",
       "region": "Europe",
@@ -60350,9 +60350,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "lithium-argentina-ag",
-      "name": "Lithium Argentina AG",
-      "aliases": ["lithium argentina", "lar"],
+      "id": "lithium-argentina",
+      "name": "Lithium Argentina",
+      "aliases": ["lar"],
       "listings": [{ "ticker": "LAR", "exchange": "NYSE", "primary": true }],
       "country": "CH",
       "region": "Europe",
@@ -63431,9 +63431,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "evotec-se",
-      "name": "Evotec SE",
-      "aliases": ["evotec", "evo"],
+      "id": "evotec",
+      "name": "Evotec",
+      "aliases": ["evo"],
       "listings": [{ "ticker": "EVO", "exchange": "NasdaqGS", "primary": true }],
       "country": "DE",
       "region": "Europe",
@@ -63695,9 +63695,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "pharming-group-n-v",
-      "name": "Pharming Group N.V.",
-      "aliases": ["pharming group n v", "phar"],
+      "id": "pharming-group",
+      "name": "Pharming Group",
+      "aliases": ["pharming", "phar"],
       "listings": [{ "ticker": "PHAR", "exchange": "NasdaqGM", "primary": true }],
       "country": "NL",
       "region": "Europe",
@@ -64331,8 +64331,8 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "aebi-schmidt-holding-ag",
-      "name": "Aebi Schmidt Holding AG",
+      "id": "aebi-schmidt-holding",
+      "name": "Aebi Schmidt Holding",
       "aliases": ["aebi schmidt", "aebi"],
       "listings": [{ "ticker": "AEBI", "exchange": "NasdaqGS", "primary": true }],
       "country": "CH",
@@ -65510,9 +65510,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "jumia-technologies-ag",
-      "name": "Jumia Technologies AG",
-      "aliases": ["jumia technologies", "jmia"],
+      "id": "jumia-technologies",
+      "name": "Jumia Technologies",
+      "aliases": ["jmia"],
       "listings": [{ "ticker": "JMIA", "exchange": "NYSE", "primary": true }],
       "country": "DE",
       "region": "Europe",
@@ -66262,8 +66262,8 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "oculis-holding-ag",
-      "name": "Oculis Holding AG",
+      "id": "oculis-holding",
+      "name": "Oculis Holding",
       "aliases": ["oculis", "ocs"],
       "listings": [{ "ticker": "OCS", "exchange": "NasdaqGM", "primary": true }],
       "country": "CH",
@@ -70462,9 +70462,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "agomab-therapeutics-nv",
-      "name": "AgomAb Therapeutics NV",
-      "aliases": ["agomab therapeutics", "agmb"],
+      "id": "agomab-therapeutics",
+      "name": "AgomAb Therapeutics",
+      "aliases": ["agmb"],
       "listings": [{ "ticker": "AGMB", "exchange": "NasdaqGS", "primary": true }],
       "country": "BE",
       "region": "Europe",
@@ -72873,9 +72873,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "terra-innovatum-global-n-v",
-      "name": "Terra Innovatum Global N.V.",
-      "aliases": ["terra innovatum global n v", "nklr"],
+      "id": "terra-innovatum-global",
+      "name": "Terra Innovatum Global",
+      "aliases": ["nklr"],
       "listings": [{ "ticker": "NKLR", "exchange": "NasdaqGM", "primary": true }],
       "country": "IT",
       "region": "Europe",
@@ -73416,9 +73416,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "valneva-se",
-      "name": "Valneva SE",
-      "aliases": ["valneva", "valn"],
+      "id": "valneva",
+      "name": "Valneva",
+      "aliases": ["valn"],
       "listings": [{ "ticker": "VALN", "exchange": "NasdaqGS", "primary": true }],
       "country": "FR",
       "region": "Europe",
@@ -74500,9 +74500,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "coincheck-group-n-v",
-      "name": "Coincheck Group N.V.",
-      "aliases": ["coincheck group n v", "cnck"],
+      "id": "coincheck-group",
+      "name": "Coincheck Group",
+      "aliases": ["coincheck", "cnck"],
       "listings": [{ "ticker": "CNCK", "exchange": "NasdaqGM", "primary": true }],
       "country": "NL",
       "region": "Europe",
@@ -78418,9 +78418,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "materialise-nv",
-      "name": "Materialise NV",
-      "aliases": ["materialise", "mtls"],
+      "id": "materialise",
+      "name": "Materialise",
+      "aliases": ["mtls"],
       "listings": [{ "ticker": "MTLS", "exchange": "NasdaqGS", "primary": true }],
       "country": "BE",
       "region": "Europe",
@@ -78878,9 +78878,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "trivago-n-v",
-      "name": "trivago N.V.",
-      "aliases": ["trivago n v", "trvg"],
+      "id": "trivago",
+      "name": "trivago",
+      "aliases": ["trvg"],
       "listings": [{ "ticker": "TRVG", "exchange": "NasdaqGS", "primary": true }],
       "country": "DE",
       "region": "Europe",
@@ -83388,9 +83388,9 @@
       "updatedAt": "2026-07-10"
     },
     {
-      "id": "veraxa-biotech-ag",
-      "name": "Veraxa Biotech AG",
-      "aliases": ["veraxa biotech", "vrxa"],
+      "id": "veraxa-biotech",
+      "name": "Veraxa Biotech",
+      "aliases": ["vrxa"],
       "listings": [{ "ticker": "VRXA", "exchange": "NasdaqGM", "primary": true }],
       "country": "DE",
       "region": "Europe",
