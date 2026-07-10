@@ -2,6 +2,23 @@
 
 Append a dated summary at the end of every working session (ROADMAP.md §8.3).
 
+## 2026-07-10 (session 6) — Phase 6: launch prep ✅ → tagged v0.5
+
+**Standing decision (user):** the game lives on GitHub Pages permanently — no domain, no
+external services. Consequences: Phase 5 permanently skipped, no analytics (privacy page
+truthfully says "collects nothing"), error-rate criterion replaced by e2e-guarded releases.
+
+- [x] SEO (canonical/OG/robots/sitemap), favicon+PWA manifest+icons, 404, privacy page,
+      feedback link
+- [x] Cross-browser QA: e2e suite × 3 engines (Chromium, WebKit=iOS proxy, Firefox) = 24 green
+- [x] LAUNCH.md written; CI now runs all three browsers
+- [ ] Refresh Action: run 1 dispatched today (check its PR!), run 2 = Monday cron 05:30 UTC
+- [ ] Soft launch to communities — human task
+
+**UX change shipped same session (user request):** recall auto-accepts exact matches while
+typing (no Enter; names any length, tickers/aliases ≥3 chars to avoid mid-word grabs);
+every index now playable in both Full recall and Top 10.
+
 ## 2026-07-10 (session 5) — Phase 4: Country + Chart Detective + polish ✅ → tagged v0.4
 
 **All acceptance boxes checked:**

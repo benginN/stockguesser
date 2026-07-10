@@ -5,14 +5,15 @@ session history lives in `PROGRESS.md` (append a dated summary at the end of eve
 
 ## Locked Phase-0 decisions
 
-| Decision        | Choice                                                         | Notes                                                      |
-| --------------- | -------------------------------------------------------------- | ---------------------------------------------------------- |
-| Aesthetic       | **Trading terminal** (ROADMAP §4 option 1)                     | near-black, hairlines, mono data, one amber accent         |
-| v1 modes        | Daily Ticker, Index Recall, Cap Battle                         | Country/Chart modes in Phase 4                             |
-| Routing         | `?mode=` URL param, zero routing deps                          | revisit only if deep links demand it                       |
-| Daily reset     | UTC midnight                                                   | see `src/game/seed.ts`                                     |
-| Package manager | **npm** (roadmap said pnpm; this machine has no pnpm/corepack) | scripts: `npm run dev/test/lint/build/pipeline`            |
-| Name            | "Stock Guesser" — working title                                | trademark/domain check pending, see PROGRESS.md open items |
+| Decision        | Choice                                                         | Notes                                                                      |
+| --------------- | -------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| Aesthetic       | **Trading terminal** (ROADMAP §4 option 1)                     | near-black, hairlines, mono data, one amber accent                         |
+| v1 modes        | Daily Ticker, Index Recall, Cap Battle                         | Country/Chart modes in Phase 4                                             |
+| Routing         | `?mode=` URL param, zero routing deps                          | revisit only if deep links demand it                                       |
+| Daily reset     | UTC midnight                                                   | see `src/game/seed.ts`                                                     |
+| Package manager | **npm** (roadmap said pnpm; this machine has no pnpm/corepack) | scripts: `npm run dev/test/lint/build/pipeline`                            |
+| Name            | "Stock Guesser" — working title                                | no domain ever — github.io is the permanent home                           |
+| Hosting         | **GitHub Pages, permanently** (decision 2026-07-10)            | no external services; Phase 5 (accounts) permanently skipped; no analytics |
 
 ## Stack
 

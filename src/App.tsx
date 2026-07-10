@@ -76,6 +76,17 @@ export default function App() {
           href="https://github.com/benginN/stockguesser"
         >
           github
+        </a>{" "}
+        ·{" "}
+        <a
+          className="hover:text-terminal-text underline"
+          href="https://github.com/benginN/stockguesser/issues"
+        >
+          feedback
+        </a>{" "}
+        ·{" "}
+        <a className="hover:text-terminal-text underline" href="privacy.html">
+          privacy
         </a>
       </footer>
     </div>
