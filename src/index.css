@@ -31,6 +31,21 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
+/* signature moment: staggered tile flip on guess reveal (CLAUDE.md §Design) */
+@keyframes tile-flip {
+  0% {
+    transform: rotateX(90deg);
+    opacity: 0.2;
+  }
+  100% {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+}
+.tile-flip {
+  animation: tile-flip 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

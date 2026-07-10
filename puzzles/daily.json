@@ -1,0 +1,1832 @@
+{
+  "mode": "daily-ticker",
+  "epoch": "2026-07-10",
+  "snapshotVersion": "2026-07-10",
+  "days": {
+    "2026-07-10": {
+      "id": "vistra",
+      "name": "Vistra",
+      "difficulty": 0.45
+    },
+    "2026-07-11": {
+      "id": "m3",
+      "name": "M3",
+      "difficulty": 0.74
+    },
+    "2026-07-12": {
+      "id": "keurig-dr-pepper",
+      "name": "Keurig Dr Pepper",
+      "difficulty": 0.39
+    },
+    "2026-07-13": {
+      "id": "alphabet",
+      "name": "Alphabet",
+      "difficulty": 0.11
+    },
+    "2026-07-14": {
+      "id": "allianz",
+      "name": "Allianz",
+      "difficulty": 0.29
+    },
+    "2026-07-15": {
+      "id": "ferrovial",
+      "name": "Ferrovial",
+      "difficulty": 0.38
+    },
+    "2026-07-16": {
+      "id": "anta-sports",
+      "name": "Anta Sports",
+      "difficulty": 0.54
+    },
+    "2026-07-17": {
+      "id": "recordati",
+      "name": "Recordati",
+      "difficulty": 0.65
+    },
+    "2026-07-18": {
+      "id": "yum-china-holdings",
+      "name": "Yum China Holdings",
+      "difficulty": 0.66
+    },
+    "2026-07-19": {
+      "id": "altria",
+      "name": "Altria",
+      "difficulty": 0.4
+    },
+    "2026-07-20": {
+      "id": "nvidia",
+      "name": "Nvidia",
+      "difficulty": 0.19
+    },
+    "2026-07-21": {
+      "id": "mitsubishi-ufj-financial-group",
+      "name": "Mitsubishi UFJ Financial Group",
+      "difficulty": 0.29
+    },
+    "2026-07-22": {
+      "id": "hkex-limited",
+      "name": "HKEx Limited",
+      "difficulty": 0.4
+    },
+    "2026-07-23": {
+      "id": "xiaomi",
+      "name": "Xiaomi",
+      "difficulty": 0.42
+    },
+    "2026-07-24": {
+      "id": "caci-international",
+      "name": "CACI International",
+      "difficulty": 0.76
+    },
+    "2026-07-25": {
+      "id": "enova-international",
+      "name": "Enova International",
+      "difficulty": 0.87
+    },
+    "2026-07-26": {
+      "id": "idexx-laboratories",
+      "name": "Idexx Laboratories",
+      "difficulty": 0.39
+    },
+    "2026-07-27": {
+      "id": "apple",
+      "name": "Apple",
+      "difficulty": 0.19
+    },
+    "2026-07-28": {
+      "id": "tesla",
+      "name": "Tesla",
+      "difficulty": 0.27
+    },
+    "2026-07-29": {
+      "id": "prologis",
+      "name": "Prologis",
+      "difficulty": 0.39
+    },
+    "2026-07-30": {
+      "id": "japan-exchange-group",
+      "name": "Japan Exchange Group",
+      "difficulty": 0.59
+    },
+    "2026-07-31": {
+      "id": "albemarle",
+      "name": "Albemarle",
+      "difficulty": 0.61
+    },
+    "2026-08-01": {
+      "id": "jbs-n-v",
+      "name": "JBS N.V.",
+      "difficulty": 0.53
+    },
+    "2026-08-02": {
+      "id": "shopify-inc-class-a-subordinate-voting-shares",
+      "name": "Shopify Inc. Class A Subordinate Voting Shares",
+      "difficulty": 0.34
+    },
+    "2026-08-03": {
+      "id": "jpmorgan-chase",
+      "name": "JPMorgan Chase",
+      "difficulty": 0.2
+    },
+    "2026-08-04": {
+      "id": "seagate-technology",
+      "name": "Seagate Technology",
+      "difficulty": 0.29
+    },
+    "2026-08-05": {
+      "id": "ubs-group-ag",
+      "name": "UBS Group AG",
+      "difficulty": 0.34
+    },
+    "2026-08-06": {
+      "id": "iqvia",
+      "name": "IQVIA",
+      "difficulty": 0.5
+    },
+    "2026-08-07": {
+      "id": "thomson-reuters",
+      "name": "Thomson Reuters",
+      "difficulty": 0.48
+    },
+    "2026-08-08": {
+      "id": "liberty-live-holdings",
+      "name": "Liberty Live Holdings",
+      "difficulty": 0.75
+    },
+    "2026-08-09": {
+      "id": "american-electric-power",
+      "name": "American Electric Power",
+      "difficulty": 0.34
+    },
+    "2026-08-10": {
+      "id": "amazon",
+      "name": "Amazon",
+      "difficulty": 0.19
+    },
+    "2026-08-11": {
+      "id": "lvmh",
+      "name": "LVMH",
+      "difficulty": 0.21
+    },
+    "2026-08-12": {
+      "id": "ferrari",
+      "name": "Ferrari",
+      "difficulty": 0.35
+    },
+    "2026-08-13": {
+      "id": "fidelity-national-information-services",
+      "name": "Fidelity National Information Services",
+      "difficulty": 0.56
+    },
+    "2026-08-14": {
+      "id": "orange",
+      "name": "Orange",
+      "difficulty": 0.46
+    },
+    "2026-08-15": {
+      "id": "macerich-company",
+      "name": "Macerich Company",
+      "difficulty": 0.78
+    },
+    "2026-08-16": {
+      "id": "booking-holdings",
+      "name": "Booking Holdings",
+      "difficulty": 0.27
+    },
+    "2026-08-17": {
+      "id": "meta-platforms",
+      "name": "Meta Platforms",
+      "difficulty": 0.16
+    },
+    "2026-08-18": {
+      "id": "qualcomm",
+      "name": "Qualcomm",
+      "difficulty": 0.29
+    },
+    "2026-08-19": {
+      "id": "adani-ports-and-sez",
+      "name": "Adani Ports & SEZ",
+      "difficulty": 0.43
+    },
+    "2026-08-20": {
+      "id": "scottish-mortgage-investment-trust",
+      "name": "Scottish Mortgage Investment Trust",
+      "difficulty": 0.56
+    },
+    "2026-08-21": {
+      "id": "nextpower",
+      "name": "Nextpower",
+      "difficulty": 0.68
+    },
+    "2026-08-22": {
+      "id": "boyd-gaming",
+      "name": "Boyd Gaming",
+      "difficulty": 0.85
+    },
+    "2026-08-23": {
+      "id": "xcel-energy",
+      "name": "Xcel Energy",
+      "difficulty": 0.38
+    },
+    "2026-08-24": {
+      "id": "walmart",
+      "name": "Walmart",
+      "difficulty": 0.19
+    },
+    "2026-08-25": {
+      "id": "goldman-sachs",
+      "name": "Goldman Sachs",
+      "difficulty": 0.24
+    },
+    "2026-08-26": {
+      "id": "swiss-reinsurance-company-ltd",
+      "name": "Swiss Reinsurance Company Ltd",
+      "difficulty": 0.43
+    },
+    "2026-08-27": {
+      "id": "cbre-group",
+      "name": "CBRE Group",
+      "difficulty": 0.48
+    },
+    "2026-08-28": {
+      "id": "chipotle-mexican-grill",
+      "name": "Chipotle Mexican Grill",
+      "difficulty": 0.47
+    },
+    "2026-08-29": {
+      "id": "first-solar",
+      "name": "First Solar",
+      "difficulty": 0.54
+    },
+    "2026-08-30": {
+      "id": "intuitive-surgical",
+      "name": "Intuitive Surgical",
+      "difficulty": 0.3
+    },
+    "2026-08-31": {
+      "id": "asml-holding",
+      "name": "ASML Holding",
+      "difficulty": 0.19
+    },
+    "2026-09-01": {
+      "id": "sherwin-williams",
+      "name": "Sherwin-Williams",
+      "difficulty": 0.3
+    },
+    "2026-09-02": {
+      "id": "air-products",
+      "name": "Air Products",
+      "difficulty": 0.44
+    },
+    "2026-09-03": {
+      "id": "vinci",
+      "name": "Vinci",
+      "difficulty": 0.34
+    },
+    "2026-09-04": {
+      "id": "chart-industries",
+      "name": "Chart Industries",
+      "difficulty": 0.77
+    },
+    "2026-09-05": {
+      "id": "news",
+      "name": "News",
+      "difficulty": 0.56
+    },
+    "2026-09-06": {
+      "id": "johnson-and-johnson",
+      "name": "Johnson & Johnson",
+      "difficulty": 0.24
+    },
+    "2026-09-07": {
+      "id": "cisco",
+      "name": "Cisco",
+      "difficulty": 0.19
+    },
+    "2026-09-08": {
+      "id": "alibaba-group",
+      "name": "Alibaba Group",
+      "difficulty": 0.29
+    },
+    "2026-09-09": {
+      "id": "datadog",
+      "name": "Datadog",
+      "difficulty": 0.33
+    },
+    "2026-09-10": {
+      "id": "mtu-aero-engines",
+      "name": "MTU Aero Engines",
+      "difficulty": 0.56
+    },
+    "2026-09-11": {
+      "id": "contemporary-amperex-technology",
+      "name": "CONTEMPORARY AMPEREX TECHNOLOGY",
+      "difficulty": 0.45
+    },
+    "2026-09-12": {
+      "id": "qnity-electronics",
+      "name": "Qnity Electronics",
+      "difficulty": 0.51
+    },
+    "2026-09-13": {
+      "id": "regeneron-pharmaceuticals",
+      "name": "Regeneron Pharmaceuticals",
+      "difficulty": 0.35
+    },
+    "2026-09-14": {
+      "id": "procter-and-gamble",
+      "name": "Procter & Gamble",
+      "difficulty": 0.17
+    },
+    "2026-09-15": {
+      "id": "inditex",
+      "name": "Inditex",
+      "difficulty": 0.29
+    },
+    "2026-09-16": {
+      "id": "state-bank-of-india",
+      "name": "State Bank of India",
+      "difficulty": 0.4
+    },
+    "2026-09-17": {
+      "id": "resonac",
+      "name": "Resonac",
+      "difficulty": 0.58
+    },
+    "2026-09-18": {
+      "id": "entergy",
+      "name": "Entergy",
+      "difficulty": 0.45
+    },
+    "2026-09-19": {
+      "id": "nio",
+      "name": "NIO",
+      "difficulty": 0.77
+    },
+    "2026-09-20": {
+      "id": "arcelormittal",
+      "name": "ArcelorMittal",
+      "difficulty": 0.25
+    },
+    "2026-09-21": {
+      "id": "microsoft",
+      "name": "Microsoft",
+      "difficulty": 0.19
+    },
+    "2026-09-22": {
+      "id": "unitedhealth-group",
+      "name": "UnitedHealth Group",
+      "difficulty": 0.24
+    },
+    "2026-09-23": {
+      "id": "applovin",
+      "name": "AppLovin",
+      "difficulty": 0.3
+    },
+    "2026-09-24": {
+      "id": "m-and-t-bank",
+      "name": "M&T Bank",
+      "difficulty": 0.46
+    },
+    "2026-09-25": {
+      "id": "swiss-life-holding-ag",
+      "name": "Swiss Life Holding AG",
+      "difficulty": 0.47
+    },
+    "2026-09-26": {
+      "id": "makemytrip-limited",
+      "name": "MakeMyTrip Limited",
+      "difficulty": 0.85
+    },
+    "2026-09-27": {
+      "id": "teradyne",
+      "name": "Teradyne",
+      "difficulty": 0.37
+    },
+    "2026-09-28": {
+      "id": "coca-cola-company-the",
+      "name": "Coca-Cola Company (The)",
+      "difficulty": 0.24
+    },
+    "2026-09-29": {
+      "id": "essilorluxottica",
+      "name": "EssilorLuxottica",
+      "difficulty": 0.22
+    },
+    "2026-09-30": {
+      "id": "barclays",
+      "name": "Barclays",
+      "difficulty": 0.37
+    },
+    "2026-10-01": {
+      "id": "enel",
+      "name": "Enel",
+      "difficulty": 0.35
+    },
+    "2026-10-02": {
+      "id": "daikin-industries",
+      "name": "Daikin Industries",
+      "difficulty": 0.47
+    },
+    "2026-10-03": {
+      "id": "travel-leisure-co",
+      "name": "Travel + Leisure Co.",
+      "difficulty": 0.89
+    },
+    "2026-10-04": {
+      "id": "american-express",
+      "name": "American Express",
+      "difficulty": 0.29
+    },
+    "2026-10-05": {
+      "id": "airbus",
+      "name": "Airbus",
+      "difficulty": 0.21
+    },
+    "2026-10-06": {
+      "id": "salesforce",
+      "name": "Salesforce",
+      "difficulty": 0.3
+    },
+    "2026-10-07": {
+      "id": "w-w-grainger",
+      "name": "W. W. Grainger",
+      "difficulty": 0.4
+    },
+    "2026-10-08": {
+      "id": "church-and-dwight",
+      "name": "Church & Dwight",
+      "difficulty": 0.52
+    },
+    "2026-10-09": {
+      "id": "pernod-ricard",
+      "name": "Pernod Ricard",
+      "difficulty": 0.58
+    },
+    "2026-10-10": {
+      "id": "southwest-gas-holdings",
+      "name": "Southwest Gas Holdings",
+      "difficulty": 0.81
+    },
+    "2026-10-11": {
+      "id": "pfizer",
+      "name": "Pfizer",
+      "difficulty": 0.39
+    },
+    "2026-10-12": {
+      "id": "t-mobile-us",
+      "name": "T-Mobile US",
+      "difficulty": 0.25
+    },
+    "2026-10-13": {
+      "id": "boeing",
+      "name": "Boeing",
+      "difficulty": 0.3
+    },
+    "2026-10-14": {
+      "id": "basf",
+      "name": "BASF",
+      "difficulty": 0.38
+    },
+    "2026-10-15": {
+      "id": "ecolab",
+      "name": "Ecolab",
+      "difficulty": 0.42
+    },
+    "2026-10-16": {
+      "id": "nu-holdings-ltd",
+      "name": "Nu Holdings Ltd.",
+      "difficulty": 0.48
+    },
+    "2026-10-17": {
+      "id": "twist-bioscience",
+      "name": "Twist Bioscience",
+      "difficulty": 0.89
+    },
+    "2026-10-18": {
+      "id": "eaton",
+      "name": "Eaton",
+      "difficulty": 0.38
+    },
+    "2026-10-19": {
+      "id": "anheuser-busch-inbev",
+      "name": "Anheuser-Busch InBev",
+      "difficulty": 0.23
+    },
+    "2026-10-20": {
+      "id": "lam-research",
+      "name": "Lam Research",
+      "difficulty": 0.28
+    },
+    "2026-10-21": {
+      "id": "intercontinental-exchange",
+      "name": "Intercontinental Exchange",
+      "difficulty": 0.42
+    },
+    "2026-10-22": {
+      "id": "cloudflare",
+      "name": "Cloudflare",
+      "difficulty": 0.49
+    },
+    "2026-10-23": {
+      "id": "link-reit",
+      "name": "Link REIT",
+      "difficulty": 0.65
+    },
+    "2026-10-24": {
+      "id": "croda-international",
+      "name": "Croda International",
+      "difficulty": 0.81
+    },
+    "2026-10-25": {
+      "id": "merck-and-co",
+      "name": "Merck & Co.",
+      "difficulty": 0.24
+    },
+    "2026-10-26": {
+      "id": "l-oreal",
+      "name": "L'Oréal",
+      "difficulty": 0.25
+    },
+    "2026-10-27": {
+      "id": "hsbc",
+      "name": "HSBC",
+      "difficulty": 0.24
+    },
+    "2026-10-28": {
+      "id": "tata-consultancy-services",
+      "name": "Tata Consultancy Services",
+      "difficulty": 0.42
+    },
+    "2026-10-29": {
+      "id": "carrier-global",
+      "name": "Carrier Global",
+      "difficulty": 0.45
+    },
+    "2026-10-30": {
+      "id": "spx-technologies",
+      "name": "SPX Technologies",
+      "difficulty": 0.75
+    },
+    "2026-10-31": {
+      "id": "burlington-stores",
+      "name": "Burlington Stores",
+      "difficulty": 0.65
+    },
+    "2026-11-01": {
+      "id": "ing-group",
+      "name": "ING Group",
+      "difficulty": 0.29
+    },
+    "2026-11-02": {
+      "id": "hermes",
+      "name": "Hermès",
+      "difficulty": 0.25
+    },
+    "2026-11-03": {
+      "id": "gilead-sciences",
+      "name": "Gilead Sciences",
+      "difficulty": 0.3
+    },
+    "2026-11-04": {
+      "id": "kimberly-clark",
+      "name": "Kimberly-Clark",
+      "difficulty": 0.45
+    },
+    "2026-11-05": {
+      "id": "motorola-solutions",
+      "name": "Motorola Solutions",
+      "difficulty": 0.43
+    },
+    "2026-11-06": {
+      "id": "teva-pharmaceutical-industries-limited",
+      "name": "Teva Pharmaceutical Industries Limited",
+      "difficulty": 0.53
+    },
+    "2026-11-07": {
+      "id": "woodward",
+      "name": "Woodward",
+      "difficulty": 0.63
+    },
+    "2026-11-08": {
+      "id": "stryker",
+      "name": "Stryker",
+      "difficulty": 0.39
+    },
+    "2026-11-09": {
+      "id": "mcdonald-s",
+      "name": "McDonald's",
+      "difficulty": 0.25
+    },
+    "2026-11-10": {
+      "id": "unilever",
+      "name": "Unilever",
+      "difficulty": 0.23
+    },
+    "2026-11-11": {
+      "id": "welltower",
+      "name": "Welltower",
+      "difficulty": 0.38
+    },
+    "2026-11-12": {
+      "id": "msci",
+      "name": "MSCI",
+      "difficulty": 0.51
+    },
+    "2026-11-13": {
+      "id": "pershing-square-holdings",
+      "name": "Pershing Square Holdings",
+      "difficulty": 0.63
+    },
+    "2026-11-14": {
+      "id": "aes",
+      "name": "AES",
+      "difficulty": 0.72
+    },
+    "2026-11-15": {
+      "id": "totalenergies",
+      "name": "TotalEnergies",
+      "difficulty": 0.3
+    },
+    "2026-11-16": {
+      "id": "banco-santander",
+      "name": "Banco Santander",
+      "difficulty": 0.25
+    },
+    "2026-11-17": {
+      "id": "chevron",
+      "name": "Chevron",
+      "difficulty": 0.28
+    },
+    "2026-11-18": {
+      "id": "vertiv",
+      "name": "Vertiv",
+      "difficulty": 0.39
+    },
+    "2026-11-19": {
+      "id": "netease",
+      "name": "NetEase",
+      "difficulty": 0.38
+    },
+    "2026-11-20": {
+      "id": "texas-roadhouse",
+      "name": "Texas Roadhouse",
+      "difficulty": 0.73
+    },
+    "2026-11-21": {
+      "id": "grupo-aval-acciones-y-valores-s-a",
+      "name": "Grupo Aval Acciones y Valores S.A.",
+      "difficulty": 0.83
+    },
+    "2026-11-22": {
+      "id": "tencent-holdings-limited",
+      "name": "Tencent Holdings Limited",
+      "difficulty": 0.32
+    },
+    "2026-11-23": {
+      "id": "home-depot-the",
+      "name": "Home Depot (The)",
+      "difficulty": 0.24
+    },
+    "2026-11-24": {
+      "id": "deutsche-telekom",
+      "name": "Deutsche Telekom",
+      "difficulty": 0.27
+    },
+    "2026-11-25": {
+      "id": "metlife",
+      "name": "MetLife",
+      "difficulty": 0.44
+    },
+    "2026-11-26": {
+      "id": "adani-enterprises",
+      "name": "Adani Enterprises",
+      "difficulty": 0.47
+    },
+    "2026-11-27": {
+      "id": "equity-residential",
+      "name": "Equity Residential",
+      "difficulty": 0.53
+    },
+    "2026-11-28": {
+      "id": "cg-oncology",
+      "name": "CG Oncology",
+      "difficulty": 0.86
+    },
+    "2026-11-29": {
+      "id": "investor-b",
+      "name": "Investor B",
+      "difficulty": 0.39
+    },
+    "2026-11-30": {
+      "id": "amgen",
+      "name": "Amgen",
+      "difficulty": 0.21
+    },
+    "2026-12-01": {
+      "id": "pepsico",
+      "name": "PepsiCo",
+      "difficulty": 0.29
+    },
+    "2026-12-02": {
+      "id": "softbank-group",
+      "name": "SoftBank Group",
+      "difficulty": 0.33
+    },
+    "2026-12-03": {
+      "id": "bajaj-auto",
+      "name": "Bajaj Auto",
+      "difficulty": 0.52
+    },
+    "2026-12-04": {
+      "id": "mks",
+      "name": "MKS",
+      "difficulty": 0.63
+    },
+    "2026-12-05": {
+      "id": "nexon",
+      "name": "Nexon",
+      "difficulty": 0.67
+    },
+    "2026-12-06": {
+      "id": "visa",
+      "name": "Visa",
+      "difficulty": 0.27
+    },
+    "2026-12-07": {
+      "id": "novartis-international-ag",
+      "name": "Novartis International AG",
+      "difficulty": 0.29
+    },
+    "2026-12-08": {
+      "id": "walt-disney-company-the",
+      "name": "Walt Disney Company (The)",
+      "difficulty": 0.26
+    },
+    "2026-12-09": {
+      "id": "ericsson-b",
+      "name": "Ericsson B",
+      "difficulty": 0.45
+    },
+    "2026-12-10": {
+      "id": "ralph-lauren",
+      "name": "Ralph Lauren",
+      "difficulty": 0.55
+    },
+    "2026-12-11": {
+      "id": "rb-global",
+      "name": "RB Global",
+      "difficulty": 0.65
+    },
+    "2026-12-12": {
+      "id": "central-bancompany",
+      "name": "Central Bancompany",
+      "difficulty": 0.82
+    },
+    "2026-12-13": {
+      "id": "lloyds-banking-group",
+      "name": "Lloyds Banking Group",
+      "difficulty": 0.34
+    },
+    "2026-12-14": {
+      "id": "abb-ltd",
+      "name": "ABB Ltd",
+      "difficulty": 0.26
+    },
+    "2026-12-15": {
+      "id": "caterpillar",
+      "name": "Caterpillar",
+      "difficulty": 0.28
+    },
+    "2026-12-16": {
+      "id": "bp",
+      "name": "BP",
+      "difficulty": 0.44
+    },
+    "2026-12-17": {
+      "id": "asr-nederland",
+      "name": "ASR Nederland",
+      "difficulty": 0.56
+    },
+    "2026-12-18": {
+      "id": "solventum",
+      "name": "Solventum",
+      "difficulty": 0.63
+    },
+    "2026-12-19": {
+      "id": "incyte",
+      "name": "Incyte",
+      "difficulty": 0.55
+    },
+    "2026-12-20": {
+      "id": "schneider-electric",
+      "name": "Schneider Electric",
+      "difficulty": 0.3
+    },
+    "2026-12-21": {
+      "id": "palo-alto-networks",
+      "name": "Palo Alto Networks",
+      "difficulty": 0.29
+    },
+    "2026-12-22": {
+      "id": "mercedes-benz-group",
+      "name": "Mercedes-Benz Group",
+      "difficulty": 0.27
+    },
+    "2026-12-23": {
+      "id": "siemens",
+      "name": "Siemens",
+      "difficulty": 0.29
+    },
+    "2026-12-24": {
+      "id": "archer-daniels-midland",
+      "name": "Archer Daniels Midland",
+      "difficulty": 0.49
+    },
+    "2026-12-25": {
+      "id": "mosaic-company-the",
+      "name": "Mosaic Company (The)",
+      "difficulty": 0.72
+    },
+    "2026-12-26": {
+      "id": "isuzu-motors",
+      "name": "Isuzu Motors",
+      "difficulty": 0.69
+    },
+    "2026-12-27": {
+      "id": "societe-generale",
+      "name": "Société Générale",
+      "difficulty": 0.4
+    },
+    "2026-12-28": {
+      "id": "linde",
+      "name": "Linde",
+      "difficulty": 0.29
+    },
+    "2026-12-29": {
+      "id": "western-digital",
+      "name": "Western Digital",
+      "difficulty": 0.29
+    },
+    "2026-12-30": {
+      "id": "bank-of-america",
+      "name": "Bank of America",
+      "difficulty": 0.36
+    },
+    "2026-12-31": {
+      "id": "agnico-eagle-mines-limited",
+      "name": "Agnico Eagle Mines Limited",
+      "difficulty": 0.47
+    },
+    "2027-01-01": {
+      "id": "sumitomo-realty-and-development",
+      "name": "Sumitomo Realty & Development",
+      "difficulty": 0.52
+    },
+    "2027-01-02": {
+      "id": "sterling-infrastructure",
+      "name": "Sterling Infrastructure",
+      "difficulty": 0.65
+    },
+    "2027-01-03": {
+      "id": "rolls-royce-holdings",
+      "name": "Rolls-Royce Holdings",
+      "difficulty": 0.35
+    },
+    "2027-01-04": {
+      "id": "palantir-technologies",
+      "name": "Palantir Technologies",
+      "difficulty": 0.28
+    },
+    "2027-01-05": {
+      "id": "infineon-technologies",
+      "name": "Infineon Technologies",
+      "difficulty": 0.28
+    },
+    "2027-01-06": {
+      "id": "unicredit",
+      "name": "UniCredit",
+      "difficulty": 0.3
+    },
+    "2027-01-07": {
+      "id": "banco-sabadell",
+      "name": "Banco Sabadell",
+      "difficulty": 0.59
+    },
+    "2027-01-08": {
+      "id": "ameren",
+      "name": "Ameren",
+      "difficulty": 0.51
+    },
+    "2027-01-09": {
+      "id": "bouygues",
+      "name": "Bouygues",
+      "difficulty": 0.57
+    },
+    "2027-01-10": {
+      "id": "paypal",
+      "name": "PayPal",
+      "difficulty": 0.4
+    },
+    "2027-01-11": {
+      "id": "alphabet",
+      "name": "Alphabet",
+      "difficulty": 0.11
+    },
+    "2027-01-12": {
+      "id": "kla",
+      "name": "KLA",
+      "difficulty": 0.28
+    },
+    "2027-01-13": {
+      "id": "occidental-petroleum",
+      "name": "Occidental Petroleum",
+      "difficulty": 0.45
+    },
+    "2027-01-14": {
+      "id": "vale-s-a",
+      "name": "Vale S.A.",
+      "difficulty": 0.49
+    },
+    "2027-01-15": {
+      "id": "spotify-technology-s-a",
+      "name": "Spotify Technology S.A.",
+      "difficulty": 0.45
+    },
+    "2027-01-16": {
+      "id": "international-paper",
+      "name": "International Paper",
+      "difficulty": 0.57
+    },
+    "2027-01-17": {
+      "id": "southern-company",
+      "name": "Southern Company",
+      "difficulty": 0.36
+    },
+    "2027-01-18": {
+      "id": "nvidia",
+      "name": "Nvidia",
+      "difficulty": 0.19
+    },
+    "2027-01-19": {
+      "id": "broadcom",
+      "name": "Broadcom",
+      "difficulty": 0.27
+    },
+    "2027-01-20": {
+      "id": "accenture",
+      "name": "Accenture",
+      "difficulty": 0.41
+    },
+    "2027-01-21": {
+      "id": "exxonmobil",
+      "name": "ExxonMobil",
+      "difficulty": 0.36
+    },
+    "2027-01-22": {
+      "id": "mtr-corporation-ltd",
+      "name": "MTR Corporation Ltd",
+      "difficulty": 0.5
+    },
+    "2027-01-23": {
+      "id": "arrow-electronics",
+      "name": "Arrow Electronics",
+      "difficulty": 0.76
+    },
+    "2027-01-24": {
+      "id": "cnooc-limited",
+      "name": "CNOOC Limited",
+      "difficulty": 0.35
+    },
+    "2027-01-25": {
+      "id": "apple",
+      "name": "Apple",
+      "difficulty": 0.19
+    },
+    "2027-01-26": {
+      "id": "shell",
+      "name": "Shell",
+      "difficulty": 0.29
+    },
+    "2027-01-27": {
+      "id": "general-motors",
+      "name": "General Motors",
+      "difficulty": 0.43
+    },
+    "2027-01-28": {
+      "id": "devon-energy",
+      "name": "Devon Energy",
+      "difficulty": 0.46
+    },
+    "2027-01-29": {
+      "id": "pentair",
+      "name": "Pentair",
+      "difficulty": 0.64
+    },
+    "2027-01-30": {
+      "id": "ameris-bancorp",
+      "name": "Ameris Bancorp",
+      "difficulty": 0.87
+    },
+    "2027-01-31": {
+      "id": "ross-stores",
+      "name": "Ross Stores",
+      "difficulty": 0.34
+    },
+    "2027-02-01": {
+      "id": "jpmorgan-chase",
+      "name": "JPMorgan Chase",
+      "difficulty": 0.2
+    },
+    "2027-02-02": {
+      "id": "sandisk",
+      "name": "Sandisk",
+      "difficulty": 0.28
+    },
+    "2027-02-03": {
+      "id": "comcast",
+      "name": "Comcast",
+      "difficulty": 0.33
+    },
+    "2027-02-04": {
+      "id": "essity-b",
+      "name": "Essity B",
+      "difficulty": 0.57
+    },
+    "2027-02-05": {
+      "id": "secom",
+      "name": "Secom",
+      "difficulty": 0.6
+    },
+    "2027-02-06": {
+      "id": "fuji-electric",
+      "name": "Fuji Electric",
+      "difficulty": 0.66
+    },
+    "2027-02-07": {
+      "id": "u-s-bancorp",
+      "name": "U.S. Bancorp",
+      "difficulty": 0.37
+    },
+    "2027-02-08": {
+      "id": "amazon",
+      "name": "Amazon",
+      "difficulty": 0.19
+    },
+    "2027-02-09": {
+      "id": "advanced-micro-devices",
+      "name": "Advanced Micro Devices",
+      "difficulty": 0.27
+    },
+    "2027-02-10": {
+      "id": "universal-music-group",
+      "name": "Universal Music Group",
+      "difficulty": 0.41
+    },
+    "2027-02-11": {
+      "id": "aviva",
+      "name": "Aviva",
+      "difficulty": 0.53
+    },
+    "2027-02-12": {
+      "id": "hudbay-minerals",
+      "name": "Hudbay Minerals",
+      "difficulty": 0.78
+    },
+    "2027-02-13": {
+      "id": "cnh-industrial-n-v",
+      "name": "CNH Industrial N.V.",
+      "difficulty": 0.68
+    },
+    "2027-02-14": {
+      "id": "hkex-limited",
+      "name": "HKEx Limited",
+      "difficulty": 0.4
+    },
+    "2027-02-15": {
+      "id": "meta-platforms",
+      "name": "Meta Platforms",
+      "difficulty": 0.16
+    },
+    "2027-02-16": {
+      "id": "stmicroelectronics",
+      "name": "STMicroelectronics",
+      "difficulty": 0.28
+    },
+    "2027-02-17": {
+      "id": "abbott-laboratories",
+      "name": "Abbott Laboratories",
+      "difficulty": 0.38
+    },
+    "2027-02-18": {
+      "id": "cadence-design-systems",
+      "name": "Cadence Design Systems",
+      "difficulty": 0.32
+    },
+    "2027-02-19": {
+      "id": "cipher-digital",
+      "name": "Cipher Digital",
+      "difficulty": 0.79
+    },
+    "2027-02-20": {
+      "id": "equitable-holdings",
+      "name": "Equitable Holdings",
+      "difficulty": 0.69
+    },
+    "2027-02-21": {
+      "id": "lockheed-martin",
+      "name": "Lockheed Martin",
+      "difficulty": 0.4
+    },
+    "2027-02-22": {
+      "id": "walmart",
+      "name": "Walmart",
+      "difficulty": 0.19
+    },
+    "2027-02-23": {
+      "id": "netflix",
+      "name": "Netflix",
+      "difficulty": 0.28
+    },
+    "2027-02-24": {
+      "id": "toronto-dominion-bank",
+      "name": "Toronto-Dominion Bank",
+      "difficulty": 0.42
+    },
+    "2027-02-25": {
+      "id": "snowflake",
+      "name": "Snowflake",
+      "difficulty": 0.49
+    },
+    "2027-02-26": {
+      "id": "azimut",
+      "name": "Azimut",
+      "difficulty": 0.8
+    },
+    "2027-02-27": {
+      "id": "viavi-solutions",
+      "name": "Viavi Solutions",
+      "difficulty": 0.76
+    },
+    "2027-02-28": {
+      "id": "intel",
+      "name": "Intel",
+      "difficulty": 0.28
+    },
+    "2027-03-01": {
+      "id": "asml-holding",
+      "name": "ASML Holding",
+      "difficulty": 0.19
+    },
+    "2027-03-02": {
+      "id": "honeywell-technologies",
+      "name": "Honeywell Technologies",
+      "difficulty": 0.26
+    },
+    "2027-03-03": {
+      "id": "amphenol",
+      "name": "Amphenol",
+      "difficulty": 0.38
+    },
+    "2027-03-04": {
+      "id": "sempra",
+      "name": "Sempra",
+      "difficulty": 0.44
+    },
+    "2027-03-05": {
+      "id": "amadeus-it-group",
+      "name": "Amadeus IT Group",
+      "difficulty": 0.5
+    },
+    "2027-03-06": {
+      "id": "kite-realty-group-trust",
+      "name": "Kite Realty Group Trust",
+      "difficulty": 0.88
+    },
+    "2027-03-07": {
+      "id": "china-merchants-bank",
+      "name": "China Merchants Bank",
+      "difficulty": 0.39
+    },
+    "2027-03-08": {
+      "id": "cisco",
+      "name": "Cisco",
+      "difficulty": 0.19
+    },
+    "2027-03-09": {
+      "id": "safran",
+      "name": "Safran",
+      "difficulty": 0.3
+    },
+    "2027-03-10": {
+      "id": "altria",
+      "name": "Altria",
+      "difficulty": 0.4
+    },
+    "2027-03-11": {
+      "id": "holcim-limited",
+      "name": "Holcim Limited",
+      "difficulty": 0.42
+    },
+    "2027-03-12": {
+      "id": "power-grid",
+      "name": "Power Grid",
+      "difficulty": 0.53
+    },
+    "2027-03-13": {
+      "id": "brunello-cucinelli",
+      "name": "Brunello Cucinelli",
+      "difficulty": 0.78
+    },
+    "2027-03-14": {
+      "id": "bank-of-china-ltd",
+      "name": "Bank of China Ltd",
+      "difficulty": 0.33
+    },
+    "2027-03-15": {
+      "id": "procter-and-gamble",
+      "name": "Procter & Gamble",
+      "difficulty": 0.17
+    },
+    "2027-03-16": {
+      "id": "alibaba-group",
+      "name": "Alibaba Group",
+      "difficulty": 0.29
+    },
+    "2027-03-17": {
+      "id": "fortinet",
+      "name": "Fortinet",
+      "difficulty": 0.31
+    },
+    "2027-03-18": {
+      "id": "china-hongqiao-group",
+      "name": "China Hongqiao Group",
+      "difficulty": 0.5
+    },
+    "2027-03-19": {
+      "id": "keysight-technologies",
+      "name": "Keysight Technologies",
+      "difficulty": 0.45
+    },
+    "2027-03-20": {
+      "id": "cboe-global-markets",
+      "name": "Cboe Global Markets",
+      "difficulty": 0.52
+    },
+    "2027-03-21": {
+      "id": "texas-instruments",
+      "name": "Texas Instruments",
+      "difficulty": 0.28
+    },
+    "2027-03-22": {
+      "id": "microsoft",
+      "name": "Microsoft",
+      "difficulty": 0.19
+    },
+    "2027-03-23": {
+      "id": "lvmh",
+      "name": "LVMH",
+      "difficulty": 0.21
+    },
+    "2027-03-24": {
+      "id": "ms-and-ad-insurance-group",
+      "name": "MS&AD Insurance Group",
+      "difficulty": 0.45
+    },
+    "2027-03-25": {
+      "id": "fortis",
+      "name": "Fortis",
+      "difficulty": 0.6
+    },
+    "2027-03-26": {
+      "id": "bank-of-montreal",
+      "name": "Bank of Montreal",
+      "difficulty": 0.48
+    },
+    "2027-03-27": {
+      "id": "oil-and-natural-gas",
+      "name": "Oil and Natural Gas",
+      "difficulty": 0.51
+    },
+    "2027-03-28": {
+      "id": "parker-hannifin",
+      "name": "Parker Hannifin",
+      "difficulty": 0.39
+    },
+    "2027-03-29": {
+      "id": "essilorluxottica",
+      "name": "EssilorLuxottica",
+      "difficulty": 0.22
+    },
+    "2027-03-30": {
+      "id": "inditex",
+      "name": "Inditex",
+      "difficulty": 0.29
+    },
+    "2027-03-31": {
+      "id": "nxp-semiconductors",
+      "name": "NXP Semiconductors",
+      "difficulty": 0.34
+    },
+    "2027-04-01": {
+      "id": "tapestry",
+      "name": "Tapestry",
+      "difficulty": 0.52
+    },
+    "2027-04-02": {
+      "id": "annaly-capital-management",
+      "name": "Annaly Capital Management",
+      "difficulty": 0.68
+    },
+    "2027-04-03": {
+      "id": "magna-international",
+      "name": "Magna International",
+      "difficulty": 0.67
+    },
+    "2027-04-04": {
+      "id": "regeneron-pharmaceuticals",
+      "name": "Regeneron Pharmaceuticals",
+      "difficulty": 0.35
+    },
+    "2027-04-05": {
+      "id": "arcelormittal",
+      "name": "ArcelorMittal",
+      "difficulty": 0.25
+    },
+    "2027-04-06": {
+      "id": "booking-holdings",
+      "name": "Booking Holdings",
+      "difficulty": 0.27
+    },
+    "2027-04-07": {
+      "id": "natwest-group",
+      "name": "NatWest Group",
+      "difficulty": 0.39
+    },
+    "2027-04-08": {
+      "id": "norfolk-southern",
+      "name": "Norfolk Southern",
+      "difficulty": 0.43
+    },
+    "2027-04-09": {
+      "id": "asahi-kasei",
+      "name": "Asahi Kasei",
+      "difficulty": 0.61
+    },
+    "2027-04-10": {
+      "id": "kering",
+      "name": "Kering",
+      "difficulty": 0.5
+    },
+    "2027-04-11": {
+      "id": "salesforce",
+      "name": "Salesforce",
+      "difficulty": 0.3
+    },
+    "2027-04-12": {
+      "id": "unitedhealth-group",
+      "name": "UnitedHealth Group",
+      "difficulty": 0.24
+    },
+    "2027-04-13": {
+      "id": "applovin",
+      "name": "AppLovin",
+      "difficulty": 0.3
+    },
+    "2027-04-14": {
+      "id": "servicenow",
+      "name": "ServiceNow",
+      "difficulty": 0.4
+    },
+    "2027-04-15": {
+      "id": "centene",
+      "name": "Centene",
+      "difficulty": 0.5
+    },
+    "2027-04-16": {
+      "id": "fedex-freight",
+      "name": "FedEx Freight",
+      "difficulty": 0.56
+    },
+    "2027-04-17": {
+      "id": "nordson",
+      "name": "Nordson",
+      "difficulty": 0.6
+    },
+    "2027-04-18": {
+      "id": "tesla",
+      "name": "Tesla",
+      "difficulty": 0.27
+    },
+    "2027-04-19": {
+      "id": "goldman-sachs",
+      "name": "Goldman Sachs",
+      "difficulty": 0.24
+    },
+    "2027-04-20": {
+      "id": "lam-research",
+      "name": "Lam Research",
+      "difficulty": 0.28
+    },
+    "2027-04-21": {
+      "id": "target",
+      "name": "Target",
+      "difficulty": 0.44
+    },
+    "2027-04-22": {
+      "id": "essex-property-trust",
+      "name": "Essex Property Trust",
+      "difficulty": 0.57
+    },
+    "2027-04-23": {
+      "id": "bunzl",
+      "name": "Bunzl",
+      "difficulty": 0.62
+    },
+    "2027-04-24": {
+      "id": "invesco",
+      "name": "Invesco",
+      "difficulty": 0.64
+    },
+    "2027-04-25": {
+      "id": "diamondback-energy",
+      "name": "Diamondback Energy",
+      "difficulty": 0.37
+    },
+    "2027-04-26": {
+      "id": "hsbc",
+      "name": "HSBC",
+      "difficulty": 0.24
+    },
+    "2027-04-27": {
+      "id": "sherwin-williams",
+      "name": "Sherwin-Williams",
+      "difficulty": 0.3
+    },
+    "2027-04-28": {
+      "id": "resona-holdings",
+      "name": "Resona Holdings",
+      "difficulty": 0.43
+    },
+    "2027-04-29": {
+      "id": "ecopetrol-s-a",
+      "name": "Ecopetrol S.A.",
+      "difficulty": 0.56
+    },
+    "2027-04-30": {
+      "id": "bhp-group-limited",
+      "name": "BHP Group Limited",
+      "difficulty": 0.46
+    },
+    "2027-05-01": {
+      "id": "valmont-industries",
+      "name": "Valmont Industries",
+      "difficulty": 0.76
+    },
+    "2027-05-02": {
+      "id": "medtronic",
+      "name": "Medtronic",
+      "difficulty": 0.4
+    },
+    "2027-05-03": {
+      "id": "merck-and-co",
+      "name": "Merck & Co.",
+      "difficulty": 0.24
+    },
+    "2027-05-04": {
+      "id": "gilead-sciences",
+      "name": "Gilead Sciences",
+      "difficulty": 0.3
+    },
+    "2027-05-05": {
+      "id": "china-shenhua-energy",
+      "name": "China Shenhua Energy",
+      "difficulty": 0.4
+    },
+    "2027-05-06": {
+      "id": "continental",
+      "name": "Continental",
+      "difficulty": 0.6
+    },
+    "2027-05-07": {
+      "id": "draftkings",
+      "name": "DraftKings",
+      "difficulty": 0.71
+    },
+    "2027-05-08": {
+      "id": "boyd-gaming",
+      "name": "Boyd Gaming",
+      "difficulty": 0.85
+    },
+    "2027-05-09": {
+      "id": "tokyo-electron",
+      "name": "Tokyo Electron",
+      "difficulty": 0.34
+    },
+    "2027-05-10": {
+      "id": "hermes",
+      "name": "Hermès",
+      "difficulty": 0.25
+    },
+    "2027-05-11": {
+      "id": "qualcomm",
+      "name": "Qualcomm",
+      "difficulty": 0.29
+    },
+    "2027-05-12": {
+      "id": "diageo",
+      "name": "Diageo",
+      "difficulty": 0.43
+    },
+    "2027-05-13": {
+      "id": "astellas-pharma",
+      "name": "Astellas Pharma",
+      "difficulty": 0.55
+    },
+    "2027-05-14": {
+      "id": "digitalocean-holdings",
+      "name": "DigitalOcean Holdings",
+      "difficulty": 0.68
+    },
+    "2027-05-15": {
+      "id": "beone-medicines-ag",
+      "name": "BeOne Medicines AG",
+      "difficulty": 0.56
+    },
+    "2027-05-16": {
+      "id": "colgate-palmolive",
+      "name": "Colgate-Palmolive",
+      "difficulty": 0.39
+    },
+    "2027-05-17": {
+      "id": "l-oreal",
+      "name": "L'Oréal",
+      "difficulty": 0.25
+    },
+    "2027-05-18": {
+      "id": "mcdonald-s",
+      "name": "McDonald's",
+      "difficulty": 0.25
+    },
+    "2027-05-19": {
+      "id": "e-on",
+      "name": "E.ON",
+      "difficulty": 0.37
+    },
+    "2027-05-20": {
+      "id": "host-hotels-and-resorts",
+      "name": "Host Hotels & Resorts",
+      "difficulty": 0.56
+    },
+    "2027-05-21": {
+      "id": "healthpeak-properties",
+      "name": "Healthpeak Properties",
+      "difficulty": 0.62
+    },
+    "2027-05-22": {
+      "id": "aercap-holdings-n-v",
+      "name": "AerCap Holdings N.V.",
+      "difficulty": 0.59
+    },
+    "2027-05-23": {
+      "id": "danone",
+      "name": "Danone",
+      "difficulty": 0.37
+    },
+    "2027-05-24": {
+      "id": "coca-cola-company-the",
+      "name": "Coca-Cola Company (The)",
+      "difficulty": 0.24
+    },
+    "2027-05-25": {
+      "id": "sanofi",
+      "name": "Sanofi",
+      "difficulty": 0.28
+    },
+    "2027-05-26": {
+      "id": "bnp-paribas",
+      "name": "BNP Paribas",
+      "difficulty": 0.31
+    },
+    "2027-05-27": {
+      "id": "finecobank",
+      "name": "FinecoBank",
+      "difficulty": 0.6
+    },
+    "2027-05-28": {
+      "id": "cubesmart",
+      "name": "CubeSmart",
+      "difficulty": 0.79
+    },
+    "2027-05-29": {
+      "id": "prosperity-bancshares",
+      "name": "Prosperity Bancshares",
+      "difficulty": 0.8
+    },
+    "2027-05-30": {
+      "id": "lowe-s",
+      "name": "Lowe's",
+      "difficulty": 0.36
+    },
+    "2027-05-31": {
+      "id": "unilever",
+      "name": "Unilever",
+      "difficulty": 0.23
+    },
+    "2027-06-01": {
+      "id": "crowdstrike",
+      "name": "CrowdStrike",
+      "difficulty": 0.29
+    },
+    "2027-06-02": {
+      "id": "elevance-health",
+      "name": "Elevance Health",
+      "difficulty": 0.41
+    },
+    "2027-06-03": {
+      "id": "innio-n-v",
+      "name": "Innio N.V.",
+      "difficulty": 0.59
+    },
+    "2027-06-04": {
+      "id": "qnity-electronics",
+      "name": "Qnity Electronics",
+      "difficulty": 0.51
+    },
+    "2027-06-05": {
+      "id": "generac",
+      "name": "Generac",
+      "difficulty": 0.63
+    },
+    "2027-06-06": {
+      "id": "basf",
+      "name": "BASF",
+      "difficulty": 0.38
+    },
+    "2027-06-07": {
+      "id": "airbus",
+      "name": "Airbus",
+      "difficulty": 0.21
+    },
+    "2027-06-08": {
+      "id": "analog-devices",
+      "name": "Analog Devices",
+      "difficulty": 0.29
+    },
+    "2027-06-09": {
+      "id": "totalenergies",
+      "name": "TotalEnergies",
+      "difficulty": 0.3
+    },
+    "2027-06-10": {
+      "id": "united-parcel-service",
+      "name": "United Parcel Service",
+      "difficulty": 0.41
+    },
+    "2027-06-11": {
+      "id": "coca-cola-femsa-s-a-b-de-c-v",
+      "name": "Coca-Cola FEMSA, S.A.B. de C.V.",
+      "difficulty": 0.61
+    },
+    "2027-06-12": {
+      "id": "reynolds-consumer-products",
+      "name": "Reynolds Consumer Products",
+      "difficulty": 0.89
+    },
+    "2027-06-13": {
+      "id": "danaher",
+      "name": "Danaher",
+      "difficulty": 0.39
+    },
+    "2027-06-14": {
+      "id": "anheuser-busch-inbev",
+      "name": "Anheuser-Busch InBev",
+      "difficulty": 0.23
+    },
+    "2027-06-15": {
+      "id": "walt-disney-company-the",
+      "name": "Walt Disney Company (The)",
+      "difficulty": 0.26
+    },
+    "2027-06-16": {
+      "id": "softbank",
+      "name": "SoftBank",
+      "difficulty": 0.44
+    },
+    "2027-06-17": {
+      "id": "admiral-group",
+      "name": "Admiral Group",
+      "difficulty": 0.58
+    },
+    "2027-06-18": {
+      "id": "biomarin-pharmaceutical",
+      "name": "BioMarin Pharmaceutical",
+      "difficulty": 0.75
+    },
+    "2027-06-19": {
+      "id": "tokyo-metro-co-ltd",
+      "name": "TOKYO METRO CO LTD.",
+      "difficulty": 0.88
+    },
+    "2027-06-20": {
+      "id": "rio-tinto",
+      "name": "Rio Tinto",
+      "difficulty": 0.35
+    },
+    "2027-06-21": {
+      "id": "banco-santander",
+      "name": "Banco Santander",
+      "difficulty": 0.25
+    },
+    "2027-06-22": {
+      "id": "deutsche-telekom",
+      "name": "Deutsche Telekom",
+      "difficulty": 0.27
+    },
+    "2027-06-23": {
+      "id": "w-w-grainger",
+      "name": "W. W. Grainger",
+      "difficulty": 0.4
+    },
+    "2027-06-24": {
+      "id": "roche-holding-ag",
+      "name": "Roche Holding AG",
+      "difficulty": 0.33
+    },
+    "2027-06-25": {
+      "id": "ambev-s-a",
+      "name": "Ambev S.A.",
+      "difficulty": 0.51
+    },
+    "2027-06-26": {
+      "id": "tc-energy",
+      "name": "TC Energy",
+      "difficulty": 0.51
+    },
+    "2027-06-27": {
+      "id": "tjx-companies",
+      "name": "TJX Companies",
+      "difficulty": 0.38
+    },
+    "2027-06-28": {
+      "id": "t-mobile-us",
+      "name": "T-Mobile US",
+      "difficulty": 0.25
+    },
+    "2027-06-29": {
+      "id": "berkshire-hathaway",
+      "name": "Berkshire Hathaway",
+      "difficulty": 0.28
+    },
+    "2027-06-30": {
+      "id": "caixabank",
+      "name": "CaixaBank",
+      "difficulty": 0.4
+    },
+    "2027-07-01": {
+      "id": "glencore",
+      "name": "Glencore",
+      "difficulty": 0.42
+    },
+    "2027-07-02": {
+      "id": "buzzi",
+      "name": "Buzzi",
+      "difficulty": 0.71
+    },
+    "2027-07-03": {
+      "id": "rohm",
+      "name": "Rohm",
+      "difficulty": 0.63
+    },
+    "2027-07-04": {
+      "id": "eaton",
+      "name": "Eaton",
+      "difficulty": 0.38
+    },
+    "2027-07-05": {
+      "id": "amgen",
+      "name": "Amgen",
+      "difficulty": 0.21
+    },
+    "2027-07-06": {
+      "id": "abb-ltd",
+      "name": "ABB Ltd",
+      "difficulty": 0.26
+    },
+    "2027-07-07": {
+      "id": "travelers-companies-the",
+      "name": "Travelers Companies (The)",
+      "difficulty": 0.31
+    },
+    "2027-07-08": {
+      "id": "galaxy-entertainment-group-ltd",
+      "name": "Galaxy Entertainment Group Ltd.",
+      "difficulty": 0.55
+    },
+    "2027-07-09": {
+      "id": "scottish-mortgage-investment-trust",
+      "name": "Scottish Mortgage Investment Trust",
+      "difficulty": 0.56
+    }
+  }
+}

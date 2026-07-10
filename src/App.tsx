@@ -1,34 +1,71 @@
+/**
+ * App shell: header, mode switcher via ?mode= URL param (Phase-0 decision:
+ * zero routing deps), footer. Modes lazy-load their data on mount.
+ */
+import { useState } from "react";
+import DailyTicker from "./modes/daily-ticker/DailyTicker.tsx";
+
 const MODES = [
-  { id: "daily-ticker", label: "Daily Ticker", tag: "one mystery stock, six guesses" },
-  { id: "recall", label: "Index Recall", tag: "name every constituent" },
-  { id: "cap-battle", label: "Cap Battle", tag: "higher or lower, one life" },
+  { id: "daily", label: "Daily Ticker", live: true },
+  { id: "recall", label: "Index Recall", live: false },
+  { id: "cap-battle", label: "Cap Battle", live: false },
 ] as const;
+type ModeId = (typeof MODES)[number]["id"];
+
+function modeFromURL(): ModeId {
+  const m = new URLSearchParams(window.location.search).get("mode");
+  return (MODES.find((x) => x.id === m && x.live)?.id ?? "daily") as ModeId;
+}
 
 export default function App() {
+  const [mode, setMode] = useState<ModeId>(modeFromURL);
+
+  const switchMode = (id: ModeId) => {
+    setMode(id);
+    const url = new URL(window.location.href);
+    url.searchParams.set("mode", id);
+    window.history.replaceState(null, "", url);
+  };
+
   return (
-    <main className="mx-auto flex min-h-dvh max-w-2xl flex-col items-center justify-center gap-10 px-4 py-12">
-      <header className="text-center">
-        <p className="font-data text-terminal-dim mb-2 text-xs tracking-[0.3em] uppercase">
-          &#9650; Phase 0 &mdash; scaffold live
-        </p>
-        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+    <div className="mx-auto flex min-h-dvh max-w-xl flex-col px-4 py-4">
+      <header className="border-terminal-line mb-4 border-b pb-3">
+        <h1 className="text-center text-2xl font-bold tracking-tight">
           Stock<span className="text-accent">Guesser</span>
         </h1>
+        <nav aria-label="Game modes" className="mt-3 flex justify-center gap-2">
+          {MODES.map((m) => (
+            <button
+              key={m.id}
+              onClick={() => m.live && switchMode(m.id)}
+              disabled={!m.live}
+              aria-current={mode === m.id ? "page" : undefined}
+              className={`font-data min-h-9 rounded px-3 py-1.5 text-xs transition-colors ${
+                mode === m.id
+                  ? "bg-accent font-bold text-black"
+                  : m.live
+                    ? "bg-terminal-panel border-terminal-line hover:border-accent border"
+                    : "text-terminal-dim border-terminal-line cursor-not-allowed border border-dashed opacity-60"
+              }`}
+            >
+              {m.label}
+              {!m.live && <span className="ml-1 opacity-70">soon</span>}
+            </button>
+          ))}
+        </nav>
       </header>
 
-      <ul className="w-full space-y-3">
-        {MODES.map((mode) => (
-          <li
-            key={mode.id}
-            className="border-terminal-line bg-terminal-panel flex items-baseline justify-between rounded-md border px-4 py-3"
-          >
-            <span className="font-semibold">{mode.label}</span>
-            <span className="font-data text-terminal-dim text-xs">{mode.tag}</span>
-          </li>
-        ))}
-      </ul>
+      <main className="flex-1">{mode === "daily" && <DailyTicker />}</main>
 
-      <p className="font-data text-terminal-dim text-xs">hello, world &mdash; coming soon</p>
-    </main>
+      <footer className="text-terminal-dim font-data mt-8 pb-2 text-center text-[10px]">
+        data refreshed weekly · not investment advice ·{" "}
+        <a
+          className="hover:text-terminal-text underline"
+          href="https://github.com/benginN/stockguesser"
+        >
+          github
+        </a>
+      </footer>
+    </div>
   );
 }
