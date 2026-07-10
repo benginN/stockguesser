@@ -1,0 +1,15 @@
+# deps & build
+node_modules/
+dist/
+
+# pipeline cache (re-fetchable, never committed)
+pipeline/.cache/
+
+# editor & OS
+.DS_Store
+*.local
+.vscode/
+.idea/
+
+# logs
+*.log

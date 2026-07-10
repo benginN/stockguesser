@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens — "Trading terminal" aesthetic (see CLAUDE.md §Design).
+ * Near-black surfaces, hairline borders, tabular/mono numerals,
+ * one hot amber accent, and the three feedback states.
+ * These are the ONLY colors the app uses.
+ */
+@theme {
+  --color-terminal-bg: #0a0e14;
+  --color-terminal-panel: #111722;
+  --color-terminal-line: #1e2735;
+  --color-terminal-text: #d5dde9;
+  --color-terminal-dim: #6b7686;
+  --color-accent: #ffb02e;
+  --color-feedback-hit: #2bd576;
+  --color-feedback-near: #e8c547;
+  --color-feedback-miss: #3a4250;
+
+  --font-display: "Archivo", "Helvetica Neue", sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+html {
+  background-color: var(--color-terminal-bg);
+  color: var(--color-terminal-text);
+}
+
+body {
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
