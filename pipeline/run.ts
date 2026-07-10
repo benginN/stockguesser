@@ -19,7 +19,7 @@ import { emitArtifacts } from "./steps/emit.ts";
 const SKIP_SPARKLINES = process.argv.includes("--skip-sparklines");
 const TIER1_TARGET = 2500;
 const TOTAL_TARGET = 5000;
-const EDGAR_LIMIT = 4800;
+const EDGAR_LIMIT = 6500;
 
 const dataFile = <T>(name: string): T =>
   JSON.parse(readFileSync(new URL(`./data/${name}`, import.meta.url), "utf8")) as T;
@@ -56,11 +56,11 @@ const capOf = (s: string) => {
   return q?.marketCap ? (toUSD(q.marketCap, q.currency ?? "USD", fx) ?? 0) : 0;
 };
 const rankedExtras = edgarSymbols
-  .filter((s) => capOf(s) > 500e6)
+  .filter((s) => capOf(s) > 300e6)
   .sort((a, b) => capOf(b) - capOf(a));
 const poolSymbols = [
   ...indexSymbols,
-  ...rankedExtras.slice(0, TOTAL_TARGET + 800 - indexSymbols.length),
+  ...rankedExtras.slice(0, TOTAL_TARGET + 1000 - indexSymbols.length),
 ];
 log("universe", `pool for profiling: ${poolSymbols.length} symbols`);
 
@@ -74,7 +74,7 @@ const manualAliases = Object.fromEntries(
 
 const { companies, indices, problems, symbolToCompany } = buildDataset({
   constituents,
-  extraSymbols: rankedExtras.slice(0, TOTAL_TARGET + 800 - indexSymbols.length),
+  extraSymbols: rankedExtras.slice(0, TOTAL_TARGET + 1000 - indexSymbols.length),
   quotes,
   profiles,
   fx,

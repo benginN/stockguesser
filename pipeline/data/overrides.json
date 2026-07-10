@@ -2,9 +2,48 @@
   "_doc": "Human-maintained escape hatch (ROADMAP §2.5.5). symbolOverrides: fix wrong tickers found in sources, applied right after scraping. companyOverrides: fill/correct fields on the final record, keyed by company id; every entry needs a _why.",
   "symbolOverrides": {
     "ROP.SW": {
-      "use": "ROG.SW",
-      "_why": "Wikipedia's SMI table lists Roche as 'ROP'; the SIX ticker is ROG (non-voting Genussschein, the index constituent)."
+      "use": "RO.SW",
+      "_why": "Wikipedia's SMI table lists Roche as 'ROP' (a typo; SIX ticker is ROG), and Yahoo only carries the bearer share as RO.SW — ROG.SW does not resolve there."
     }
   },
-  "companyOverrides": {}
+  "companyOverrides": {
+    "fiserv": {
+      "country": "US",
+      "_why": "Yahoo assetProfile omits country for FISV; HQ is Milwaukee, Wisconsin."
+    },
+    "alliance-witan": {
+      "sector": "Financials",
+      "industry": "Investment Trust",
+      "country": "GB",
+      "_why": "FTSE 100 investment trust; Yahoo has no assetProfile sector/country for closed-end funds."
+    },
+    "f-and-c-investment-trust": {
+      "sector": "Financials",
+      "industry": "Investment Trust",
+      "country": "GB",
+      "_why": "FTSE 100 investment trust; Yahoo has no assetProfile sector/country for closed-end funds."
+    },
+    "polar-capital-technology-trust": {
+      "sector": "Financials",
+      "industry": "Investment Trust",
+      "country": "GB",
+      "_why": "FTSE 100 investment trust; Yahoo has no assetProfile sector/country for closed-end funds."
+    },
+    "scottish-mortgage-investment-trust": {
+      "sector": "Financials",
+      "industry": "Investment Trust",
+      "country": "GB",
+      "_why": "FTSE 100 investment trust; Yahoo has no assetProfile sector/country for closed-end funds."
+    },
+    "tritax-big-box-reit": {
+      "sector": "Real Estate",
+      "industry": "Industrial REIT",
+      "country": "GB",
+      "_why": "FTSE 100 REIT; Yahoo has no assetProfile sector/country for it."
+    },
+    "michelin": {
+      "country": "FR",
+      "_why": "Yahoo assetProfile for ML.PA has sector but omits country; HQ is Clermont-Ferrand, France."
+    }
+  }
 }

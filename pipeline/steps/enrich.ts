@@ -40,7 +40,7 @@ export async function getQuotes(symbols: string[]): Promise<Map<string, QuoteLit
   const result = new Map<string, QuoteLite>();
   const missing: string[] = [];
   for (const s of symbols) {
-    const peek = peekMemo<QuoteLite | null>(`quote2:${s}`);
+    const peek = peekMemo<QuoteLite | null>(`quote3:${s}`);
     if (!peek.hit) missing.push(s);
     else if (peek.value) result.set(s, peek.value);
     // cached null = known-dead symbol, skip silently
@@ -68,7 +68,12 @@ export async function getQuotes(symbols: string[]): Promise<Map<string, QuoteLit
       const lite: QuoteLite = {
         symbol: q.symbol,
         currency: q.currency,
-        marketCap: q.marketCap,
+        // some quotes (e.g. Michelin ML.PA) report no marketCap; shares × price recovers it
+        marketCap:
+          q.marketCap ||
+          (q.sharesOutstanding && q.regularMarketPrice
+            ? Math.round(q.sharesOutstanding * q.regularMarketPrice)
+            : undefined),
         price: q.regularMarketPrice,
         longName: q.longName,
         shortName: q.shortName,
@@ -79,10 +84,10 @@ export async function getQuotes(symbols: string[]): Promise<Map<string, QuoteLit
       };
       got.add(q.symbol);
       result.set(q.symbol, lite);
-      await memo(`quote2:${q.symbol}`, async () => lite);
+      await memo(`quote3:${q.symbol}`, async () => lite);
     }
     for (const s of batch.filter((s) => !got.has(s))) {
-      await memo(`quote2:${s}`, async () => null); // tombstone: dead/unknown symbol
+      await memo(`quote3:${s}`, async () => null); // tombstone: dead/unknown symbol
     }
     if (i % 500 === 0)
       log("enrich", `quotes: fetched ${Math.min(i + 50, missing.length)}/${missing.length}`);

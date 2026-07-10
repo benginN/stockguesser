@@ -23,6 +23,10 @@ session history lives in `PROGRESS.md` (append a dated summary at the end of eve
 - Deploys to GitHub Pages via `.github/workflows/deploy.yml`; CI (lint+format+test+build) on every PR.
 - **Dependency budget: ≤ 10 runtime dependencies.** Every new package gets a one-line justification here:
   - `react`, `react-dom` — the UI framework.
+- Pipeline-only devDependencies (never shipped to the client):
+  - `zod` — pipeline validation is the data test suite.
+  - `yahoo-finance2` — build-time company profiles/caps/prices (the one unofficial source).
+  - `cheerio` — Wikipedia constituent-table parsing.
 
 ## Layout
 

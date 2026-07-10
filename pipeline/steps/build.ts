@@ -1,8 +1,13 @@
 /**
  * Turn raw scrape + enrichment data into canonical Company and Index records.
- * The heart of the dedup logic: every listing (GOOG/GOOGL, SAP Frankfurt/NYSE)
- * groups into ONE company keyed by normalized name; caps must agree within 40%
- * or the group is split and logged (two different companies sharing a name).
+ *
+ * Dedup model (ROADMAP §2.5.1): symbols and normalized names form a bipartite
+ * graph; connected components via union-find merge every listing of a company
+ * even when sources name it differently ("Amazon" / "Amazon.com, Inc.").
+ * Within a component, market caps must agree within 60% of the largest — the
+ * caps of one company's listings track each other, so cap CLUSTERS split
+ * genuinely different companies that share a name (Merck & Co vs Merck KGaA,
+ * Compass Inc vs Compass Group). Each cluster becomes one Company.
  */
 import type { RawConstituent } from "./constituents.ts";
 import type { QuoteLite, ProfileLite } from "./enrich.ts";
@@ -72,8 +77,8 @@ interface CompanyOverride {
 
 export interface BuildInput {
   constituents: RawConstituent[];
-  /** yahoo symbol → member index ids */
-  extraSymbols: string[]; // non-index universe (EDGAR top caps), yahoo symbols
+  /** non-index universe (EDGAR top caps), yahoo symbols */
+  extraSymbols: string[];
   quotes: Map<string, QuoteLite>;
   profiles: Map<string, ProfileLite>;
   fx: FxSnapshot;
@@ -93,13 +98,11 @@ export function displayName(name: string): string {
     .trim();
 }
 
-interface Group {
-  key: string;
-  symbols: string[];
+interface SymbolMeta {
   wikiNames: string[];
-  wikiSector?: string;
-  wikiIndustry?: string;
   indexIds: Set<string>;
+  sector?: string;
+  industry?: string;
 }
 
 export function buildDataset(input: BuildInput): {
@@ -112,25 +115,46 @@ export function buildDataset(input: BuildInput): {
   const problems: BuildProblem[] = [];
   const today = new Date().toISOString().slice(0, 10);
 
-  // ---- 1. group every symbol by normalized company name ----
-  const groups = new Map<string, Group>();
-  const nameOf = (symbol: string, wikiName?: string): string | undefined => {
-    const q = quotes.get(symbol);
-    return wikiName ?? q?.longName ?? q?.shortName;
+  const capOf = (s: string): number => {
+    const q = quotes.get(s);
+    return q?.marketCap ? (toUSD(q.marketCap, q.currency ?? "USD", fx) ?? 0) : 0;
   };
-  const addToGroup = (symbol: string, wikiName: string | undefined, c?: RawConstituent) => {
-    const raw = nameOf(symbol, wikiName);
-    if (!raw) return;
-    const key = normalizeName(displayName(raw));
-    if (!key) return;
-    let g = groups.get(key);
-    if (!g) groups.set(key, (g = { key, symbols: [], wikiNames: [], indexIds: new Set() }));
-    if (!g.symbols.includes(symbol)) g.symbols.push(symbol);
-    if (wikiName) g.wikiNames.push(wikiName);
+
+  // ---- 1. union-find over symbols ∪ name-keys ----
+  const parent = new Map<string, string>();
+  const find = (x: string): string => {
+    let root = x;
+    while (parent.get(root) !== undefined && parent.get(root) !== root) root = parent.get(root)!;
+    let cur = x;
+    while (cur !== root) {
+      const next = parent.get(cur)!;
+      parent.set(cur, root);
+      cur = next;
+    }
+    if (!parent.has(root)) parent.set(root, root);
+    return root;
+  };
+  const union = (a: string, b: string): void => {
+    const ra = find(a);
+    const rb = find(b);
+    if (ra !== rb) parent.set(ra, rb);
+  };
+
+  const symMeta = new Map<string, SymbolMeta>();
+  const register = (symbol: string, wikiName?: string, c?: RawConstituent): void => {
+    let meta = symMeta.get(symbol);
+    if (!meta) symMeta.set(symbol, (meta = { wikiNames: [], indexIds: new Set() }));
+    if (wikiName && !meta.wikiNames.includes(wikiName)) meta.wikiNames.push(wikiName);
     if (c) {
-      g.indexIds.add(c.indexId);
-      g.wikiSector ??= c.sector;
-      g.wikiIndustry ??= c.industry;
+      meta.indexIds.add(c.indexId);
+      meta.sector ??= c.sector;
+      meta.industry ??= c.industry;
+    }
+    const q = quotes.get(symbol);
+    for (const raw of [wikiName, q?.longName ?? q?.shortName]) {
+      if (!raw) continue;
+      const key = normalizeName(displayName(raw));
+      if (key) union(`s:${symbol}`, `k:${key}`);
     }
   };
 
@@ -143,13 +167,21 @@ export function buildDataset(input: BuildInput): {
       });
       continue;
     }
-    addToGroup(c.yahooSymbol, c.name, c);
+    register(c.yahooSymbol, c.name, c);
   }
   for (const s of input.extraSymbols) {
-    if (quotes.get(s)?.marketCap) addToGroup(s, undefined);
+    if (quotes.get(s)?.marketCap) register(s, undefined);
   }
 
-  // ---- 2. build a candidate company per group ----
+  // ---- 2. components → cap clusters → candidate companies ----
+  const components = new Map<string, string[]>();
+  for (const sym of symMeta.keys()) {
+    const root = find(`s:${sym}`);
+    const list = components.get(root) ?? [];
+    list.push(sym);
+    components.set(root, list);
+  }
+
   interface Candidate {
     company: Company;
     symbols: string[];
@@ -158,63 +190,76 @@ export function buildDataset(input: BuildInput): {
   }
   const candidates: Candidate[] = [];
 
-  for (const g of groups.values()) {
-    // pick primary listing: the index-member symbol with the largest cap, else largest cap
-    const capOf = (s: string) => {
-      const q = quotes.get(s)!;
-      return toUSD(q.marketCap!, q.currency ?? "USD", fx) ?? 0;
-    };
-    const sorted = [...g.symbols].sort((a, b) => capOf(b) - capOf(a));
-    // sanity: listings of one company must report similar caps; split off disagreers
-    const primary = sorted[0];
-    const primaryCap = capOf(primary);
-    const kept = sorted.filter((s) => {
-      const ratio = capOf(s) / primaryCap;
-      if (ratio > 0.6 || g.symbols.length === 1) return true;
+  for (const symbols of components.values()) {
+    const sorted = [...symbols].sort((a, b) => capOf(b) - capOf(a));
+    // cap clustering: listings of one company report near-identical caps
+    const clusters: { headCap: number; symbols: string[] }[] = [];
+    for (const s of sorted) {
+      const cluster = clusters.find((cl) => capOf(s) / cl.headCap > 0.6);
+      if (cluster) cluster.symbols.push(s);
+      else clusters.push({ headCap: capOf(s), symbols: [s] });
+    }
+    if (clusters.length > 1) {
       problems.push({
         level: "warn",
-        symbol: s,
-        message: `split from "${g.key}" group: cap ${(ratio * 100).toFixed(0)}% of primary ${primary}`,
+        symbol: sorted[0],
+        message: `name group split into ${clusters.length} companies by cap: ${clusters
+          .map((cl) => `${cl.symbols[0]} $${(cl.headCap / 1e9).toFixed(0)}B`)
+          .join(" vs ")}`,
       });
-      return false;
-    });
+    }
 
-    const q = quotes.get(primary)!;
-    const profile = profiles.get(primary) ?? kept.map((s) => profiles.get(s)).find(Boolean);
-    const wikiName = g.wikiNames[0];
-    const name = displayName(wikiName ?? q.longName ?? q.shortName ?? primary);
+    for (const cluster of clusters) {
+      // primary listing: an index member if any, else the largest cap
+      const primary =
+        cluster.symbols.find((s) => symMeta.get(s)!.indexIds.size > 0) ?? cluster.symbols[0];
+      const q = quotes.get(primary)!;
+      const metas = cluster.symbols.map((s) => symMeta.get(s)!);
+      const indexIds = new Set(metas.flatMap((m) => [...m.indexIds]));
+      const wikiName = metas.flatMap((m) => m.wikiNames)[0];
+      const name = displayName(wikiName ?? q.longName ?? q.shortName ?? primary);
+      const profile =
+        profiles.get(primary) ?? cluster.symbols.map((s) => profiles.get(s)).find(Boolean);
+      const wikiSector = metas.map((m) => m.sector).find(Boolean);
+      const wikiIndustry = metas.map((m) => m.industry).find(Boolean);
 
-    const sector =
-      (g.wikiSector as Sector | undefined) ??
-      (profile?.sector ? YAHOO_SECTOR_MAP[profile.sector] : undefined) ??
-      (profile?.sector ? GICS_SECTOR_ALIASES[profile.sector] : undefined);
-    const countryInfo = profile?.country ? COUNTRY_MAP[profile.country] : undefined;
-    const capUSD = primaryCap;
+      const sector =
+        (wikiSector as Sector | undefined) ??
+        (profile?.sector
+          ? (YAHOO_SECTOR_MAP[profile.sector] ?? GICS_SECTOR_ALIASES[profile.sector])
+          : undefined);
+      const countryInfo = profile?.country ? COUNTRY_MAP[profile.country] : undefined;
+      const capUSD = capOf(primary);
 
-    const company: Company = {
-      id: slugify(name),
-      name,
-      aliases: [],
-      listings: kept.map((s) => ({
-        ticker: s,
-        exchange: quotes.get(s)?.exchange ?? "?",
-        primary: s === primary,
-      })),
-      country: countryInfo?.iso ?? "?",
-      region: countryInfo?.region ?? ("?" as Region),
-      sector: sector ?? ("?" as Sector),
-      industry: g.wikiIndustry ?? profile?.industry ?? "?",
-      marketCapUSD: Math.round(capUSD),
-      capBracket: capBracket(capUSD),
-      currency: q.currency === "GBp" ? "GBP" : (q.currency ?? "?"),
-      ipoYear: q.firstTradeYear,
-      employees: profile?.employees,
-      website: profile?.website,
-      indexMemberships: [...g.indexIds].sort(),
-      tier: 2,
-      updatedAt: today,
-    };
-    candidates.push({ company, symbols: kept, bestCapUSD: capUSD, primarySymbol: primary });
+      candidates.push({
+        company: {
+          id: slugify(name),
+          name,
+          aliases: [],
+          listings: cluster.symbols.map((s) => ({
+            ticker: s,
+            exchange: quotes.get(s)?.exchange ?? "?",
+            primary: s === primary,
+          })),
+          country: countryInfo?.iso ?? "?",
+          region: countryInfo?.region ?? ("?" as Region),
+          sector: sector ?? ("?" as Sector),
+          industry: wikiIndustry ?? profile?.industry ?? "?",
+          marketCapUSD: Math.round(capUSD),
+          capBracket: capBracket(capUSD),
+          currency: q.currency === "GBp" ? "GBP" : (q.currency ?? "?"),
+          ipoYear: q.firstTradeYear,
+          employees: profile?.employees,
+          website: profile?.website,
+          indexMemberships: [...indexIds].sort(),
+          tier: 2,
+          updatedAt: today,
+        },
+        symbols: cluster.symbols,
+        bestCapUSD: capUSD,
+        primarySymbol: primary,
+      });
+    }
   }
 
   // ---- 3. apply company overrides, resolve missing fields ----
@@ -275,7 +320,7 @@ export function buildDataset(input: BuildInput): {
   }
   const finalCands = usable.slice(0, Math.max(input.totalTarget, tier1));
 
-  // ---- 5. ids must be unique; aliases assembled last ----
+  // ---- 5. unique ids; aliases assembled last ----
   const idCount = new Map<string, number>();
   for (const cand of finalCands) {
     const n = idCount.get(cand.company.id) ?? 0;
@@ -286,22 +331,20 @@ export function buildDataset(input: BuildInput): {
   for (const cand of finalCands) {
     const c = cand.company;
     const tickerAliases = c.listings.map((l) => l.ticker.split(".")[0].toLowerCase());
-    const nameAliases = [normalizeName(c.name)].filter(Boolean);
     const manual = input.manualAliases[c.id] ?? [];
-    c.aliases = [...new Set([...c.aliases, ...nameAliases, ...tickerAliases, ...manual])].filter(
-      (a) => a && a !== c.name.toLowerCase(),
-    );
+    c.aliases = [
+      ...new Set([...c.aliases, normalizeName(c.name), ...tickerAliases, ...manual]),
+    ].filter((a) => a && a !== c.name.toLowerCase());
     for (const s of cand.symbols) symbolToCompany.set(s, c);
   }
 
   // ---- 6. index holdings + weights ----
-  const bySymbol = (s: string) => symbolToCompany.get(s);
   const indices: IndexOut[] = [];
   for (const cfg of INDICES) {
     const members = input.constituents.filter((c) => c.indexId === cfg.id);
     const resolved = new Map<string, { company: Company; measure: number }>();
     for (const m of members) {
-      const company = bySymbol(m.yahooSymbol);
+      const company = symbolToCompany.get(m.yahooSymbol);
       if (!company) continue; // already reported critical above
       const q = quotes.get(m.yahooSymbol);
       const measure = cfg.weightBasis === "price" ? (q?.price ?? 0) : company.marketCapUSD;

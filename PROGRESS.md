@@ -2,6 +2,39 @@
 
 Append a dated summary at the end of every working session (ROADMAP.md §8.3).
 
+## 2026-07-10 (session 2) — Phase 1: data pipeline ✅ → tagged v0.1
+
+**All acceptance boxes checked:**
+
+- [x] `npm run pipeline` completes cold-cache, no manual steps (first run: 5,495 quotes +
+      4,549 profiles + 2,383 sparklines fetched, ~7 min; warm re-runs ~2 min)
+- [x] `stocks.json`: **4,433 companies, 2,500 Tier-1** (targets: ≥4,000 / ≥2,000)
+- [x] 100% of S&P 500 (500 companies/503 listings), DAX 40, FTSE 100, Nikkei 225 (223 —
+      Wikipedia's current list) present with sector, country, USD cap — verified 0 broken
+- [x] Validation: **0 criticals**; `overrides.json` documents every manual fix with a `_why`
+- [x] `search-index.json` 113 KB gzipped (budget 300)
+- [x] Runbook: `pipeline/RUNBOOK.md`; weekly refresh Action opens a diff-report PR
+
+**Shape of the thing:** 15 indices scraped (Wikipedia + Nasdaq's JSON API for NDX since
+Wikipedia dropped that list), SEC EDGAR US universe, Yahoo enrichment memoized per symbol
+in `pipeline/.cache/`, ECB FX snapshot, union-find dedup (symbols ∪ normalized names) with
+cap-clustering to split same-name companies (Merck & Co ≠ Merck KGaA, SoftBank Group ≠
+SoftBank Corp), computed index weights (cap-based; price-based for Dow/Nikkei — iShares
+blocks bot CSV downloads, so ETF cross-check was dropped, noted in RUNBOOK).
+
+**Landmines actually hit (all handled + regression-tested):** Yahoo reports LSE caps in
+GBP under currency "GBp"; Michelin's quote has marketCap 0 (recovered via shares×price);
+Wikipedia's SMI table has a wrong Roche ticker (ROP → RO.SW override); DAX lists Airbus
+under its Paris ticker; Nasdaq API names carry "Common Stock (DE)"-style suffixes.
+
+**Known cosmetic wart:** stale-priced foreign ADRs can survive as a duplicate company
+(seen once: "Nippon Express Holdings" ADR next to the Tokyo listing). Harmless for
+gameplay; revisit if playtesting surfaces more.
+
+**Next session:** Phase 2 — core engine + Daily Ticker MVP. Tests FIRST on
+`/src/game/feedback.ts` + `matching.ts` (Appendix D rules), then autocomplete, attribute
+grid, stock card, share text, localStorage stats.
+
 ## 2026-07-10 — Phase 0: decisions & scaffold
 
 **Done**
