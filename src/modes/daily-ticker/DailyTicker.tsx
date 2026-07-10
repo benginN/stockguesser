@@ -127,22 +127,12 @@ export default function DailyTicker() {
       </p>
     );
   }
-  if (!loaded) {
-    return (
-      <p className="text-terminal-dim font-data animate-pulse py-12 text-center text-sm">
-        loading market data…
-      </p>
-    );
-  }
-
-  const { answer, search, companies, puzzleNumber } = loaded;
-
   const guess = (id: string) => {
-    if (done || state.guessIds.includes(id)) return;
-    const guessed = companies.get(id);
+    if (!loaded || done || state.guessIds.includes(id)) return;
+    const guessed = loaded.companies.get(id);
     if (!guessed) return;
     const nextIds = [...state.guessIds, id];
-    const won = id === answer.id;
+    const won = id === loaded.answer.id;
     const status = won ? "won" : nextIds.length >= MAX_GUESSES ? "lost" : "playing";
     const next: DailyState = { guessIds: nextIds, status };
     setState(next);
@@ -157,7 +147,7 @@ export default function DailyTicker() {
         <h2 className="text-lg font-bold">Daily Ticker</h2>
         <div className="flex items-center gap-1">
           <p className="font-data text-terminal-dim mr-2 text-xs">
-            #{puzzleNumber} · {state.guessIds.length}/{MAX_GUESSES}
+            #{loaded ? loaded.puzzleNumber : "—"} · {state.guessIds.length}/{MAX_GUESSES}
           </p>
           <button
             onClick={() => setShowStats(true)}
@@ -176,17 +166,26 @@ export default function DailyTicker() {
         </div>
       </header>
 
-      <GuessInput
-        search={search}
-        guessedIds={new Set(state.guessIds)}
-        disabled={done}
-        placeholder={done ? "Come back tomorrow!" : "Type a company name or ticker…"}
-        onGuess={guess}
-        decorate={(id) => {
-          const c = companies.get(id);
-          return { flag: c ? flagEmoji(c.country) : "", cap: c ? formatCap(c.marketCapUSD) : "" };
-        }}
-      />
+      {loaded ? (
+        <GuessInput
+          search={loaded.search}
+          guessedIds={new Set(state.guessIds)}
+          disabled={done}
+          placeholder={done ? "Come back tomorrow!" : "Type a company name or ticker…"}
+          onGuess={guess}
+          decorate={(id) => {
+            const c = loaded.companies.get(id);
+            return { flag: c ? flagEmoji(c.country) : "", cap: c ? formatCap(c.marketCapUSD) : "" };
+          }}
+        />
+      ) : (
+        <input
+          disabled
+          placeholder="loading market data…"
+          aria-label="Guess a stock (loading)"
+          className="border-terminal-line bg-terminal-panel w-full animate-pulse rounded-md border px-4 py-3 text-base opacity-60"
+        />
+      )}
 
       <div className="space-y-3">
         {rows.map((r, i) => (
@@ -208,7 +207,7 @@ export default function DailyTicker() {
           ))}
       </div>
 
-      {done && (
+      {done && loaded && (
         <div role="status" className="space-y-3">
           <p className="text-center text-sm">
             {state.status === "won"
@@ -216,14 +215,14 @@ export default function DailyTicker() {
               : "So close — the answer was"}
           </p>
           <StockCard
-            company={answer}
-            allCompanies={[...companies.values()]}
+            company={loaded.answer}
+            allCompanies={[...loaded.companies.values()]}
             sparkline={sparkline}
             indexNames={(id) => INDEX_NAMES[id] ?? id}
           />
           <ShareButton
             text={buildShareText({
-              puzzleNumber,
+              puzzleNumber: loaded.puzzleNumber,
               won: state.status === "won",
               guessCount: state.guessIds.length,
               maxGuesses: MAX_GUESSES,
