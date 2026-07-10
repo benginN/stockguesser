@@ -16,7 +16,7 @@
       "id": "space-exploration-technologies",
       "ticker": "SPCX",
       "name": "Space Exploration Technologies",
-      "aliases": ["spcx"],
+      "aliases": ["spcx", "spacex", "space x"],
       "tier": 1
     },
     { "id": "broadcom", "ticker": "AVGO", "name": "Broadcom", "aliases": ["avgo"], "tier": 1 },
@@ -193,7 +193,7 @@
       "id": "palantir-technologies",
       "ticker": "PLTR",
       "name": "Palantir Technologies",
-      "aliases": ["pltr"],
+      "aliases": ["pltr", "palantir"],
       "tier": 1
     },
     {

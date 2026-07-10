@@ -59,6 +59,7 @@ export default function RecallGame({ index, companies, variant, onExit }: Props)
   const [missFlash, setMissFlash] = useState(false);
   const [newBest, setNewBest] = useState(false);
   const [finalScore, setFinalScore] = useState(0);
+  const [tickerHints, setTickerHints] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   // refs mirror the values event handlers/timers need without stale closures
   const revealedRef = useRef(revealed);
@@ -97,6 +98,18 @@ export default function RecallGame({ index, companies, variant, onExit }: Props)
     return () => clearInterval(t);
   }, [phase, limit]); // eslint-disable-line react-hooks/exhaustive-deps -- finish is stable per run
 
+  /** With ticker hints visible, only NAMES count — strip tickers/ticker-aliases. */
+  const matchableFor = (e: Entry) =>
+    tickerHints
+      ? {
+          ...e.matchable,
+          ticker: "",
+          aliases: e.matchable.aliases.filter(
+            (a) => a !== e.matchable.ticker.split(".")[0].toLowerCase(),
+          ),
+        }
+      : e.matchable;
+
   const reveal = (hit: { id: string }) => {
     const next = new Set(revealed).add(hit.id);
     revealedRef.current = next;
@@ -108,13 +121,13 @@ export default function RecallGame({ index, companies, variant, onExit }: Props)
   /** auto-accept as you type: exact matches fire instantly, no Enter needed */
   const onType = (value: string) => {
     setInput(value);
-    const remaining = entries.filter((e) => !revealed.has(e.company.id)).map((e) => e.matchable);
+    const remaining = entries.filter((e) => !revealed.has(e.company.id)).map(matchableFor);
     const hit = matchExact(value, remaining);
     if (hit) reveal(hit);
   };
 
   const submit = () => {
-    const remaining = entries.filter((e) => !revealed.has(e.company.id)).map((e) => e.matchable);
+    const remaining = entries.filter((e) => !revealed.has(e.company.id)).map(matchableFor);
     const hit = matchRemaining(input, remaining);
     if (hit) {
       reveal(hit);
@@ -233,7 +246,7 @@ export default function RecallGame({ index, companies, variant, onExit }: Props)
           value={input}
           onChange={(e) => onType(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && submit()}
-          placeholder="Type a constituent…"
+          placeholder={tickerHints ? "Tickers shown — type the NAME…" : "Type a constituent…"}
           aria-label={`Name a constituent of ${title}`}
           autoComplete="off"
           autoCapitalize="off"
@@ -242,6 +255,18 @@ export default function RecallGame({ index, companies, variant, onExit }: Props)
             missFlash ? "border-feedback-near" : "border-terminal-line focus:border-accent"
           }`}
         />
+        <button
+          onClick={() => setTickerHints((t) => !t)}
+          aria-pressed={tickerHints}
+          title="Show tickers as hints — names only while on"
+          className={`font-data min-h-11 shrink-0 rounded border px-2.5 text-xs ${
+            tickerHints
+              ? "border-accent text-accent"
+              : "border-terminal-line text-terminal-dim hover:border-accent"
+          }`}
+        >
+          💡
+        </button>
         {limit !== undefined && (
           <p
             className={`font-data w-14 shrink-0 text-right text-sm ${
@@ -280,7 +305,9 @@ export default function RecallGame({ index, companies, variant, onExit }: Props)
                   </span>
                 </>
               ) : (
-                <span className="text-terminal-dim">?</span>
+                <span className="text-terminal-dim font-data">
+                  {tickerHints ? e.matchable.ticker.split(".")[0] : "?"}
+                </span>
               )}
             </li>
           );

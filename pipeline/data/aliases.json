@@ -40,5 +40,8 @@
   "united-parcel-service": ["ups"],
   "att": ["at and t", "at&t"],
   "exxon-mobil": ["exxon"],
-  "reliance-industries": ["reliance"]
+  "reliance-industries": ["reliance"],
+  "space-exploration-technologies": ["spacex", "space x"],
+  "palantir-technologies": ["palantir"],
+  "dell-technologies": ["dell"]
 }

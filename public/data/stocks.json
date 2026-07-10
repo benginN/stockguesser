@@ -102,7 +102,7 @@
     {
       "id": "space-exploration-technologies",
       "name": "Space Exploration Technologies",
-      "aliases": ["spcx"],
+      "aliases": ["spcx", "spacex", "space x"],
       "listings": [{ "ticker": "SPCX", "exchange": "NasdaqGS", "primary": true }],
       "country": "US",
       "region": "North America",
@@ -849,7 +849,7 @@
     {
       "id": "palantir-technologies",
       "name": "Palantir Technologies",
-      "aliases": ["pltr"],
+      "aliases": ["pltr", "palantir"],
       "listings": [{ "ticker": "PLTR", "exchange": "NasdaqGS", "primary": true }],
       "country": "US",
       "region": "North America",

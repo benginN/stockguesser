@@ -4,7 +4,7 @@
  * lazy short prefixes.
  */
 import { describe, expect, it } from "vitest";
-import { matchesCompany, normalizeGuess, type Matchable } from "../src/game/matching.ts";
+import { coreName, matchesCompany, normalizeGuess, type Matchable } from "../src/game/matching.ts";
 
 const bmw: Matchable = {
   id: "bayerische-motoren-werke",
@@ -88,5 +88,35 @@ describe("share classes / dual listings resolve by ticker alias", () => {
   };
   it.each(["GOOG", "GOOGL", "google", "Alphabet"])("%s → alphabet", (input) => {
     expect(matchesCompany(input, alphabet)).toBe(true);
+  });
+});
+
+describe("coreName strips trailing generic corporate words", () => {
+  it.each([
+    ["Palantir Technologies", "palantir"],
+    ["Dell Technologies", "dell"],
+    ["Micron Technology", "micron"],
+    ["American Airlines Group", "american airlines"],
+    ["Space Exploration Technologies", "space exploration"],
+    ["Alphabet", "alphabet"], // nothing to strip
+    ["First Solar", "first solar"], // 'solar' is not generic
+    ["General Motors", "general motors"], // 'motors' must NOT strip to 'general'
+  ])("%s → %s", (name, expected) => {
+    expect(coreName(name)).toBe(expected);
+  });
+});
+
+describe("core-name guesses are accepted", () => {
+  const pltr: Matchable = {
+    id: "palantir-technologies",
+    name: "Palantir Technologies",
+    ticker: "PLTR",
+    aliases: ["palantir technologies", "pltr"],
+  };
+  it("'palantir' matches Palantir Technologies", () => {
+    expect(matchesCompany("palantir", pltr)).toBe(true);
+  });
+  it("'pala' still too lazy", () => {
+    expect(matchesCompany("pala", pltr)).toBe(false);
   });
 });

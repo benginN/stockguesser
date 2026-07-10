@@ -49,6 +49,42 @@ export function editDistance(a: string, b: string, max: number): number {
   return prev[b.length];
 }
 
+/**
+ * Trailing corporate filler that players legitimately omit ("Palantir
+ * Technologies" → "palantir"). Only stripped from the END, only while the
+ * remainder stays ≥4 chars, and never past the first word — so
+ * "General Motors" keeps both words but "American Airlines Group" drops one.
+ */
+const GENERIC_TAIL = new Set([
+  "technologies",
+  "technology",
+  "group",
+  "holdings",
+  "holding",
+  "international",
+  "industries",
+  "enterprises",
+  "enterprise",
+  "solutions",
+  "communications",
+  "worldwide",
+  "corporation",
+  "incorporated",
+  "company",
+  "companies",
+]);
+
+/** Normalized name minus trailing generic words (see GENERIC_TAIL). */
+export function coreName(name: string): string {
+  const words = normalizeGuess(name).split(" ");
+  while (words.length > 1 && GENERIC_TAIL.has(words[words.length - 1])) {
+    const shorter = words.slice(0, -1).join(" ");
+    if (shorter.length < 4) break;
+    words.pop();
+  }
+  return words.join(" ");
+}
+
 /** Typo budget scaled to name length (per-name thresholds, §2.5.7). */
 function typoBudget(len: number): number {
   if (len >= 10) return 2;
@@ -66,6 +102,8 @@ export function matchesCompany(input: string, company: Matchable): boolean {
 
   // exact ticker or exact alias/name: any length goes ("3i", "hm" via alias)
   if (guess === tickerBase || guess === name || aliases.includes(guess)) return true;
+  // core name: trailing corporate filler omitted ("palantir" → Palantir Technologies)
+  if (guess.length >= 4 && guess === coreName(company.name)) return true;
 
   // everything below needs a real attempt
   if (guess.length < 4) return false;

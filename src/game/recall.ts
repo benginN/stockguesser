@@ -3,7 +3,7 @@
  * Acceptance uses matching.ts; exact normalized hits win over fuzzy cousins
  * so "Siemens" never accidentally reveals "Siemens Energy".
  */
-import { matchesCompany, normalizeGuess, type Matchable } from "./matching.ts";
+import { coreName, matchesCompany, normalizeGuess, type Matchable } from "./matching.ts";
 
 /**
  * Exact-only matching used for AUTO-ACCEPT while typing (no Enter needed):
@@ -16,6 +16,11 @@ export function matchExact<T extends Matchable>(input: string, remaining: T[]): 
   if (!q) return undefined;
   for (const c of remaining) {
     if (normalizeGuess(c.name) === q) return c;
+  }
+  // core-name hit ("palantir") auto-fires only when unambiguous among remaining
+  if (q.length >= 4) {
+    const coreHits = remaining.filter((c) => coreName(c.name) === q);
+    if (coreHits.length === 1) return coreHits[0];
   }
   if (q.length < 3) return undefined;
   for (const c of remaining) {

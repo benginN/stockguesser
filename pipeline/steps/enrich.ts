@@ -26,7 +26,9 @@ const SPARK_TTL_H = 24 * 10;
 
 /** "no such data" (cache a tombstone) vs transient throttle (retry, never cache). */
 const isPermanentMiss = (err: unknown): boolean =>
-  /not found|no fundamentals|404/i.test((err as Error).message ?? "");
+  /not found|no fundamentals|404|cannot read properties of undefined/i.test(
+    (err as Error).message ?? "",
+  );
 
 /** Retry transient failures with growing backoff; permanent misses return null. */
 async function withRetries<T>(fn: () => Promise<T>): Promise<T | null> {
@@ -79,15 +81,16 @@ export async function getQuotes(symbols: string[]): Promise<Map<string, QuoteLit
     let quotes: Awaited<ReturnType<typeof yf.quote>> = [];
     try {
       quotes = await yf.quote(batch);
-    } catch (err) {
-      // one bad symbol can fail a batch — fall back to singles
+    } catch {
+      // one bad symbol can fail a batch — fall back to singles (retry transient throttling)
       for (const s of batch) {
         try {
-          quotes.push(await yf.quote(s));
+          const q = await withRetries(() => yf.quote(s));
+          if (q) quotes.push(q);
         } catch {
-          void err;
+          /* transient after retries — leave uncached so the next run retries */
         }
-        await sleep(120);
+        await sleep(PACE_MS);
       }
     }
     const got = new Set<string>();
