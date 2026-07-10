@@ -2,6 +2,33 @@
 
 Append a dated summary at the end of every working session (ROADMAP.md §8.3).
 
+## 2026-07-10 (session 3) — Phase 2: core engine + Daily Ticker ✅ → tagged v0.2
+
+**All acceptance boxes checked:**
+
+- [x] 52 table-driven tests on feedback (Appendix D) + matching (target ≥25), incl.
+      dual-listing (GOOG/GOOGL→one company) and ±10% cap-edge cases; 110 unit tests total
+- [x] Full play-through verified by 3 Playwright smoke specs (win, loss, mid-game
+      persistence, no-replay) — also wired into CI
+- [x] Same-answer determinism: UTC-dated curated schedule (`puzzles/daily.json`,
+      365 days, difficulty-banded Mon-easy→Sat-hard, no repeats in 180 days)
+- [x] Answer not plaintext-greppable: base64+reversed ids in `daily-schedule.json`
+      (accepted v1 tradeoff per ROADMAP §3)
+- [x] Lighthouse mobile: **Performance 91, Accessibility 100** (targets 90/95).
+      Wins: static pre-shell in index.html (LCP), data preloads, dim-token contrast
+      raised to 5.8:1
+
+**Shipped UI:** keyboard-first MiniSearch autocomplete (ticker+name+alias, typo-tolerant),
+flip-reveal feedback grid (the signature animation), stock card with SVG sparkline +
+facts generated from structured fields, Appendix-E emoji share (navigator.share/clipboard),
+stats modal (streak, distribution), first-visit how-to modal. Runtime deps now 3/10
+(react, react-dom, minisearch).
+
+**Epoch decision:** Daily Ticker #1 = 2026-07-10 (today) so live testing starts immediately.
+
+**Next:** Phase 3 — Index Recall + Cap Battle (mode framework, recall engine + variants,
+weighted pair selection).
+
 ## 2026-07-10 (session 2) — Phase 1: data pipeline ✅ → tagged v0.1
 
 **All acceptance boxes checked:**
