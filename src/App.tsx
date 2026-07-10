@@ -10,11 +10,11 @@ import Country from "./modes/country/Country.tsx";
 import ChartDetective from "./modes/chart/ChartDetective.tsx";
 
 const MODES = [
-  { id: "daily", label: "Daily Ticker", live: true },
-  { id: "recall", label: "Index Recall", live: true },
-  { id: "cap-battle", label: "Cap Battle", live: true },
-  { id: "country", label: "Country", live: true },
-  { id: "chart", label: "Chart Detective", live: true },
+  { id: "daily", label: "Daily", full: "Daily Ticker", live: true },
+  { id: "recall", label: "Recall", full: "Index Recall", live: true },
+  { id: "cap-battle", label: "Caps", full: "Cap Battle", live: true },
+  { id: "country", label: "Country", full: "Country", live: true },
+  { id: "chart", label: "Charts", full: "Chart Detective", live: true },
 ] as const;
 type ModeId = (typeof MODES)[number]["id"];
 
@@ -39,14 +39,16 @@ export default function App() {
         <h1 className="text-center text-2xl font-bold tracking-tight">
           Stock<span className="text-accent">Guesser</span>
         </h1>
-        <nav aria-label="Game modes" className="mt-3 flex flex-wrap justify-center gap-2">
+        <nav aria-label="Game modes" className="mt-3 flex flex-nowrap justify-center gap-1.5">
           {MODES.map((m) => (
             <button
               key={m.id}
               onClick={() => m.live && switchMode(m.id)}
               disabled={!m.live}
               aria-current={mode === m.id ? "page" : undefined}
-              className={`font-data min-h-9 rounded px-3 py-1.5 text-xs transition-colors ${
+              aria-label={m.full}
+              title={m.full}
+              className={`font-data min-h-9 rounded px-2 py-1.5 text-[11px] whitespace-nowrap transition-colors sm:px-3 sm:text-xs ${
                 mode === m.id
                   ? "bg-accent font-bold text-black"
                   : m.live
