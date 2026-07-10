@@ -1,0 +1,42 @@
+name: Weekly data refresh
+
+on:
+  schedule:
+    # Mondays 05:30 UTC — after Friday close everywhere, before the week's puzzles matter
+    - cron: "30 5 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Snapshot current data for the diff
+        run: cp -r public/data /tmp/old-data
+      - name: Run pipeline (cold cache)
+        run: npm run pipeline
+      - name: Build diff report
+        id: diff
+        run: |
+          {
+            echo "report<<DIFF_EOF"
+            npx tsx pipeline/diff-report.ts /tmp/old-data/stocks.json public/data/stocks.json /tmp/old-data/indices.json public/data/indices.json
+            echo "DIFF_EOF"
+          } >> "$GITHUB_OUTPUT"
+      - name: Open PR
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: data-refresh
+          title: "Data refresh ${{ github.run_started_at }}"
+          commit-message: "Weekly data refresh"
+          body: ${{ steps.diff.outputs.report }}
+          add-paths: public/data

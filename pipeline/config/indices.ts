@@ -1,0 +1,222 @@
+/**
+ * Per-index scrape configuration. Wikipedia constituent tables differ per page,
+ * so each index declares its page, how to find ticker/name columns, how to turn
+ * the raw ticker into a Yahoo symbol, and the expected constituent count
+ * (validated with a tolerance — a failed count fails the pipeline loudly).
+ */
+import type { Region } from "./taxonomy.ts";
+
+export interface IndexConfig {
+  id: string;
+  displayName: string;
+  provider: string;
+  region: Region | "Global";
+  wikiPage: string;
+  /** matched (case-insensitive) against header cells of candidate tables */
+  tickerHeader: RegExp;
+  nameHeader: RegExp;
+  /** Yahoo suffix appended when the raw ticker has no exchange suffix, e.g. ".L" */
+  yahooSuffix?: string;
+  /** special non-table parsers: nikkei's list page, or Nasdaq's JSON API */
+  parser?: "nikkei-list" | "nasdaq-api";
+  /** "cap" = weight by USD market cap, "price" = price-weighted (Dow, Nikkei) */
+  weightBasis: "cap" | "price";
+  expectedCount: number;
+  countTolerance: number;
+}
+
+export const INDICES: IndexConfig[] = [
+  {
+    id: "sp500",
+    displayName: "S&P 500",
+    provider: "S&P Dow Jones",
+    region: "North America",
+    wikiPage: "List_of_S%26P_500_companies",
+    tickerHeader: /symbol/i,
+    nameHeader: /security/i,
+    weightBasis: "cap",
+    expectedCount: 503,
+    countTolerance: 4,
+  },
+  {
+    id: "nasdaq100",
+    displayName: "NASDAQ-100",
+    provider: "Nasdaq",
+    region: "North America",
+    wikiPage: "Nasdaq-100",
+    tickerHeader: /symbol|ticker/i,
+    nameHeader: /company/i,
+    parser: "nasdaq-api",
+    weightBasis: "cap",
+    expectedCount: 102,
+    countTolerance: 3,
+  },
+  {
+    id: "dow30",
+    displayName: "Dow Jones 30",
+    provider: "S&P Dow Jones",
+    region: "North America",
+    wikiPage: "Dow_Jones_Industrial_Average",
+    tickerHeader: /symbol|ticker/i,
+    nameHeader: /company/i,
+    weightBasis: "price",
+    expectedCount: 30,
+    countTolerance: 0,
+  },
+  {
+    id: "ftse100",
+    displayName: "FTSE 100",
+    provider: "FTSE Russell",
+    region: "Europe",
+    wikiPage: "FTSE_100_Index",
+    tickerHeader: /ticker|epic/i,
+    nameHeader: /company/i,
+    yahooSuffix: ".L",
+    weightBasis: "cap",
+    expectedCount: 100,
+    countTolerance: 3,
+  },
+  {
+    id: "dax",
+    displayName: "DAX 40",
+    provider: "Deutsche Börse",
+    region: "Europe",
+    wikiPage: "DAX",
+    tickerHeader: /ticker|symbol/i,
+    nameHeader: /company/i,
+    yahooSuffix: ".DE",
+    weightBasis: "cap",
+    expectedCount: 40,
+    countTolerance: 1,
+  },
+  {
+    id: "cac40",
+    displayName: "CAC 40",
+    provider: "Euronext",
+    region: "Europe",
+    wikiPage: "CAC_40",
+    tickerHeader: /ticker|symbol/i,
+    nameHeader: /company/i,
+    yahooSuffix: ".PA",
+    weightBasis: "cap",
+    expectedCount: 40,
+    countTolerance: 1,
+  },
+  {
+    id: "eurostoxx50",
+    displayName: "EURO STOXX 50",
+    provider: "STOXX",
+    region: "Europe",
+    wikiPage: "EURO_STOXX_50",
+    tickerHeader: /ticker|symbol/i,
+    nameHeader: /name|company/i,
+    weightBasis: "cap",
+    expectedCount: 50,
+    countTolerance: 1,
+  },
+  {
+    id: "aex",
+    displayName: "AEX 25",
+    provider: "Euronext",
+    region: "Europe",
+    wikiPage: "AEX_index",
+    tickerHeader: /ticker|symbol/i,
+    nameHeader: /company/i,
+    yahooSuffix: ".AS",
+    weightBasis: "cap",
+    expectedCount: 25,
+    countTolerance: 2,
+  },
+  {
+    id: "smi",
+    displayName: "SMI 20",
+    provider: "SIX",
+    region: "Europe",
+    wikiPage: "Swiss_Market_Index",
+    tickerHeader: /ticker|symbol/i,
+    nameHeader: /name|company/i,
+    yahooSuffix: ".SW",
+    weightBasis: "cap",
+    expectedCount: 20,
+    countTolerance: 1,
+  },
+  {
+    id: "ibex35",
+    displayName: "IBEX 35",
+    provider: "BME",
+    region: "Europe",
+    wikiPage: "IBEX_35",
+    tickerHeader: /ticker|symbol/i,
+    nameHeader: /company/i,
+    yahooSuffix: ".MC",
+    weightBasis: "cap",
+    expectedCount: 35,
+    countTolerance: 1,
+  },
+  {
+    id: "ftsemib",
+    displayName: "FTSE MIB",
+    provider: "FTSE Russell",
+    region: "Europe",
+    wikiPage: "FTSE_MIB",
+    tickerHeader: /ticker|symbol/i,
+    nameHeader: /company/i,
+    yahooSuffix: ".MI",
+    weightBasis: "cap",
+    expectedCount: 40,
+    countTolerance: 1,
+  },
+  {
+    id: "omxs30",
+    displayName: "OMX Stockholm 30",
+    provider: "Nasdaq",
+    region: "Europe",
+    wikiPage: "OMX_Stockholm_30",
+    tickerHeader: /ticker|symbol/i,
+    nameHeader: /company|name/i,
+    yahooSuffix: ".ST",
+    weightBasis: "cap",
+    expectedCount: 30,
+    countTolerance: 1,
+  },
+  {
+    id: "nikkei225",
+    displayName: "Nikkei 225",
+    provider: "Nikkei",
+    region: "Asia",
+    wikiPage: "Nikkei_225",
+    tickerHeader: /./,
+    nameHeader: /./,
+    parser: "nikkei-list",
+    yahooSuffix: ".T",
+    weightBasis: "price",
+    expectedCount: 225,
+    countTolerance: 2,
+  },
+  {
+    id: "hangseng",
+    displayName: "Hang Seng",
+    provider: "Hang Seng Indexes",
+    region: "Asia",
+    wikiPage: "Hang_Seng_Index",
+    tickerHeader: /ticker|symbol|code|sehk/i,
+    nameHeader: /name|company/i,
+    yahooSuffix: ".HK",
+    weightBasis: "cap",
+    expectedCount: 85,
+    countTolerance: 6,
+  },
+  {
+    id: "nifty50",
+    displayName: "NIFTY 50",
+    provider: "NSE Indices",
+    region: "Asia",
+    wikiPage: "NIFTY_50",
+    tickerHeader: /symbol|ticker/i,
+    nameHeader: /company/i,
+    yahooSuffix: ".NS",
+    weightBasis: "cap",
+    expectedCount: 50,
+    countTolerance: 1,
+  },
+];

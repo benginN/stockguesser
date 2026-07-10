@@ -1,0 +1,10 @@
+{
+  "_doc": "Human-maintained escape hatch (ROADMAP §2.5.5). symbolOverrides: fix wrong tickers found in sources, applied right after scraping. companyOverrides: fill/correct fields on the final record, keyed by company id; every entry needs a _why.",
+  "symbolOverrides": {
+    "ROP.SW": {
+      "use": "ROG.SW",
+      "_why": "Wikipedia's SMI table lists Roche as 'ROP'; the SIX ticker is ROG (non-voting Genussschein, the index constituent)."
+    }
+  },
+  "companyOverrides": {}
+}
