@@ -10,6 +10,7 @@ import { resolveDailyAnswer, utcDateKey } from "../../game/seed.ts";
 import {
   loadDailySchedule,
   loadSearchIndex,
+  loadSparklines,
   loadStocks,
   type CompanyRecord,
 } from "../../lib/data.ts";
@@ -17,12 +18,19 @@ import { CompanySearch } from "../../lib/search.ts";
 import { flagEmoji, formatCap } from "../../lib/format.ts";
 import {
   loadDailyState,
+  loadDailyStats,
+  onceFlag,
   recordDailyResult,
   saveDailyState,
   type DailyState,
 } from "../../lib/storage.ts";
+import { buildShareText } from "../../game/share.ts";
 import GuessInput from "../../components/GuessInput.tsx";
 import FeedbackRow from "../../components/FeedbackRow.tsx";
+import StockCard from "../../components/StockCard.tsx";
+import ShareButton from "../../components/ShareButton.tsx";
+import StatsModal from "../../components/StatsModal.tsx";
+import HowToPlay from "../../components/HowToPlay.tsx";
 
 const MAX_GUESSES = 6;
 
@@ -57,6 +65,9 @@ export default function DailyTicker() {
   const [error, setError] = useState<string | null>(null);
   const [state, setState] = useState<DailyState>({ guessIds: [], status: "playing" });
   const [lastGuessAt, setLastGuessAt] = useState(0); // animate only the newest row
+  const [sparkline, setSparkline] = useState<number[] | undefined>();
+  const [showStats, setShowStats] = useState(false);
+  const [showHelp, setShowHelp] = useState(() => onceFlag("howto:daily"));
 
   useEffect(() => {
     let cancelled = false;
@@ -92,6 +103,15 @@ export default function DailyTicker() {
     };
   }, [dateKey]);
 
+  const done = state.status !== "playing";
+
+  useEffect(() => {
+    if (!loaded || !done || sparkline) return;
+    loadSparklines()
+      .then((d) => setSparkline(d.sparklines[loaded.answer.id]))
+      .catch(() => {}); // card just renders without the chart
+  }, [loaded, done, sparkline]);
+
   const rows = useMemo(() => {
     if (!loaded) return [];
     return state.guessIds
@@ -116,7 +136,6 @@ export default function DailyTicker() {
   }
 
   const { answer, search, companies, puzzleNumber } = loaded;
-  const done = state.status !== "playing";
 
   const guess = (id: string) => {
     if (done || state.guessIds.includes(id)) return;
@@ -134,11 +153,27 @@ export default function DailyTicker() {
 
   return (
     <section aria-label="Daily Ticker" className="space-y-4">
-      <header className="flex items-baseline justify-between">
+      <header className="flex items-center justify-between">
         <h2 className="text-lg font-bold">Daily Ticker</h2>
-        <p className="font-data text-terminal-dim text-xs">
-          #{puzzleNumber} · {dateKey} · {state.guessIds.length}/{MAX_GUESSES}
-        </p>
+        <div className="flex items-center gap-1">
+          <p className="font-data text-terminal-dim mr-2 text-xs">
+            #{puzzleNumber} · {state.guessIds.length}/{MAX_GUESSES}
+          </p>
+          <button
+            onClick={() => setShowStats(true)}
+            aria-label="Statistics"
+            className="border-terminal-line hover:border-accent min-h-9 min-w-9 rounded border text-sm"
+          >
+            📊
+          </button>
+          <button
+            onClick={() => setShowHelp(true)}
+            aria-label="How to play"
+            className="border-terminal-line hover:border-accent font-data min-h-9 min-w-9 rounded border text-sm font-bold"
+          >
+            ?
+          </button>
+        </div>
       </header>
 
       <GuessInput
@@ -174,23 +209,37 @@ export default function DailyTicker() {
       </div>
 
       {done && (
-        <div
-          role="status"
-          className="border-terminal-line bg-terminal-panel space-y-1 rounded-md border p-4 text-center"
-        >
-          <p className="text-sm">
-            {state.status === "won" ? "🎉 Got it in " + state.guessIds.length + "!" : "So close —"}{" "}
-            the answer was
+        <div role="status" className="space-y-3">
+          <p className="text-center text-sm">
+            {state.status === "won"
+              ? `🎉 Got it in ${state.guessIds.length}/${MAX_GUESSES} — the answer was`
+              : "So close — the answer was"}
           </p>
-          <p className="text-accent text-xl font-bold">
-            {flagEmoji(answer.country)} {answer.name}
-          </p>
-          <p className="font-data text-terminal-dim text-xs">
-            {answer.sector} · {formatCap(answer.marketCapUSD)} ·{" "}
-            {answer.indexMemberships.map((i) => INDEX_NAMES[i] ?? i).join(", ") || "no major index"}
+          <StockCard
+            company={answer}
+            allCompanies={[...companies.values()]}
+            sparkline={sparkline}
+            indexNames={(id) => INDEX_NAMES[id] ?? id}
+          />
+          <ShareButton
+            text={buildShareText({
+              puzzleNumber,
+              won: state.status === "won",
+              guessCount: state.guessIds.length,
+              maxGuesses: MAX_GUESSES,
+              streak: loadDailyStats().streak,
+              feedbacks: rows.map((r) => r.feedback),
+              url: "https://benginn.github.io/stockguesser/",
+            })}
+          />
+          <p className="text-terminal-dim font-data text-center text-xs">
+            next ticker at midnight UTC
           </p>
         </div>
       )}
+
+      {showStats && <StatsModal stats={loadDailyStats()} onClose={() => setShowStats(false)} />}
+      {showHelp && <HowToPlay onClose={() => setShowHelp(false)} />}
     </section>
   );
 }
