@@ -17,13 +17,18 @@ Append a dated summary at the end of every working session (ROADMAP.md §8.3).
   (Pages deploy with repo-name BASE_PATH).
 - Hello-world mode list renders with the token palette; `npm run lint/test/build` all green.
 
+**Deployed**
+
+- [x] Public repo: https://github.com/benginN/stockguesser — CI and Pages-deploy
+      workflows both green on first push.
+- [x] Live site: https://benginn.github.io/stockguesser/ (Pages via Actions,
+      BASE_PATH asset URLs verified). **All Phase-0 boxes checked → tagged `v0.0`.**
+
 **Open items (need the human)**
 
-- [ ] Create the GitHub repo and push `main` (`gh repo create` or web UI), then enable
-      Pages → Source: "GitHub Actions" in repo settings. First push should turn the
-      Phase-0 box "hello world deploys to live Pages URL" green.
-- [ ] Project name + domain: "Stock Guesser" is a working title — trademark sanity check
-      before buying a domain (ROADMAP §7.4).
+- [ ] Project name + domain: "Stock Guesser" is a working title. Decision 2026-07-10:
+      no domain purchase for now — the free github.io URL is the home. Trademark check
+      (ROADMAP §7.4) only becomes relevant if/when a domain is bought.
 - [ ] Review the three locked aesthetic/mode decisions; all are cheap to change now,
       expensive after Phase 2.
 
