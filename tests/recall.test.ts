@@ -1,6 +1,6 @@
 /** Index Recall engine rules (ROADMAP §1.2), written before implementation. */
 import { describe, expect, it } from "vitest";
-import { matchRemaining, recallScore, timeLimitFor } from "../src/game/recall.ts";
+import { matchExact, matchRemaining, recallScore, timeLimitFor } from "../src/game/recall.ts";
 import type { Matchable } from "../src/game/matching.ts";
 
 const pool: Matchable[] = [
@@ -67,5 +67,40 @@ describe("recallScore", () => {
   });
   it("zero named is zero", () => {
     expect(recallScore(0, 40, 10, 300)).toBe(0);
+  });
+});
+
+describe("matchExact (auto-accept while typing, no Enter)", () => {
+  const ftse: Matchable[] = [
+    { id: "3i-group", name: "3i", ticker: "III.L", aliases: ["3i", "iii"] },
+    { id: "bp", name: "BP", ticker: "BP.L", aliases: ["bp"] },
+    { id: "boeing", name: "Boeing", ticker: "BA", aliases: ["boeing", "ba"] },
+    {
+      id: "bank-of-america",
+      name: "Bank of America",
+      ticker: "BAC",
+      aliases: ["bank of america", "bac"],
+    },
+    { id: "applovin", name: "AppLovin", ticker: "APP", aliases: ["applovin", "app"] },
+    { id: "apple", name: "Apple", ticker: "AAPL", aliases: ["apple", "aapl"] },
+  ];
+
+  it("exact name reveals instantly, any length ('3i', 'bp')", () => {
+    expect(matchExact("3i", ftse)?.id).toBe("3i-group");
+    expect(matchExact("BP", ftse)?.id).toBe("bp");
+  });
+  it("exact ticker/alias needs ≥3 chars ('ba' must NOT grab Boeing mid-word)", () => {
+    expect(matchExact("ba", ftse)).toBeUndefined();
+    expect(matchExact("bac", ftse)?.id).toBe("bank-of-america");
+  });
+  it("typing through 'bank of america' never mis-grabs", () => {
+    for (const partial of ["b", "ba", "ban", "bank", "bank o", "bank of amer"]) {
+      expect(matchExact(partial, ftse)?.id).not.toBe("boeing");
+    }
+    expect(matchExact("bank of america", ftse)?.id).toBe("bank-of-america");
+  });
+  it("no fuzzy in auto-accept; Enter path tolerates typos in long names", () => {
+    expect(matchExact("aplovin", ftse)).toBeUndefined(); // typo never auto-fires
+    expect(matchRemaining("aplovin", ftse)?.id).toBe("applovin"); // Enter forgives it
   });
 });

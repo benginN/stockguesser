@@ -1,7 +1,7 @@
 /**
  * Index Recall mode shell (ROADMAP §1.2): variant tabs + index picker →
- * RecallGame (full/top10) or ImposterGame. Small indices get full recall,
- * big ones get Top-10; Imposter works everywhere.
+ * RecallGame (full/top10) or ImposterGame. Every index is playable in every
+ * variant — full S&P 500 recall is a 30-minute marathon, and that's fine.
  */
 import { useEffect, useState } from "react";
 import { loadIndices, loadStocks, type CompanyRecord, type IndexRecord } from "../../lib/data.ts";
@@ -11,7 +11,6 @@ import RecallGame from "./RecallGame.tsx";
 import ImposterGame from "./ImposterGame.tsx";
 
 export type Variant = "full" | "top10" | "imposter";
-const FULL_RECALL_MAX = 60;
 
 const VARIANTS: { id: Variant; label: string; blurb: string }[] = [
   { id: "full", label: "Full recall", blurb: "name every constituent" },
@@ -70,13 +69,8 @@ export default function Recall() {
     );
   }
 
-  const pickable = loaded.indices.filter((ix) =>
-    variant === "full"
-      ? ix.holdings.length <= FULL_RECALL_MAX
-      : variant === "top10"
-        ? ix.holdings.length > FULL_RECALL_MAX
-        : true,
-  );
+  // every index is playable in every variant (Top 10 of the DAX is a fine quiz too)
+  const pickable = loaded.indices;
 
   return (
     <section aria-label="Index Recall" className="space-y-4">

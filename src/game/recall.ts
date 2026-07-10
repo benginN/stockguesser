@@ -5,11 +5,31 @@
  */
 import { matchesCompany, normalizeGuess, type Matchable } from "./matching.ts";
 
-/** Find which still-hidden constituent a guess reveals, if any. */
+/**
+ * Exact-only matching used for AUTO-ACCEPT while typing (no Enter needed):
+ * a normalized-name hit fires at any length ("3i", "BP"), but ticker/alias
+ * hits need ≥3 chars so short tickers ("BA") can't hijack a longer name
+ * being typed ("bank of america"). Fuzzy/typo paths stay behind Enter.
+ */
+export function matchExact<T extends Matchable>(input: string, remaining: T[]): T | undefined {
+  const q = normalizeGuess(input);
+  if (!q) return undefined;
+  for (const c of remaining) {
+    if (normalizeGuess(c.name) === q) return c;
+  }
+  if (q.length < 3) return undefined;
+  for (const c of remaining) {
+    if (normalizeGuess(c.ticker.split(".")[0]) === q || c.aliases.map(normalizeGuess).includes(q))
+      return c;
+  }
+  return undefined;
+}
+
+/** Find which still-hidden constituent a guess reveals, if any (Enter path: exact then fuzzy). */
 export function matchRemaining<T extends Matchable>(input: string, remaining: T[]): T | undefined {
   const q = normalizeGuess(input);
   if (!q) return undefined;
-  // pass 1: exact normalized name/ticker/alias
+  // pass 1: exact normalized name/ticker/alias (no length floor — explicit submit)
   for (const c of remaining) {
     if (
       normalizeGuess(c.name) === q ||

@@ -4,7 +4,7 @@
  * end screen grouped by sector — the learning moment (ROADMAP §1.2).
  */
 import { useEffect, useMemo, useRef, useState } from "react";
-import { matchRemaining, recallScore, timeLimitFor } from "../../game/recall.ts";
+import { matchExact, matchRemaining, recallScore, timeLimitFor } from "../../game/recall.ts";
 import type { CompanyRecord, IndexRecord } from "../../lib/data.ts";
 import { INDEX_NAMES, SECTOR_COLORS } from "../../lib/sectorColors.ts";
 import { saveRecallBest } from "../../lib/storage.ts";
@@ -97,15 +97,27 @@ export default function RecallGame({ index, companies, variant, onExit }: Props)
     return () => clearInterval(t);
   }, [phase, limit]); // eslint-disable-line react-hooks/exhaustive-deps -- finish is stable per run
 
+  const reveal = (hit: { id: string }) => {
+    const next = new Set(revealed).add(hit.id);
+    revealedRef.current = next;
+    setRevealed(next);
+    setInput("");
+    if (next.size === total) finish();
+  };
+
+  /** auto-accept as you type: exact matches fire instantly, no Enter needed */
+  const onType = (value: string) => {
+    setInput(value);
+    const remaining = entries.filter((e) => !revealed.has(e.company.id)).map((e) => e.matchable);
+    const hit = matchExact(value, remaining);
+    if (hit) reveal(hit);
+  };
+
   const submit = () => {
     const remaining = entries.filter((e) => !revealed.has(e.company.id)).map((e) => e.matchable);
     const hit = matchRemaining(input, remaining);
     if (hit) {
-      const next = new Set(revealed).add(hit.id);
-      revealedRef.current = next;
-      setRevealed(next);
-      setInput("");
-      if (next.size === total) finish();
+      reveal(hit);
     } else {
       setMissFlash(true);
       setTimeout(() => setMissFlash(false), 350);
@@ -124,7 +136,7 @@ export default function RecallGame({ index, companies, variant, onExit }: Props)
             {variant === "top10"
               ? "the 10 largest constituents by weight"
               : `all ${total} constituents`}
-            . Tickers, names, and nicknames all count.
+            . Exact names reveal as you type; Enter forgives small typos.
           </p>
           <label className="font-data flex items-center justify-center gap-2 text-xs">
             <input type="checkbox" checked={zen} onChange={(e) => setZen(e.target.checked)} />
@@ -219,7 +231,7 @@ export default function RecallGame({ index, companies, variant, onExit }: Props)
         <input
           ref={inputRef}
           value={input}
-          onChange={(e) => setInput(e.target.value)}
+          onChange={(e) => onType(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && submit()}
           placeholder="Type a constituent…"
           aria-label={`Name a constituent of ${title}`}
