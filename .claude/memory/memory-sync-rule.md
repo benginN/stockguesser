@@ -1,7 +1,7 @@
 ---
 name: memory-sync-rule
 description: Standing instruction — update memory on every change and mirror it into the repo
-metadata: 
+metadata:
   node_type: memory
   type: feedback
   originSessionId: 4d8a7ce1-90f3-43ff-a312-29df9926d782

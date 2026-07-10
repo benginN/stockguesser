@@ -124,3 +124,28 @@ export function saveCapBattleBest(streak: number): boolean {
   saveJSON("best:capbattle", streak);
   return true;
 }
+
+// ---- user-created custom indices (Recall "Custom" tab) ----
+
+export interface CustomIndexDef {
+  id: string; // "custom-<slug>"
+  name: string;
+  companyIds: string[];
+  created: string;
+}
+
+export function loadCustomIndices(): CustomIndexDef[] {
+  return loadJSON<CustomIndexDef[]>("custom:indices") ?? [];
+}
+
+export function saveCustomIndex(def: CustomIndexDef): void {
+  const list = loadCustomIndices().filter((d) => d.id !== def.id);
+  saveJSON("custom:indices", [...list, def]);
+}
+
+export function deleteCustomIndex(id: string): void {
+  saveJSON(
+    "custom:indices",
+    loadCustomIndices().filter((d) => d.id !== id),
+  );
+}

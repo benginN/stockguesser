@@ -9,13 +9,15 @@ import { INDEX_NAMES } from "../../lib/sectorColors.ts";
 import { loadRecallBest } from "../../lib/storage.ts";
 import RecallGame from "./RecallGame.tsx";
 import ImposterGame from "./ImposterGame.tsx";
+import CustomIndices from "./CustomIndices.tsx";
 
-export type Variant = "full" | "top10" | "imposter";
+export type Variant = "full" | "top10" | "imposter" | "custom";
 
 const VARIANTS: { id: Variant; label: string; blurb: string }[] = [
   { id: "full", label: "Full recall", blurb: "name every constituent" },
   { id: "top10", label: "Top 10", blurb: "name the 10 heaviest weights" },
   { id: "imposter", label: "Imposter", blurb: "spot the one that doesn't belong" },
+  { id: "custom", label: "Custom", blurb: "build and play your own index" },
 ];
 
 interface Loaded {
@@ -65,7 +67,12 @@ export default function Recall() {
     return variant === "imposter" ? (
       <ImposterGame index={playing} companies={loaded.companies} onExit={back} />
     ) : (
-      <RecallGame index={playing} companies={loaded.companies} variant={variant} onExit={back} />
+      <RecallGame
+        index={playing}
+        companies={loaded.companies}
+        variant={variant === "custom" ? "full" : variant}
+        onExit={back}
+      />
     );
   }
 
@@ -98,38 +105,42 @@ export default function Recall() {
         </p>
       </header>
 
-      <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-        {pickable.map((ix) => {
-          const best = loadRecallBest(ix.id, variant);
-          return (
-            <li key={ix.id}>
-              <button
-                onClick={() => setPlaying(ix)}
-                className="border-terminal-line bg-terminal-panel hover:border-accent flex min-h-14 w-full items-center justify-between rounded-md border px-4 py-3 text-left"
-              >
-                <span>
-                  <span className="block text-sm font-semibold">
-                    {INDEX_NAMES[ix.id] ?? ix.displayName}
+      {variant === "custom" ? (
+        <CustomIndices companies={loaded.companies} onPlay={setPlaying} />
+      ) : (
+        <ul className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+          {pickable.map((ix) => {
+            const best = loadRecallBest(ix.id, variant);
+            return (
+              <li key={ix.id}>
+                <button
+                  onClick={() => setPlaying(ix)}
+                  className="border-terminal-line bg-terminal-panel hover:border-accent flex min-h-14 w-full items-center justify-between rounded-md border px-4 py-3 text-left"
+                >
+                  <span>
+                    <span className="block text-sm font-semibold">
+                      {INDEX_NAMES[ix.id] ?? ix.displayName}
+                    </span>
+                    <span className="font-data text-terminal-dim text-xs">
+                      {variant === "top10" ? "top 10 of " : ""}
+                      {ix.holdings.length} stocks · {ix.region}
+                    </span>
                   </span>
-                  <span className="font-data text-terminal-dim text-xs">
-                    {variant === "top10" ? "top 10 of " : ""}
-                    {ix.holdings.length} stocks · {ix.region}
+                  <span className="font-data text-terminal-dim text-right text-xs">
+                    {best ? (
+                      <>
+                        best <span className="text-accent font-bold">{best.score}</span>
+                      </>
+                    ) : (
+                      "unplayed"
+                    )}
                   </span>
-                </span>
-                <span className="font-data text-terminal-dim text-right text-xs">
-                  {best ? (
-                    <>
-                      best <span className="text-accent font-bold">{best.score}</span>
-                    </>
-                  ) : (
-                    "unplayed"
-                  )}
-                </span>
-              </button>
-            </li>
-          );
-        })}
-      </ul>
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      )}
     </section>
   );
 }

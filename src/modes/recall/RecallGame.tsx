@@ -239,7 +239,7 @@ export default function RecallGame({ index, companies, variant, onExit }: Props)
   return (
     <section className="space-y-4">
       <BackHeader title={title} onExit={onExit} />
-      <div className="flex items-center gap-3">
+      <div className="bg-terminal-bg/95 sticky top-0 z-20 -mx-1 flex items-center gap-3 px-1 py-2 backdrop-blur">
         <ProgressRing fraction={named / total} label={`${named}/${total}`} />
         <input
           ref={inputRef}

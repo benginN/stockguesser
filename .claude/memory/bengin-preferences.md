@@ -1,7 +1,7 @@
 ---
 name: bengin-preferences
 description: "How Bengin likes to work — language, deploy cadence, playtest-driven feedback"
-metadata: 
+metadata:
   node_type: memory
   type: user
   originSessionId: 4d8a7ce1-90f3-43ff-a312-29df9926d782
