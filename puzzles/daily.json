@@ -264,9 +264,9 @@
       "difficulty": 0.3
     },
     "2026-08-31": {
-      "id": "asml-holding",
-      "name": "ASML Holding",
-      "difficulty": 0.19
+      "id": "asml-holding-n-v-new-york-registry-shares",
+      "name": "ASML Holding N.V. New York Registry Shares",
+      "difficulty": 0.15
     },
     "2026-09-01": {
       "id": "sherwin-williams",
@@ -1174,9 +1174,9 @@
       "difficulty": 0.28
     },
     "2027-03-01": {
-      "id": "asml-holding",
-      "name": "ASML Holding",
-      "difficulty": 0.19
+      "id": "asml-holding-n-v-new-york-registry-shares",
+      "name": "ASML Holding N.V. New York Registry Shares",
+      "difficulty": 0.15
     },
     "2027-03-02": {
       "id": "honeywell-technologies",
