@@ -30,6 +30,8 @@ jobs:
         run: cp -r public/data /tmp/old-data
       - name: Run pipeline (cold cache)
         run: npm run pipeline
+      - name: Puzzle integrity (scheduled answers must survive the refresh)
+        run: npx tsx pipeline/check-puzzles.ts
       - name: Build diff report
         id: diff
         run: |
