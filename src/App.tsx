@@ -89,6 +89,10 @@ export default function App() {
         ·{" "}
         <a className="hover:text-terminal-text underline" href="privacy.html">
           privacy
+        </a>{" "}
+        ·{" "}
+        <a className="hover:text-accent underline" href="https://ko-fi.com/bengin">
+          ☕ support
         </a>
       </footer>
     </div>

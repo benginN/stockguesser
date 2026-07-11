@@ -2,6 +2,11 @@
 
 Append a dated summary at the end of every working session (ROADMAP.md §8.3).
 
+## 2026-07-12 (session 8) — Ko-fi support link
+
+- Footer gained a `☕ support` link to https://ko-fi.com/bengin (link only, no widget/script —
+  static-site rule intact).
+
 ## 2026-07-10 (session 7) — wrap-up: v1.0 🚀
 
 User declared the project complete; future work = ad-hoc sessions. Final batch:
