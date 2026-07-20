@@ -5,6 +5,7 @@
  *   profiles: per-symbol sector/industry/country (expensive, one request each)
  *   sparklines: per-symbol 5Y weekly closes indexed to 100 (Tier 1 only)
  */
+import { readFileSync } from "node:fs";
 import YahooFinance from "yahoo-finance2";
 import { memo, peekMemo, pMap } from "../lib/http.ts";
 import { log } from "../lib/util.ts";
@@ -26,6 +27,34 @@ const CONCURRENCY = ON_CI ? 3 : 4;
 // profiles/sparklines change slowly; long TTLs let the Actions cache carry them week to week
 const PROFILE_TTL_H = 24 * 30;
 const SPARK_TTL_H = 24 * 10;
+
+/**
+ * Cap recovery for capless sessions. Yahoo strips marketCap on every endpoint
+ * for a subset of symbols on most datacenter IPs (see probe-batch.ts) while
+ * prices keep flowing. cap/price only drifts with buybacks/dilution, so
+ * remember it whenever Yahoo serves a real cap and rebuild cap = ratio ×
+ * fresh price when it doesn't. The committed seed (gen-cap-ratios.ts)
+ * bootstraps runners whose cache never saw a clean session. It's a ratio, not
+ * a share count — GBp listings quote price in pence but cap in pounds.
+ */
+const CAP_RATIO_TTL_H = 24 * 90;
+const capRatioSeed = JSON.parse(
+  readFileSync(new URL("../data/cap-ratios.json", import.meta.url), "utf8"),
+) as Record<string, number>;
+const capRatioOf = (s: string): number | undefined =>
+  peekMemo<number>(`capratio:${s}`, CAP_RATIO_TTL_H).value ?? capRatioSeed[s];
+async function rememberOrRecoverCap(lite: QuoteLite): Promise<QuoteLite> {
+  if (lite.marketCap && lite.price) {
+    const ratio = Math.round(lite.marketCap / lite.price);
+    await memo(`capratio:${lite.symbol}`, async () => ratio, CAP_RATIO_TTL_H);
+    return lite;
+  }
+  if (!lite.marketCap && lite.price) {
+    const ratio = capRatioOf(lite.symbol);
+    if (ratio) return { ...lite, marketCap: Math.round(ratio * lite.price) };
+  }
+  return lite;
+}
 
 /** "no such data" (cache a tombstone) vs transient throttle (retry, never cache). */
 const isPermanentMiss = (err: unknown): boolean =>
@@ -136,7 +165,7 @@ export async function getQuotes(symbols: string[]): Promise<Map<string, QuoteLit
       const got = new Set<string>();
       try {
         for (const q of await yf.quote(batch)) {
-          const lite = toQuoteLite(q);
+          const lite = await rememberOrRecoverCap(toQuoteLite(q));
           if (!lite.marketCap) continue;
           got.add(q.symbol);
           result.set(q.symbol, lite);
@@ -155,12 +184,10 @@ export async function getQuotes(symbols: string[]): Promise<Map<string, QuoteLit
 
   let leftovers = await batchPass(missing, true);
 
-  // Yahoo sometimes opens a session capless on datacenter IPs: every quote
-  // arrives with price/name but no marketCap, and stays that way for the whole
-  // session (run #10/#11), while a fresh client minutes later gets full data
-  // (probe run). So retry the misses in rounds, each on a fresh cookie/crumb
-  // after a growing pause.
-  for (let round = 1; round <= 4 && leftovers.length > 0; round++) {
+  // Symbols still capless here have no remembered ratio either (new listings,
+  // or a runner whose cache never saw a clean session). A couple of cheap
+  // re-batch rounds on fresh clients, then per-symbol verification.
+  for (let round = 1; round <= 2 && leftovers.length > 0; round++) {
     log("enrich", `quotes: ${leftovers.length} capless — round ${round} on a fresh session`);
     await sleep(15_000 * round);
     yf = freshClient();
@@ -183,7 +210,7 @@ export async function getQuotes(symbols: string[]): Promise<Map<string, QuoteLit
         const lite = await withRetries(async () => {
           const q = await yf.quote(s); // undefined = Yahoo answered: no such symbol
           if (q) {
-            const l = toQuoteLite(q);
+            const l = await rememberOrRecoverCap(toQuoteLite(q));
             if (l.marketCap) return l;
           }
           const viaSummary = await quoteViaSummary(s);

@@ -52,6 +52,13 @@ Full cold run takes roughly 30–60 min (throttled Yahoo calls); warm re-run min
   entry with a `_why`.
 - **Critical: index member missing sector/country** — Yahoo has no assetProfile for
   it. Add a `companyOverrides` entry (keyed by company id) filling the fields, with a `_why`.
+- **Caps missing en masse (prices/names fine)** — Yahoo serves capless responses
+  to most datacenter IPs for a subset of symbols, on every endpoint (v7 quote,
+  quoteSummary, all modules) — landing a clean Actions runner is luck
+  (`probe.yml` / `pipeline/probe-batch.ts` demonstrate this). The pipeline
+  recovers cap = remembered cap/price ratio × fresh price (`capratio:` memos,
+  90d TTL, seeded from `pipeline/data/cap-ratios.json`). After a complete local
+  run, refresh the seed with `tsx pipeline/gen-cap-ratios.ts` and commit it.
 - **Yahoo starts erroring en masse** — the unofficial API changed. Check for a
   yahoo-finance2 update first (`npm outdated yahoo-finance2`); this dependency is the
   most likely long-term breakage (ROADMAP §3 longevity notes).
