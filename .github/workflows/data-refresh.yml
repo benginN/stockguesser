@@ -9,6 +9,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  actions: write # dispatch deploy.yml after an auto-merge
 
 jobs:
   refresh:
@@ -36,6 +37,8 @@ jobs:
         with:
           path: pipeline/.cache
           key: pipeline-cache-${{ github.run_id }}
+      - name: Refresh cap-ratio seed from this run's cache (see RUNBOOK on capless sessions)
+        run: npx tsx pipeline/gen-cap-ratios.ts
       - name: Heal the daily schedule (regenerate days whose answers vanished)
         run: npx tsx puzzles/generate-daily.ts
       - name: Puzzle integrity (final gate after healing)
@@ -49,6 +52,7 @@ jobs:
             echo "DIFF_EOF"
           } >> "$GITHUB_OUTPUT"
       - name: Open PR
+        id: pr
         uses: peter-evans/create-pull-request@v7
         with:
           branch: data-refresh
@@ -58,3 +62,18 @@ jobs:
           add-paths: |
             public/data
             puzzles
+            pipeline/data/cap-ratios.json
+      # Boring refreshes (no index membership changes — the one thing needing a
+      # human eye, since Wikipedia edits can be wrong) merge themselves. The
+      # pipeline's validate + puzzle-integrity gates already ran above. A
+      # GITHUB_TOKEN merge doesn't fire deploy.yml's push trigger, so dispatch it.
+      - name: Auto-merge boring refreshes
+        if: >-
+          (steps.pr.outputs.pull-request-operation == 'created' ||
+           steps.pr.outputs.pull-request-operation == 'updated') &&
+          !contains(steps.diff.outputs.report, '## Index membership changes')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh pr merge --squash "${{ steps.pr.outputs.pull-request-number }}" --repo "${{ github.repository }}"
+          gh workflow run deploy.yml --ref main --repo "${{ github.repository }}"

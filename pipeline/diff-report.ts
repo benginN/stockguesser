@@ -68,11 +68,13 @@ console.log(
 if (oldIndicesPath && newIndicesPath) {
   const oldIx = load<{ indices: IndexOut[] }>(oldIndicesPath).indices;
   const newIx = load<{ indices: IndexOut[] }>(newIndicesPath).indices;
-  console.log(`\n## Index membership changes`);
+  // Section only appears when something changed — the refresh workflow keys
+  // auto-merge off its absence (membership changes wait for human review).
+  const changes: string[] = [];
   for (const ix of newIx) {
     const prev = oldIx.find((i) => i.id === ix.id);
     if (!prev) {
-      console.log(`- ${ix.displayName}: NEW index (${ix.holdings.length} holdings)`);
+      changes.push(`- ${ix.displayName}: NEW index (${ix.holdings.length} holdings)`);
       continue;
     }
     const prevIds = new Set(prev.holdings.map((h) => h.companyId));
@@ -80,12 +82,16 @@ if (oldIndicesPath && newIndicesPath) {
     const joined = [...currIds].filter((id) => !prevIds.has(id));
     const left = [...prevIds].filter((id) => !currIds.has(id));
     if (joined.length || left.length) {
-      console.log(
+      changes.push(
         `- ${ix.displayName}: ${joined.length ? `+${joined.join(", +")}` : ""}${joined.length && left.length ? "; " : ""}${left.length ? `-${left.join(", -")}` : ""}`,
       );
     }
   }
-  console.log(
-    `\nRemoved companies still referenced by an active puzzle? Check puzzles/ before merging.`,
-  );
+  if (changes.length > 0) {
+    console.log(`\n## Index membership changes`);
+    for (const line of changes) console.log(line);
+    console.log(
+      `\nRemoved companies still referenced by an active puzzle? Check puzzles/ before merging.`,
+    );
+  }
 }

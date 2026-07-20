@@ -29,10 +29,14 @@ Full cold run takes roughly 30–60 min (throttled Yahoo calls); warm re-run min
 ## Weekly refresh flow
 
 - `.github/workflows/data-refresh.yml` runs Mondays 05:30 UTC (or manually via
-  workflow_dispatch), regenerates data, and opens a **PR on branch `data-refresh`**
-  whose body is the diff report (companies added/removed, caps moved >5%, index
-  membership changes).
-- **Review checklist before merging:**
+  workflow_dispatch), regenerates data, refreshes `pipeline/data/cap-ratios.json`
+  from the run's cache, and opens a **PR on branch `data-refresh`** whose body is
+  the diff report (companies added/removed, caps moved >5%, index membership changes).
+- **Boring refreshes auto-merge and deploy themselves.** A PR waits for human
+  review only when the diff report contains index membership changes — the one
+  thing the automated gates can't judge (Wikipedia edits are occasionally wrong
+  or vandalized).
+- **Review checklist before merging a held PR:**
   1. Do the index membership changes match reality (check a news source for real
      index rebalances)? Wikipedia edits are occasionally wrong or vandalized —
      count validation catches size changes but not swaps.
