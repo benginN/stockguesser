@@ -1,0 +1,23 @@
+name: Probe Yahoo from CI
+
+# Datacenter IPs get served different Yahoo field sets than residential ones.
+# Run this to see what the Actions runner actually receives per endpoint.
+
+on:
+  workflow_dispatch:
+    inputs:
+      symbols:
+        description: "Symbols to probe (space-separated)"
+        default: "ABT AMD UCG.MI RELIANCE.NS"
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npx tsx pipeline/probe-symbols.ts ${{ inputs.symbols }}
