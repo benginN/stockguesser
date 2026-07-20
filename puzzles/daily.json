@@ -1,7 +1,7 @@
 {
   "mode": "daily-ticker",
   "epoch": "2026-07-10",
-  "snapshotVersion": "2026-07-10",
+  "snapshotVersion": "2026-07-20",
   "days": {
     "2026-07-10": {
       "id": "vistra",
@@ -549,9 +549,9 @@
       "difficulty": 0.25
     },
     "2026-10-27": {
-      "id": "hsbc",
-      "name": "HSBC",
-      "difficulty": 0.24
+      "id": "hsbc-holdings",
+      "name": "HSBC Holdings",
+      "difficulty": 0.2
     },
     "2026-10-28": {
       "id": "tata-consultancy-services",
@@ -1454,9 +1454,9 @@
       "difficulty": 0.37
     },
     "2027-04-26": {
-      "id": "hsbc",
-      "name": "HSBC",
-      "difficulty": 0.24
+      "id": "hsbc-holdings",
+      "name": "HSBC Holdings",
+      "difficulty": 0.2
     },
     "2027-04-27": {
       "id": "sherwin-williams",
