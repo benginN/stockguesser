@@ -9,10 +9,13 @@ import YahooFinance from "yahoo-finance2";
 import { memo, peekMemo, pMap } from "../lib/http.ts";
 import { log } from "../lib/util.ts";
 
-const yf = new YahooFinance({
-  suppressNotices: ["yahooSurvey", "ripHistorical"],
-  validation: { logErrors: false, logOptionsErrors: false },
-});
+const freshClient = () =>
+  new YahooFinance({
+    suppressNotices: ["yahooSurvey", "ripHistorical"],
+    validation: { logErrors: false, logOptionsErrors: false },
+  });
+// Rebound with a fresh cookie/crumb when Yahoo opens the session capless (see getQuotes)
+let yf = freshClient();
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
@@ -124,33 +127,50 @@ export async function getQuotes(symbols: string[]): Promise<Map<string, QuoteLit
   }
   log("enrich", `quotes: ${result.size} cached, ${missing.length} to fetch`);
 
-  // Pass 1: cheap 50-symbol batches. Only complete answers are cached; anything
-  // else (batch error, throttled/thin response) falls through to the singles pass.
-  const leftovers: string[] = [];
-  for (let i = 0; i < missing.length; i += 50) {
-    const batch = missing.slice(i, i + 50);
-    const got = new Set<string>();
-    try {
-      for (const q of await yf.quote(batch)) {
-        const lite = toQuoteLite(q);
-        if (!lite.marketCap) continue;
-        got.add(q.symbol);
-        result.set(q.symbol, lite);
-        await memo(`quote4:${q.symbol}`, async () => lite);
+  // Cheap 50-symbol batches. Only complete answers are cached; anything else
+  // (batch error, capless/thin response) is returned for another round.
+  const batchPass = async (symbols: string[], progress: boolean): Promise<string[]> => {
+    const left: string[] = [];
+    for (let i = 0; i < symbols.length; i += 50) {
+      const batch = symbols.slice(i, i + 50);
+      const got = new Set<string>();
+      try {
+        for (const q of await yf.quote(batch)) {
+          const lite = toQuoteLite(q);
+          if (!lite.marketCap) continue;
+          got.add(q.symbol);
+          result.set(q.symbol, lite);
+          await memo(`quote4:${q.symbol}`, async () => lite);
+        }
+      } catch {
+        /* whole batch failed — every symbol gets another round */
       }
-    } catch {
-      /* whole batch failed — every symbol gets a second chance below */
+      left.push(...batch.filter((s) => !got.has(s)));
+      if (progress && i % 500 === 0)
+        log("enrich", `quotes: fetched ${Math.min(i + 50, symbols.length)}/${symbols.length}`);
+      await sleep(400);
     }
-    leftovers.push(...batch.filter((s) => !got.has(s)));
-    if (i % 500 === 0)
-      log("enrich", `quotes: fetched ${Math.min(i + 50, missing.length)}/${missing.length}`);
-    await sleep(400);
+    return left;
+  };
+
+  let leftovers = await batchPass(missing, true);
+
+  // Yahoo sometimes opens a session capless on datacenter IPs: every quote
+  // arrives with price/name but no marketCap, and stays that way for the whole
+  // session (run #10/#11), while a fresh client minutes later gets full data
+  // (probe run). So retry the misses in rounds, each on a fresh cookie/crumb
+  // after a growing pause.
+  for (let round = 1; round <= 4 && leftovers.length > 0; round++) {
+    log("enrich", `quotes: ${leftovers.length} capless — round ${round} on a fresh session`);
+    await sleep(15_000 * round);
+    yf = freshClient();
+    leftovers = await batchPass(leftovers, false);
   }
 
-  // Pass 2: verify leftovers one by one, falling back to quoteSummary for the
-  // datacenter-thin v7 responses. Tombstone only a confirmed "no such symbol" —
-  // a thin batch response must never brand a live symbol as dead (run #9
-  // tombstoned 259 index constituents during a Yahoo throttling spell).
+  // Last pass: verify stragglers one by one, falling back to quoteSummary.
+  // Tombstone only a confirmed "no such symbol" — a thin batch response must
+  // never brand a live symbol as dead (run #9 tombstoned 259 index
+  // constituents during a capless spell).
   if (leftovers.length > 0) log("enrich", `quotes: verifying ${leftovers.length} batch misses`);
   let streak = 0; // consecutive transient failures = Yahoo is throttling across the board
   let tombstoned = 0;
