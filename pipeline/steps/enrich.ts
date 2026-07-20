@@ -82,6 +82,35 @@ const toQuoteLite = (q: Awaited<ReturnType<typeof yf.quote>>[number]): QuoteLite
     : undefined,
 });
 
+/**
+ * The v7 batch quote endpoint serves crumb-gated thin responses (no marketCap)
+ * to datacenter IPs — runs #9/#10 lost ~250 index constituents to it on CI
+ * while quoteSummary and chart kept answering in full. So quoteSummary is the
+ * fallback for batch misses. Returns the quote, null for a confirmed unknown
+ * symbol, or undefined when Yahoo answered but without usable cap data.
+ */
+async function quoteViaSummary(symbol: string): Promise<QuoteLite | null | undefined> {
+  try {
+    const qs = await yf.quoteSummary(symbol, { modules: ["price", "quoteType"] });
+    const p = qs.price;
+    if (!p?.marketCap || !p.regularMarketPrice) return undefined;
+    const firstTrade = qs.quoteType?.firstTradeDateEpochUtc;
+    return {
+      symbol,
+      currency: p.currency,
+      marketCap: p.marketCap,
+      price: p.regularMarketPrice,
+      longName: p.longName ?? undefined,
+      shortName: p.shortName ?? undefined,
+      exchange: p.exchangeName,
+      firstTradeYear: firstTrade ? new Date(firstTrade).getUTCFullYear() : undefined,
+    };
+  } catch (err) {
+    if (isPermanentMiss(err)) return null;
+    throw err;
+  }
+}
+
 /** Batch-fetch quotes with per-symbol disk memoization. */
 export async function getQuotes(symbols: string[]): Promise<Map<string, QuoteLite>> {
   const result = new Map<string, QuoteLite>();
@@ -118,35 +147,44 @@ export async function getQuotes(symbols: string[]): Promise<Map<string, QuoteLit
     await sleep(400);
   }
 
-  // Pass 2: verify leftovers one by one. Tombstone only a confirmed "no such
-  // symbol" — a thin batch response must never brand a live symbol as dead
-  // (run #9 tombstoned 259 index constituents during a Yahoo throttling spell).
+  // Pass 2: verify leftovers one by one, falling back to quoteSummary for the
+  // datacenter-thin v7 responses. Tombstone only a confirmed "no such symbol" —
+  // a thin batch response must never brand a live symbol as dead (run #9
+  // tombstoned 259 index constituents during a Yahoo throttling spell).
   if (leftovers.length > 0) log("enrich", `quotes: verifying ${leftovers.length} batch misses`);
   let streak = 0; // consecutive transient failures = Yahoo is throttling across the board
   let tombstoned = 0;
-  for (const s of leftovers) {
-    if (streak >= 10) break; // stop hammering; uncached symbols retry next run
-    try {
-      const lite = await withRetries(async () => {
-        const q = await yf.quote(s);
-        if (!q) return null; // Yahoo answered: no such symbol
-        const l = toQuoteLite(q);
-        if (!l.marketCap) throw new Error(`thin quote for ${s}`); // throttled shell — retry
-        return l;
-      });
-      if (lite === null) {
-        tombstoned++;
-        await memo(`quote4:${s}`, async () => null); // confirmed dead/unknown symbol
-      } else {
-        result.set(s, lite);
-        await memo(`quote4:${s}`, async () => lite);
+  await pMap(
+    leftovers,
+    async (s) => {
+      if (streak >= 10) return; // stop hammering; uncached symbols retry next run
+      try {
+        const lite = await withRetries(async () => {
+          const q = await yf.quote(s); // undefined = Yahoo answered: no such symbol
+          if (q) {
+            const l = toQuoteLite(q);
+            if (l.marketCap) return l;
+          }
+          const viaSummary = await quoteViaSummary(s);
+          if (viaSummary) return viaSummary;
+          if (viaSummary === null && !q) return null; // both endpoints: no such symbol
+          throw new Error(`thin quote for ${s}`); // answered but capless — retry
+        });
+        if (lite === null) {
+          tombstoned++;
+          await memo(`quote4:${s}`, async () => null); // confirmed dead/unknown symbol
+        } else {
+          result.set(s, lite);
+          await memo(`quote4:${s}`, async () => lite);
+        }
+        streak = 0;
+      } catch {
+        streak++; // transient after retries — leave uncached so the next run retries
       }
-      streak = 0;
-    } catch {
-      streak++; // transient after retries — leave uncached so the next run retries
-    }
-    await sleep(PACE_MS);
-  }
+      await sleep(PACE_MS);
+    },
+    CONCURRENCY,
+  );
   if (leftovers.length > 0) {
     const unresolved = leftovers.filter((s) => !result.has(s)).length - tombstoned;
     log("enrich", `quotes: ${tombstoned} tombstoned, ${unresolved} left for next run`);
