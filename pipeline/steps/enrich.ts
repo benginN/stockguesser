@@ -64,65 +64,92 @@ export interface ProfileLite {
   website?: string;
 }
 
+const toQuoteLite = (q: Awaited<ReturnType<typeof yf.quote>>[number]): QuoteLite => ({
+  symbol: q.symbol,
+  currency: q.currency,
+  // some quotes (e.g. Michelin ML.PA) report no marketCap; shares × price recovers it
+  marketCap:
+    q.marketCap ||
+    (q.sharesOutstanding && q.regularMarketPrice
+      ? Math.round(q.sharesOutstanding * q.regularMarketPrice)
+      : undefined),
+  price: q.regularMarketPrice,
+  longName: q.longName,
+  shortName: q.shortName,
+  exchange: q.fullExchangeName,
+  firstTradeYear: q.firstTradeDateMilliseconds
+    ? new Date(q.firstTradeDateMilliseconds).getUTCFullYear()
+    : undefined,
+});
+
 /** Batch-fetch quotes with per-symbol disk memoization. */
 export async function getQuotes(symbols: string[]): Promise<Map<string, QuoteLite>> {
   const result = new Map<string, QuoteLite>();
   const missing: string[] = [];
   for (const s of symbols) {
-    const peek = peekMemo<QuoteLite | null>(`quote3:${s}`);
+    // quote4: quote3 tombstones were poisoned by a throttled run (2026-07-20) — never reuse them
+    const peek = peekMemo<QuoteLite | null>(`quote4:${s}`);
     if (!peek.hit) missing.push(s);
     else if (peek.value) result.set(s, peek.value);
     // cached null = known-dead symbol, skip silently
   }
   log("enrich", `quotes: ${result.size} cached, ${missing.length} to fetch`);
 
+  // Pass 1: cheap 50-symbol batches. Only complete answers are cached; anything
+  // else (batch error, throttled/thin response) falls through to the singles pass.
+  const leftovers: string[] = [];
   for (let i = 0; i < missing.length; i += 50) {
     const batch = missing.slice(i, i + 50);
-    let quotes: Awaited<ReturnType<typeof yf.quote>> = [];
-    try {
-      quotes = await yf.quote(batch);
-    } catch {
-      // one bad symbol can fail a batch — fall back to singles (retry transient throttling)
-      for (const s of batch) {
-        try {
-          const q = await withRetries(() => yf.quote(s));
-          if (q) quotes.push(q);
-        } catch {
-          /* transient after retries — leave uncached so the next run retries */
-        }
-        await sleep(PACE_MS);
-      }
-    }
     const got = new Set<string>();
-    for (const q of quotes) {
-      const lite: QuoteLite = {
-        symbol: q.symbol,
-        currency: q.currency,
-        // some quotes (e.g. Michelin ML.PA) report no marketCap; shares × price recovers it
-        marketCap:
-          q.marketCap ||
-          (q.sharesOutstanding && q.regularMarketPrice
-            ? Math.round(q.sharesOutstanding * q.regularMarketPrice)
-            : undefined),
-        price: q.regularMarketPrice,
-        longName: q.longName,
-        shortName: q.shortName,
-        exchange: q.fullExchangeName,
-        firstTradeYear: q.firstTradeDateMilliseconds
-          ? new Date(q.firstTradeDateMilliseconds).getUTCFullYear()
-          : undefined,
-      };
-      if (!lite.marketCap) continue; // throttled/thin response — leave for retried verification below
-      got.add(q.symbol);
-      result.set(q.symbol, lite);
-      await memo(`quote3:${q.symbol}`, async () => lite);
+    try {
+      for (const q of await yf.quote(batch)) {
+        const lite = toQuoteLite(q);
+        if (!lite.marketCap) continue;
+        got.add(q.symbol);
+        result.set(q.symbol, lite);
+        await memo(`quote4:${q.symbol}`, async () => lite);
+      }
+    } catch {
+      /* whole batch failed — every symbol gets a second chance below */
     }
-    for (const s of batch.filter((s) => !got.has(s))) {
-      await memo(`quote3:${s}`, async () => null); // tombstone: dead/unknown symbol
-    }
+    leftovers.push(...batch.filter((s) => !got.has(s)));
     if (i % 500 === 0)
       log("enrich", `quotes: fetched ${Math.min(i + 50, missing.length)}/${missing.length}`);
     await sleep(400);
+  }
+
+  // Pass 2: verify leftovers one by one. Tombstone only a confirmed "no such
+  // symbol" — a thin batch response must never brand a live symbol as dead
+  // (run #9 tombstoned 259 index constituents during a Yahoo throttling spell).
+  if (leftovers.length > 0) log("enrich", `quotes: verifying ${leftovers.length} batch misses`);
+  let streak = 0; // consecutive transient failures = Yahoo is throttling across the board
+  let tombstoned = 0;
+  for (const s of leftovers) {
+    if (streak >= 10) break; // stop hammering; uncached symbols retry next run
+    try {
+      const lite = await withRetries(async () => {
+        const q = await yf.quote(s);
+        if (!q) return null; // Yahoo answered: no such symbol
+        const l = toQuoteLite(q);
+        if (!l.marketCap) throw new Error(`thin quote for ${s}`); // throttled shell — retry
+        return l;
+      });
+      if (lite === null) {
+        tombstoned++;
+        await memo(`quote4:${s}`, async () => null); // confirmed dead/unknown symbol
+      } else {
+        result.set(s, lite);
+        await memo(`quote4:${s}`, async () => lite);
+      }
+      streak = 0;
+    } catch {
+      streak++; // transient after retries — leave uncached so the next run retries
+    }
+    await sleep(PACE_MS);
+  }
+  if (leftovers.length > 0) {
+    const unresolved = leftovers.filter((s) => !result.has(s)).length - tombstoned;
+    log("enrich", `quotes: ${tombstoned} tombstoned, ${unresolved} left for next run`);
   }
   return result;
 }
