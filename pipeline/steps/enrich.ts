@@ -154,6 +154,7 @@ export async function getQuotes(symbols: string[]): Promise<Map<string, QuoteLit
   if (leftovers.length > 0) log("enrich", `quotes: verifying ${leftovers.length} batch misses`);
   let streak = 0; // consecutive transient failures = Yahoo is throttling across the board
   let tombstoned = 0;
+  const sampleErrors: string[] = []; // first few real messages — throttling looks different every year
   await pMap(
     leftovers,
     async (s) => {
@@ -168,7 +169,10 @@ export async function getQuotes(symbols: string[]): Promise<Map<string, QuoteLit
           const viaSummary = await quoteViaSummary(s);
           if (viaSummary) return viaSummary;
           if (viaSummary === null && !q) return null; // both endpoints: no such symbol
-          throw new Error(`thin quote for ${s}`); // answered but capless — retry
+          // answered but capless — say what we did get, so CI logs show the shape
+          throw new Error(
+            `thin quote for ${s} (price=${q?.regularMarketPrice}, name=${q?.shortName ?? q?.longName}, summary=${viaSummary === null ? "not-found" : "capless"})`,
+          );
         });
         if (lite === null) {
           tombstoned++;
@@ -178,8 +182,10 @@ export async function getQuotes(symbols: string[]): Promise<Map<string, QuoteLit
           await memo(`quote4:${s}`, async () => lite);
         }
         streak = 0;
-      } catch {
+      } catch (err) {
         streak++; // transient after retries — leave uncached so the next run retries
+        if (sampleErrors.length < 3)
+          sampleErrors.push(`${s}: ${((err as Error).message ?? String(err)).slice(0, 160)}`);
       }
       await sleep(PACE_MS);
     },
@@ -188,6 +194,7 @@ export async function getQuotes(symbols: string[]): Promise<Map<string, QuoteLit
   if (leftovers.length > 0) {
     const unresolved = leftovers.filter((s) => !result.has(s)).length - tombstoned;
     log("enrich", `quotes: ${tombstoned} tombstoned, ${unresolved} left for next run`);
+    for (const m of sampleErrors) log("enrich", `quotes: sample failure — ${m}`);
   }
   return result;
 }
